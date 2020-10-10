@@ -44,9 +44,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            rm -rf /www/doc
+            rm -rf /www/doc/*
             mv /data/www/dist/doc /www/doc
             cd /www/doc
             unzip dist.zip
-            mv docs/.vuepress/dist/ ./
+            mv docs/.vuepress/dist/* ./
           
