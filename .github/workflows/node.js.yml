@@ -28,5 +28,5 @@ jobs:
         USERNAME: ${{ secrets.REMOTE_USER }}
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PORT: ${{ secrets.REMOTE_PORT }}
-        SOURCE: ${{ secrets.SOURCE }}
-        TARGET: ${{ secrets.REMOTE_TARGET }}
+        SOURCE: ./docs/.vuepress/dist
+        TARGET: /www/doc/
