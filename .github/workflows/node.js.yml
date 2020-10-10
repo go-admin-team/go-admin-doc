@@ -34,8 +34,8 @@ jobs:
         USERNAME: ${{ secrets.REMOTE_USER }}
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PORT: ${{ secrets.REMOTE_PORT }}
-        SOURCE: ./dist.zip
-        TARGET: /data/www/dist/doc/
+        SOURCE: ./docs/.vuepress/dist
+        TARGET: /data/www/dist/doc
     - name: mv
       uses: appleboy/ssh-action@master
       with:
@@ -44,9 +44,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            rm -rf /www/doc/*
-            mv /data/www/dist/doc /www/doc
-            cd /www/doc
-            unzip dist.zip
-            mv /www/doc/docs/.vuepress/dist/ /www/doc/
+            cd /data/www/dist/doc
+            ls
           
