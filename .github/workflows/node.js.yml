@@ -28,5 +28,5 @@ jobs:
         USERNAME: ${{ secrets.REMOTE_USER }}
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PORT: ${{ secrets.REMOTE_PORT }}
-        SOURCE: /home/runner/work/go-admin-doc/go-admin-doc/docs/.vuepress/dist
-        TARGET: /www/doc/
+        SOURCE: ./
+        TARGET: /www/doc/dist/
