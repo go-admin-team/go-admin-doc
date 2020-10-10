@@ -26,7 +26,7 @@ jobs:
       env:
         HOST: ${{ secrets.REMOTE_HOST }}
         USERNAME: ${{ secrets.REMOTE_USER }}
-        KEY: ${{ secrets.SERVER_SSH_KEY }}
+        KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PORT: ${{ secrets.REMOTE_PORT }}
         SOURCE: ${{ secrets.SOURCE }}
         TARGET: ${{ secrets.REMOTE_TARGET }}
