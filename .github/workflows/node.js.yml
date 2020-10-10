@@ -48,5 +48,5 @@ jobs:
             mv /data/www/dist/doc /www/doc
             cd /www/doc
             unzip dist.zip
-            mv /www/doc/docs/.vuepress/dist/* /www/doc
+            mv /www/doc/docs/.vuepress/dist/* /www/doc/
           
