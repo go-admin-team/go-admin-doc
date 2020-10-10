@@ -45,6 +45,7 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             rm -rf /www/doc
-            mv /data/www/dist/doc/dist.zip /www/doc/dist.zip
+            mv /data/www/dist/doc/ /www/doc
             cd /www/doc
             unzip dist.zip
+          
