@@ -29,4 +29,4 @@ jobs:
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PORT: ${{ secrets.REMOTE_PORT }}
         SOURCE: ./
-        TARGET: /www/doc/dist/
+        TARGET: /data/www/dist/
