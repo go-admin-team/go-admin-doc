@@ -24,7 +24,7 @@ jobs:
     - name: Get Path
       run: pwd
     - name: Zip
-      run: zip -r dist.zip ./docs/.vuepress/dist/*
+      run: zip -q -r dist.zip ./docs/.vuepress/dist
     - name: Ls
       run: ls
     - name: 'Copy'
@@ -45,4 +45,6 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             rm -rf /www/doc
-            unzip -o -d /www/doc /data/www/dist/doc/dist.zip
+            mv /data/www/dist/doc/dist.zip /www/doc
+            cd /www/doc
+            unzip dist.zip
