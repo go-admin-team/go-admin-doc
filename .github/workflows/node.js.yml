@@ -23,8 +23,8 @@ jobs:
       run: npm run build --prod
     - name: Get Path
       run: pwd
-    - name: Go Path Docs
-      run: cd docs/.vuepress/dist
+    - name: Zip
+      run: zip -r dist.zip ./docs/.vuepress/dist/*
     - name: Ls
       run: ls
     - name: 'Copy'
@@ -34,5 +34,5 @@ jobs:
         USERNAME: ${{ secrets.REMOTE_USER }}
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PORT: ${{ secrets.REMOTE_PORT }}
-        SOURCE: ./
+        SOURCE: ./dist.zip
         TARGET: /data/www/dist/
