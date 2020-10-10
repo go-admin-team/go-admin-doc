@@ -28,14 +28,14 @@ jobs:
     - name: Ls
       run: ls
     - name: 'Copy'
-      uses: appleboy/ssh-action@master
+      uses: appleboy/scp-action@master
       env:
         HOST: ${{ secrets.REMOTE_HOST }}
         USERNAME: ${{ secrets.REMOTE_USER }}
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PORT: ${{ secrets.REMOTE_PORT }}
-        SOURCE: dist.zip
-        TARGET: /data/www/dist/
+        SOURCE: ./docs/.vuepress/dist
+        TARGET: /www/doc/
     - name: mv
       uses: appleboy/ssh-action@master
       with:
