@@ -22,11 +22,11 @@ jobs:
     - name: Run build task
       run: npm run build --prod --if-present
     - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@v2.0.7
+      uses: appleboy/ssh-action@master
       env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          ARGS: ""
-          SOURCE: ${{ secrets.SOURCE }}
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+        HOST: ${{ secrets.REMOTE_HOST }}
+        USERNAME: ${{ secrets.REMOTE_USER }}
+        KEY: ${{ secrets.SERVER_SSH_KEY }}
+        PORT: ${{ secrets.REMOTE_PORT }}
+        SOURCE: ${{ secrets.SOURCE }}
+        TARGET: ${{ secrets.REMOTE_TARGET }}
