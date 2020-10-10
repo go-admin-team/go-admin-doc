@@ -45,5 +45,5 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             cd /data/www/dist/doc
-            ls
+            mv /data/www/dist/doc/docs/.vuepress/dist/* /www/doc
           
