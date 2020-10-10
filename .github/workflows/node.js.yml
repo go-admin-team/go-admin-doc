@@ -23,7 +23,11 @@ jobs:
       run: npm run build --prod
     - name: Get Path
       run: pwd
-    - name: Deploy to Server
+    - name: Go Path Docs
+      run: cd docs/.vuepress/dist
+    - name: LL
+      run: ll
+    - name: 'Copy'
       uses: appleboy/ssh-action@master
       env:
         HOST: ${{ secrets.REMOTE_HOST }}
