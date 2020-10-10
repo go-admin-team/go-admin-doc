@@ -36,3 +36,13 @@ jobs:
         PORT: ${{ secrets.REMOTE_PORT }}
         SOURCE: dist.zip
         TARGET: /data/www/dist/
+    - name: mv
+      uses: appleboy/ssh-action@master
+      with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.REMOTE_PORT }}
+          script: |
+            cd /data/www/dist/
+            ls
