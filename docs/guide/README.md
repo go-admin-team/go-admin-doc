@@ -19,11 +19,9 @@ pageClass: getting-started
 
 go-admin 是基于 Gin + Vue + Element UI 的中后台管理系统开发脚手架。
 
-- go-admin 在线 DEMO：[http://www.zhangwj.com](http://www.zhangwj.com)
+- go-admin 在线 DEMO：[https://www.go-admin.dev](https://www.go-admin.dev)
 
-- go-admin [在线文档国际](https://go-admin-team.github.io/go-admin-doc)
-
-- go-admin [在线文档国内](http://mydearzwj.gitee.io/go-admin-doc/)
+- go-admin [在线文档](https://doc.go-admin.dev)
 
 - go-admin [源码仓库国际](https://github.com/go-admin-team/go-admin)
 
@@ -33,7 +31,7 @@ go-admin 是基于 Gin + Vue + Element UI 的中后台管理系统开发脚手�
 
 ## 在线体验
 
-1. 体验地址： [http://www.zhangwj.com](http://www.zhangwj.com)
+1. 体验地址： [https://www.go-admin.dev](https://www.go-admin.dev)
 2. 账号密码：admin/123456
 
 ## 系统要求
@@ -143,7 +141,7 @@ settings:
 
 ## Contribution
 
-本文档项目地址 [go-admin-doc](https://github.com/go-admin-team/go-admin-doc) 基于 [vuepress](https://github.com/vuejs/vuepress)开发。
+本文档项目地址 [go-admin-doc](https://doc.go-admin.dev) 基于 [vuepress](https://github.com/vuejs/vuepress)开发。
 
 有任何修改和建议都可以该项目 pr 和 issue
 

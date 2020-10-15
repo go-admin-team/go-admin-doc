@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>无代码 CRUD | go-admin</title>
+    <meta name="description" content="基于Gin+Vue+Element UI的中后台系统脚手架">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.da809cf7.css" as="style"><link rel="preload" href="/assets/js/app.4a944a29.js" as="script"><link rel="preload" href="/assets/js/23.d958b1a2.js" as="script"><link rel="prefetch" href="/assets/js/10.fbc040a5.js"><link rel="prefetch" href="/assets/js/11.c23ce5b1.js"><link rel="prefetch" href="/assets/js/12.3921d1e5.js"><link rel="prefetch" href="/assets/js/13.94d4cc48.js"><link rel="prefetch" href="/assets/js/14.f741bf36.js"><link rel="prefetch" href="/assets/js/15.f64108bb.js"><link rel="prefetch" href="/assets/js/16.540d52bb.js"><link rel="prefetch" href="/assets/js/17.9a1bd912.js"><link rel="prefetch" href="/assets/js/18.e22dbef0.js"><link rel="prefetch" href="/assets/js/19.3cfb2ef8.js"><link rel="prefetch" href="/assets/js/20.b3ec0455.js"><link rel="prefetch" href="/assets/js/21.e255f358.js"><link rel="prefetch" href="/assets/js/22.a7798609.js"><link rel="prefetch" href="/assets/js/24.9f839fad.js"><link rel="prefetch" href="/assets/js/25.72365803.js"><link rel="prefetch" href="/assets/js/26.7937f626.js"><link rel="prefetch" href="/assets/js/27.040a2b60.js"><link rel="prefetch" href="/assets/js/28.42f07ecc.js"><link rel="prefetch" href="/assets/js/29.7c5ed4b4.js"><link rel="prefetch" href="/assets/js/3.052cae74.js"><link rel="prefetch" href="/assets/js/30.7b8e769b.js"><link rel="prefetch" href="/assets/js/31.163236c6.js"><link rel="prefetch" href="/assets/js/32.6153e569.js"><link rel="prefetch" href="/assets/js/33.09286f6b.js"><link rel="prefetch" href="/assets/js/34.d4e0e2bb.js"><link rel="prefetch" href="/assets/js/35.c93a28bd.js"><link rel="prefetch" href="/assets/js/36.1fe876cb.js"><link rel="prefetch" href="/assets/js/4.b1e5bebe.js"><link rel="prefetch" href="/assets/js/5.9097d3f9.js"><link rel="prefetch" href="/assets/js/6.9ae84f82.js"><link rel="prefetch" href="/assets/js/7.ed17196a.js"><link rel="prefetch" href="/assets/js/8.b4768cbd.js"><link rel="prefetch" href="/assets/js/9.a31b432a.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.0fe11263.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.da809cf7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">go-admin</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">指南</a></div><div class="nav-item"><a href="/donate/" class="nav-link">捐赠</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">选择语言</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/advanced/advanced.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">简体中文</a></li><li class="dropdown-item"><!----> <a href="/en/guide/advanced/advanced.html" class="nav-link">English</a></li></ul></div></div> <a href="https://github.com/go-admin-team/go-admin" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">指南</a></div><div class="nav-item"><a href="/donate/" class="nav-link">捐赠</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">选择语言</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/advanced/advanced.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">简体中文</a></li><li class="dropdown-item"><!----> <a href="/en/guide/advanced/advanced.html" class="nav-link">English</a></li></ul></div></div> <a href="https://github.com/go-admin-team/go-admin" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>基础</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/" aria-current="page" class="sidebar-link">项目介绍</a></li><li><a href="/guide/ksks.html" class="sidebar-link">快速开始</a></li><li><a href="/guide/hjbs.html" class="sidebar-link">环境部署</a></li><li><a href="/guide/spjc.html" class="sidebar-link">视频教程</a></li><li><a href="/guide/ide.html" class="sidebar-link">IDE 开发</a></li><li><a href="/guide/db.html" class="sidebar-link">数据库</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>第一个go-admin应用</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/intro/tutorial01.html" class="sidebar-link">编写 go-admin 应用,第 1 步</a></li><li><a href="/guide/intro/tutorial02.html" class="sidebar-link">编写 go-admin 应用,第 2 步</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading open"><span>高级</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/advanced/advanced.html" aria-current="page" class="active sidebar-link">无代码 CRUD</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/advanced/advanced.html#路由" class="sidebar-link">路由</a></li><li class="sidebar-sub-header"><a href="/guide/advanced/advanced.html#dto" class="sidebar-link">dto</a></li><li class="sidebar-sub-header"><a href="/guide/advanced/advanced.html#model" class="sidebar-link">model</a></li></ul></li><li><a href="/guide/advanced/bus.html" class="sidebar-link">通用方法</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>其他</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/other/faq.html" class="sidebar-link">常见问题</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>规范</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/norm.html" class="sidebar-link">开发规范</a></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="无代码-crud"><a href="#无代码-crud" class="header-anchor">#</a> 无代码 CRUD</h1> <p>当前项目内置了单表的 CRUD 函数，可以零代码实现单表的增删改查；只用简单配置路由即可；</p> <p>无代码 CRUD，需要有 路由、dto、model 三部分组成；以下是三块的示例代码；</p> <h2 id="路由"><a href="#路由" class="header-anchor">#</a> 路由</h2> <p>完整示例：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">registerSysJobRouter</span><span class="token punctuation">(</span>v1 <span class="token operator">*</span>gin<span class="token punctuation">.</span>RouterGroup<span class="token punctuation">,</span> authMiddleware <span class="token operator">*</span>jwt<span class="token punctuation">.</span>GinJWTMiddleware<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+ r <span class="token operator">:=</span> v1<span class="token punctuation">.</span><span class="token function">Group</span><span class="token punctuation">(</span><span class="token string">&quot;/sysjob&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>authMiddleware<span class="token punctuation">.</span><span class="token function">MiddlewareFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>middleware<span class="token punctuation">.</span><span class="token function">AuthCheckRole</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+  sysJob <span class="token operator">:=</span> <span class="token operator">&amp;</span>models<span class="token punctuation">.</span>SysJob<span class="token punctuation">{</span><span class="token punctuation">}</span>
+  r<span class="token punctuation">.</span><span class="token function">GET</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> actions<span class="token punctuation">.</span><span class="token function">PermissionAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> actions<span class="token punctuation">.</span><span class="token function">IndexAction</span><span class="token punctuation">(</span>sysJob<span class="token punctuation">,</span> <span class="token function">new</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span>SysJobSearch<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">{</span>
+   list <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span>models<span class="token punctuation">.</span>SysJob<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+   <span class="token keyword">return</span> <span class="token operator">&amp;</span>list
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  r<span class="token punctuation">.</span><span class="token function">GET</span><span class="token punctuation">(</span><span class="token string">&quot;/:id&quot;</span><span class="token punctuation">,</span> actions<span class="token punctuation">.</span><span class="token function">PermissionAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> actions<span class="token punctuation">.</span><span class="token function">ViewAction</span><span class="token punctuation">(</span><span class="token function">new</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span>SysJobById<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token operator">&amp;</span>dto<span class="token punctuation">.</span>SysJobItem<span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  r<span class="token punctuation">.</span><span class="token function">POST</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> actions<span class="token punctuation">.</span><span class="token function">CreateAction</span><span class="token punctuation">(</span><span class="token function">new</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span>SysJobControl<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  r<span class="token punctuation">.</span><span class="token function">PUT</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> actions<span class="token punctuation">.</span><span class="token function">PermissionAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> actions<span class="token punctuation">.</span><span class="token function">UpdateAction</span><span class="token punctuation">(</span><span class="token function">new</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span>SysJobControl<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  r<span class="token punctuation">.</span><span class="token function">DELETE</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> actions<span class="token punctuation">.</span><span class="token function">PermissionAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> actions<span class="token punctuation">.</span><span class="token function">DeleteAction</span><span class="token punctuation">(</span><span class="token function">new</span><span class="token punctuation">(</span>dto<span class="token punctuation">.</span>SysJobById<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="dto"><a href="#dto" class="header-anchor">#</a> dto</h2> <p>dto 支持多种查询条件判断：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token comment">/**
+ * exact / iexact 等于
+ * contains / icontains 包含
+ * gt / gte 大于 / 大于等于
+ * lt / lte 小于 / 小于等于
+ * startswith / istartswith 以…起始
+ * endswith / iendswith 以…结束
+ * in
+ * isnull
+ * order 排序
+ */</span>
+</code></pre></div><p>例如：</p> <div class="language-go extra-class"><pre class="language-go"><code>search<span class="token punctuation">:</span><span class="token string">&quot;type:exact;column:job_id;table:sys_job&quot;</span>`
+</code></pre></div><p>完整示例：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">package</span> dto
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;github.com/gin-gonic/gin&quot;</span>
+
+	<span class="token string">&quot;go-admin/app/admin/models&quot;</span>
+	<span class="token string">&quot;go-admin/common/dto&quot;</span>
+	<span class="token string">&quot;go-admin/common/log&quot;</span>
+	common <span class="token string">&quot;go-admin/common/models&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> SysJobSearch <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	dto<span class="token punctuation">.</span>Pagination <span class="token string">`search:&quot;-&quot;`</span>
+	JobId          <span class="token builtin">int</span>    <span class="token string">`form:&quot;jobId&quot; search:&quot;type:exact;column:job_id;table:sys_job&quot;`</span>
+	JobName        <span class="token builtin">string</span> <span class="token string">`form:&quot;jobName&quot; search:&quot;type:icontains;column:job_name;table:sys_job&quot;`</span>
+	JobGroup       <span class="token builtin">string</span> <span class="token string">`form:&quot;jobGroup&quot; search:&quot;type:exact;column:job_group;table:sys_job&quot;`</span>
+	CronExpression <span class="token builtin">string</span> <span class="token string">`form:&quot;cronExpression&quot; search:&quot;type:exact;column:cron_expression;table:sys_job&quot;`</span>
+	InvokeTarget   <span class="token builtin">string</span> <span class="token string">`form:&quot;invokeTarget&quot; search:&quot;type:exact;column:invoke_target;table:sys_job&quot;`</span>
+	Status         <span class="token builtin">int</span>    <span class="token string">`form:&quot;status&quot; search:&quot;type:exact;column:status;table:sys_job&quot;`</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>SysJobSearch<span class="token punctuation">)</span> <span class="token function">GetNeedSearch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token operator">*</span>m
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>SysJobSearch<span class="token punctuation">)</span> <span class="token function">Bind</span><span class="token punctuation">(</span>ctx <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+	err <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">ShouldBind</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		log<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">&quot;MsgID[%s] Bind error: %s&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> err
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>SysJobSearch<span class="token punctuation">)</span> <span class="token function">Generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> dto<span class="token punctuation">.</span>Index <span class="token punctuation">{</span>
+	o <span class="token operator">:=</span> <span class="token operator">*</span>m
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>o
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> SysJobControl <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	JobId          <span class="token builtin">uint</span>    <span class="token string">`json:&quot;jobId&quot;`</span>
+	JobName        <span class="token builtin">string</span> <span class="token string">`json:&quot;jobName&quot; validate:&quot;required&quot;`</span> <span class="token comment">// 名称</span>
+	JobGroup       <span class="token builtin">string</span> <span class="token string">`json:&quot;jobGroup&quot;`</span>                    <span class="token comment">// 任务分组</span>
+	JobType        <span class="token builtin">int</span>    <span class="token string">`json:&quot;jobType&quot;`</span>                     <span class="token comment">// 任务类型</span>
+	CronExpression <span class="token builtin">string</span> <span class="token string">`json:&quot;cronExpression&quot;`</span>              <span class="token comment">// cron表达式</span>
+	InvokeTarget   <span class="token builtin">string</span> <span class="token string">`json:&quot;invokeTarget&quot;`</span>                <span class="token comment">// 调用目标</span>
+	Args           <span class="token builtin">string</span> <span class="token string">`json:&quot;args&quot;`</span>                        <span class="token comment">// 目标参数</span>
+	MisfirePolicy  <span class="token builtin">int</span>    <span class="token string">`json:&quot;misfirePolicy&quot;`</span>               <span class="token comment">// 执行策略</span>
+	Concurrent     <span class="token builtin">int</span>    <span class="token string">`json:&quot;concurrent&quot;`</span>                  <span class="token comment">// 是否并发</span>
+	Status         <span class="token builtin">int</span>    <span class="token string">`json:&quot;status&quot;`</span>                      <span class="token comment">// 状态</span>
+	EntryId        <span class="token builtin">int</span>    <span class="token string">`json:&quot;entryId&quot;`</span>                     <span class="token comment">// job启动时返回的id</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s <span class="token operator">*</span>SysJobControl<span class="token punctuation">)</span> <span class="token function">Bind</span><span class="token punctuation">(</span>ctx <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> ctx<span class="token punctuation">.</span><span class="token function">ShouldBind</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s <span class="token operator">*</span>SysJobControl<span class="token punctuation">)</span> <span class="token function">Generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> dto<span class="token punctuation">.</span>Control <span class="token punctuation">{</span>
+	cp <span class="token operator">:=</span> <span class="token operator">*</span>s
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>cp
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s <span class="token operator">*</span>SysJobControl<span class="token punctuation">)</span> <span class="token function">GenerateM</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>common<span class="token punctuation">.</span>ActiveRecord<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>models<span class="token punctuation">.</span>SysJob<span class="token punctuation">{</span>
+		JobId<span class="token punctuation">:</span>          s<span class="token punctuation">.</span>JobId<span class="token punctuation">,</span>
+		JobName<span class="token punctuation">:</span>        s<span class="token punctuation">.</span>JobName<span class="token punctuation">,</span>
+		JobGroup<span class="token punctuation">:</span>       s<span class="token punctuation">.</span>JobGroup<span class="token punctuation">,</span>
+		JobType<span class="token punctuation">:</span>        s<span class="token punctuation">.</span>JobType<span class="token punctuation">,</span>
+		CronExpression<span class="token punctuation">:</span> s<span class="token punctuation">.</span>CronExpression<span class="token punctuation">,</span>
+		InvokeTarget<span class="token punctuation">:</span>   s<span class="token punctuation">.</span>InvokeTarget<span class="token punctuation">,</span>
+		Args<span class="token punctuation">:</span>           s<span class="token punctuation">.</span>Args<span class="token punctuation">,</span>
+		MisfirePolicy<span class="token punctuation">:</span>  s<span class="token punctuation">.</span>MisfirePolicy<span class="token punctuation">,</span>
+		Concurrent<span class="token punctuation">:</span>     s<span class="token punctuation">.</span>Concurrent<span class="token punctuation">,</span>
+		Status<span class="token punctuation">:</span>         s<span class="token punctuation">.</span>Status<span class="token punctuation">,</span>
+		EntryId<span class="token punctuation">:</span>        s<span class="token punctuation">.</span>EntryId<span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s <span class="token operator">*</span>SysJobControl<span class="token punctuation">)</span> <span class="token function">GetId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> s<span class="token punctuation">.</span>JobId
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> SysJobById <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	dto<span class="token punctuation">.</span>ObjectById
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s <span class="token operator">*</span>SysJobById<span class="token punctuation">)</span> <span class="token function">Generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> dto<span class="token punctuation">.</span>Control <span class="token punctuation">{</span>
+	cp <span class="token operator">:=</span> <span class="token operator">*</span>s
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>cp
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s <span class="token operator">*</span>SysJobById<span class="token punctuation">)</span> <span class="token function">GenerateM</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>common<span class="token punctuation">.</span>ActiveRecord<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>models<span class="token punctuation">.</span>SysJob<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="model"><a href="#model" class="header-anchor">#</a> model</h2> <p>完整示例：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> SysJob <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	JobId          <span class="token builtin">uint</span>   <span class="token string">`json:&quot;jobId&quot; gorm:&quot;primary_key;AUTO_INCREMENT&quot;`</span> <span class="token comment">// 编码</span>
+	JobName        <span class="token builtin">string</span> <span class="token string">`json:&quot;jobName&quot; gorm:&quot;size:255;&quot;`</span>                <span class="token comment">// 名称</span>
+	JobGroup       <span class="token builtin">string</span> <span class="token string">`json:&quot;jobGroup&quot; gorm:&quot;size:255;&quot;`</span>               <span class="token comment">// 任务分组</span>
+	JobType        <span class="token builtin">int</span>    <span class="token string">`json:&quot;jobType&quot; gorm:&quot;size:1;&quot;`</span>                  <span class="token comment">// 任务类型</span>
+	CronExpression <span class="token builtin">string</span> <span class="token string">`json:&quot;cronExpression&quot; gorm:&quot;size:255;&quot;`</span>         <span class="token comment">// cron表达式</span>
+	InvokeTarget   <span class="token builtin">string</span> <span class="token string">`json:&quot;invokeTarget&quot; gorm:&quot;size:255;&quot;`</span>           <span class="token comment">// 调用目标</span>
+	Args           <span class="token builtin">string</span> <span class="token string">`json:&quot;args&quot; gorm:&quot;size:255;&quot;`</span>                   <span class="token comment">// 目标参数</span>
+	MisfirePolicy  <span class="token builtin">int</span>    <span class="token string">`json:&quot;misfirePolicy&quot; gorm:&quot;size:255;&quot;`</span>          <span class="token comment">// 执行策略</span>
+	Concurrent     <span class="token builtin">int</span>    <span class="token string">`json:&quot;concurrent&quot; gorm:&quot;size:1;&quot;`</span>               <span class="token comment">// 是否并发</span>
+	Status         <span class="token builtin">int</span>    <span class="token string">`json:&quot;status&quot; gorm:&quot;size:1;&quot;`</span>                   <span class="token comment">// 状态</span>
+	EntryId        <span class="token builtin">int</span>    <span class="token string">`json:&quot;entry_id&quot; gorm:&quot;size:11;&quot;`</span>                <span class="token comment">// job启动时返回的id</span>
+	CreateBy       <span class="token builtin">string</span> <span class="token string">`json:&quot;createBy&quot; gorm:&quot;size:128;&quot;`</span>               <span class="token comment">//</span>
+	UpdateBy       <span class="token builtin">string</span> <span class="token string">`json:&quot;updateBy&quot; gorm:&quot;size:128;&quot;`</span>               <span class="token comment">//</span>
+	BaseModel
+
+	DataScope      <span class="token builtin">string</span> <span class="token string">`json:&quot;dataScope&quot; gorm:&quot;-&quot;`</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <div class="page-edit"><div class="edit-link"><a href="https://github.com/go-admin-team/go-admin-doc/edit/master/docs/guide/advanced/advanced.md" target="_blank" rel="noopener noreferrer">在 GitHub 上编辑此页</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2020-10-9 8:55:58 PM</span></div></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/guide/intro/tutorial02.html" class="prev">
+          编写 go-admin 应用,第 2 步
+        </a></span> <span class="next"><a href="/guide/advanced/bus.html">
+          通用方法
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/app.4a944a29.js" defer></script><script src="/assets/js/23.d958b1a2.js" defer></script>
+  </body>
+</html>

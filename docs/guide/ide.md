@@ -16,7 +16,7 @@
 
 ## 添加运行或调试配置
 
-### 添加 init 配置
+### 添加 migrate 配置
 
 1. 打开`Edit Configurations`
 
@@ -26,9 +26,9 @@
 
 ![](https://gitee.com/mydearzwj/image/raw/master/img/ide2.png)
 
-3. 按照下图所示进行配置，注意：填写 `Program arguments` 为 `init -c=config/settings.dev.yml`，完成之后点击保存
+3. 按照下图所示进行配置，注意：填写 `Program arguments` 为 `migrate -c=config/settings.dev.yml`，完成之后点击保存
 
-![](https://gitee.com/mydearzwj/image/raw/master/img/ide3.png)
+![](https://gitee.com/mydearzwj/image/raw/master/img/ide-3-v1.2.0.png)
 
 4. 修改数据库
 
@@ -36,7 +36,9 @@
 
 5. 初使化
 
-![](https://gitee.com/mydearzwj/image/raw/master/img/ide5.png)
+![](https://gitee.com/mydearzwj/image/raw/master/img/ide5-v1.2.0.png)
+
+![](https://gitee.com/mydearzwj/image/raw/master/img/ide6-v1.2.0.png)
 
 ### 添加 server 配置
 
