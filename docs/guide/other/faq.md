@@ -74,18 +74,19 @@ $ ./go-admin
 ```
 
 解决方案
+
 可参考项目中具体代码
 
 
 ### 对不起，您没有改接口访问权限，请联系管理员
 
 <img class="no-margin" src="
-https://gitee.com/mydearzwj/image/raw/master/img/noauthapi.png"  height="500px" style="margin:0 auto;">
+https://gitee.com/mydearzwj/image/raw/master/img/noauthapi.png"  style="margin:0 auto;">
 
 解决方案
 
 <img class="no-margin" src="
-https://gitee.com/mydearzwj/image/raw/master/img/noauthapi_log.png"  height="500px" style="margin:0 auto;">
+https://gitee.com/mydearzwj/image/raw/master/img/noauthapi_log.png"  style="margin:0 auto;">
 
 可以根据这个日志，酌情进行配置
 
