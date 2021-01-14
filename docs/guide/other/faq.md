@@ -66,9 +66,6 @@ $ ./go-admin
     source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
 ```
 
-:::tip 从哪里获得帮助：
-如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
-:::
 
 ### 使用 element-ui 的 el-tree 组件 setCheckedKeys
 
@@ -77,7 +74,21 @@ $ ./go-admin
 ```
 
 解决方案
+可参考项目中具体代码
 
-```
 
-```
+### 对不起，您没有改接口访问权限，请联系管理员
+
+<img class="no-margin" src="
+https://gitee.com/mydearzwj/image/raw/master/img/noauthapi.png"  height="500px" style="margin:0 auto;">
+
+解决方案
+
+<img class="no-margin" src="
+https://gitee.com/mydearzwj/image/raw/master/img/noauthapi_log.png"  height="500px" style="margin:0 auto;">
+
+可以根据这个日志，酌情进行配置
+
+:::tip 从哪里获得帮助：
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+:::
