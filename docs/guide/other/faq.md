@@ -48,6 +48,8 @@ sudo xcode-select --reset
 
 ## 2. mysql connect error %v dial tcp 127.0.0.1:3306: connect: connection refused
 
+> 问题详情
+
 ```shell
 $ ./go-admin
 2020/04/07 14:21:14 root:password@tcp(127.0.0.1:3306)/dbname
@@ -67,23 +69,26 @@ $ ./go-admin
 ```
 
 
-### 使用 element-ui 的 el-tree 组件 setCheckedKeys
+## 3. 使用 element-ui 的 el-tree 组件 setCheckedKeys
 
-```
+> 问题详情
+
+```shell
 "TypeError: Cannot read property 'setCheckedKeys' of undefined"
 ```
 
-解决方案
+> 解决方案
 
 可参考项目中具体代码
 
+## 4. 对不起，您没有改接口访问权限，请联系管理员
 
-### 对不起，您没有改接口访问权限，请联系管理员
+> 问题详情
 
 <img class="no-margin" src="
 https://gitee.com/mydearzwj/image/raw/master/img/noauthapi.png"  style="margin:0 auto;">
 
-解决方案
+> 解决方案
 
 <img class="no-margin" src="
 https://gitee.com/mydearzwj/image/raw/master/img/noauthapi_log.png"  style="margin:0 auto;">
