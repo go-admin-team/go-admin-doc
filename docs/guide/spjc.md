@@ -17,3 +17,5 @@
 [go-admin 权限配置使用说明](https://www.bilibili.com/video/BV1rt4y197d3) [必看]
 
 [go-admin 数据权限使用说明](https://www.bilibili.com/video/BV1LK4y1s71e) [必看]
+
+[v1.3.0rc.1 版本新增功能基础教程](https://www.bilibili.com/video/BV1Zi4y1N76R) [必看]
