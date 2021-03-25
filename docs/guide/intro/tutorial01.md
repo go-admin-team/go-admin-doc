@@ -205,14 +205,13 @@ import (
 
   "github.com/gin-gonic/gin"
 
-  "go-admin/tools/app"
-  "go-admin/app/admin/models"
+  "go-admin/common/models"
 )
 
 // GetArticleList 获取文章列表
 func GetArticleList(c *gin.Context) {
 
-	var res app.Response
+	var res models.Response
 	res.Data = "hello world ！"
 
 	c.JSON(http.StatusOK, res.ReturnOK())
