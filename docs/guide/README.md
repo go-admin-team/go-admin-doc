@@ -2,22 +2,13 @@
 pageClass: getting-started
 ---
 
-# 项目介绍
+# 介绍
 
-<a href="https://github.com/go-admin-team/go-admin">
-  <img src="https://github.com/wenjgo-admin-teamianzhang/go-admin/workflows/build/badge.svg" alt="go-admin">
-</a>
+[go-admin](https://github.com/go-admin-team/go-admin) 是一个中后台应用框架，基于（gin, gorm, Casbin, Vue, Element UI）实现。go-admin 分为两个项目[go-admin](https://github.com/go-admin-team/go-admin) 和 [go-admin-ui](https://github.com/go-admin-team/go-admin-ui)，从名称上不难看出 go-admin 是后端服务，go-admin-ui 是 view 端服务。go-admin 主要提供一套标准化结构，让开发程序是对整个后端更加清晰彻底，也逐渐形成了独有的一套流程。
 
-<a href="https://github.com/go-admin-team/go-admin">
-  <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
-</a>
-  <a href="http://doc.zhangwj.com/go-admin-doc/donate/">
-  <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
-</a>
+go-admin 目的是为了让开发者更方便快捷的梳理需求，专注业务，减少重复代码的编写，节省时间，提升人效，缩短项目周期，提升软件的开发效率以及质量，以早日实现不用加班的目的而努力！
 
-[go-admin](https://github.com/go-admin-team/go-admin) 是一个中后台管理系统，基于（gin, gorm, Casbin, Vue, Element UI）实现。主要目的是为了让开发者更专注业务，减少重复代码的编写，节省时间，提升人效，缩短项目周期，提升软件的开发效率以及质量。
-
-go-admin 是基于 Gin + Vue + Element UI 的中后台管理系统开发脚手架。
+## 仓库
 
 - go-admin 在线 DEMO：[https://www.go-admin.dev](https://www.go-admin.dev)
 
@@ -27,21 +18,9 @@ go-admin 是基于 Gin + Vue + Element UI 的中后台管理系统开发脚手�
 
 - go-admin [源码仓库国内](https://gitee.com/mydearzwj/go-admin)
 
-- 微信群添加方法： 可以扫码添加作者微信添加 go-admin 交流群
-
-## 在线体验
-
-1. 体验地址： [https://www.go-admin.dev](https://www.go-admin.dev)
-2. 账号密码：admin/123456
-
-## 系统要求
-
-- go 1.15
-- mysql 5.5 及以上
-
-<br/>
-
 ## 特性
+
+- 开箱即用
 
 - 遵循 RESTful API 设计规范
 
@@ -63,7 +42,7 @@ go-admin 是基于 Gin + Vue + Element UI 的中后台管理系统开发脚手�
 
 - TODO: 单元测试
 
-## 内置
+## 内置功能
 
 1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
 2. 部门管理：配置系统组织机构（公司、部门、小组），树结构展现支持数据权限。
@@ -78,6 +57,18 @@ go-admin 是基于 Gin + Vue + Element UI 的中后台管理系统开发脚手�
 11. 代码生成：根据数据表结构生成对应的增删改查相对应业务，全部可视化编程。
 12. 表单构建：自定义页面样式，拖拉拽实现页面布局。
 13. 服务监控：查看一些服务器的基本信息。
+
+## 体验环境
+
+1. 体验地址： [https://www.go-admin.dev](https://www.go-admin.dev)
+2. 账号密码：admin/123456
+
+--------------------- 移除
+
+## 系统要求
+
+- go 1.15
+- mysql 5.5 及以上
 
 ## 配置
 

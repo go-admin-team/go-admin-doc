@@ -85,7 +85,7 @@ settings:
 
 让我们看一下 go-admin 的目录结构：
 
-```shell
+```bash
 .
 ├── Dockerfile
 ├── LICENSE.md
@@ -148,7 +148,7 @@ settings:
 
 让我们来确认一下你的 go-admin 项目是真的配置成功了。请运行下面的命令：
 
-```shell
+```bash
 ./go-admin server -c=config/settings.dev.yml
 ```
 
@@ -165,14 +165,14 @@ https://gitee.com/mydearzwj/image/raw/master/img/serversuccessv1.1.0.png"  heigh
 
 我们需要打开配置文件 `config/settings.yml`
 
-```shell
+```bash
 application:
     port: 8000
 ```
 
 如果你想要修改服务器监听的 IP，在端口之前输入新的。比如，为了监听所有服务器的公开 IP（这你运行 Vagrant 或想要向网络上的其它电脑展示你的成果时很有用），使用：
 
-```shell
+```bash
 application:
     port: 8080
 ```
@@ -223,7 +223,7 @@ func GetArticleList(c *gin.Context) {
 
 以下是程序的目录结构：
 
-```shell
+```bash
 go-admin
   app
     admin
@@ -257,7 +257,7 @@ func InitRouter() *gin.Engine {
 
 现在已经把接口函数注册到了 router 里边，通过以下命令验证是否正常工作：
 
-```shell
+```bash
 go build
 
 ./go-admin server -c=config/settings.dev.yml

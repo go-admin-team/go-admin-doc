@@ -46,7 +46,7 @@ module.exports = {
         sidebar: {
           '/guide/': [
             {
-              title: '基础',
+              title: '指南',
               collapsable: false,
               children: genEssentialsSidebar()
             },
@@ -147,6 +147,8 @@ function genEssentialsSidebar(type = '') {
     '/guide/',
     '/guide/ksks.md',
     '/guide/hjbs.md',
+    '/guide/path.md',
+    '/guide/settings.md',
     '/guide/spjc.md',
     '/guide/ide.md',
     '/guide/db.md'

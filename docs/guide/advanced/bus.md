@@ -2,7 +2,8 @@
 
 首先说明一下结构：
 这里只是针对`app`文件夹说明；
-```shell
+
+```bash
 .
 ├── admin
 │   ├── apis
@@ -125,25 +126,26 @@
     └── type.go
 ```
 
-admin：可以理解成一个project
+admin：可以理解成一个 project
 
-apis：是project的api文件
+apis：是 project 的 api 文件
 
-middleware：是project的中间件
+middleware：是 project 的中间件
 
-models：是project的数据库层的模型
+models：是 project 的数据库层的模型
 
-router：是project的路由
+router：是 project 的路由
 
-service：是project的业务逻辑处理
+service：是 project 的业务逻辑处理
 
-service.dto：是project的api对应的数据接收以及解析模型
+service.dto：是 project 的 api 对应的数据接收以及解析模型
 
 搞清楚了这些我们开始往下进行；
 
 直接使用项目中的源代码进行说明：我们操作日志为例；
 
-按照 models、service.dto、service、apis、router这个顺序来说明；
+按照 models、service.dto、service、apis、router 这个顺序来说明；
+
 ## models
 
 ```go
@@ -191,14 +193,13 @@ func (e *SysOperaLog) Generate() models.ActiveRecord {
 func (e *SysOperaLog) GetId() interface{} {
 	return e.ID
 }
-
 ```
 
 首先，是一个结构体`SysOperaLog` 里边含有正常的数据库表字段，但是其中又包含了三个结构体：
 
-1、`models.Model` 表id 默认主键是固定的ID和自增长的int类型
+1、`models.Model` 表 id 默认主键是固定的 ID 和自增长的 int 类型
 
-2、`models.ControlBy`  表创建人和修改人 数据库表默认必有字段
+2、`models.ControlBy` 表创建人和修改人 数据库表默认必有字段
 
 3、`models.ModelTime` 表创建时间和修改时间、删除时间的字段默认必有字段
 
@@ -206,7 +207,7 @@ func (e *SysOperaLog) GetId() interface{} {
 
 创建人是默认数据权限控制必用字段，所以系统要求必须的有或者存在该字段；
 
-创建时间和修改时间、删除时间等信息中，删除时间是必须要有的，因为目前系统使用的gorm的软删除；
+创建时间和修改时间、删除时间等信息中，删除时间是必须要有的，因为目前系统使用的 gorm 的软删除；
 
 如果针对以上条件条件无法满足，可能需要考虑自定义；
 
@@ -352,12 +353,11 @@ func (s *SysOperaLogById) Bind(ctx *gin.Context) error {
 
 // 设置更新人id
 func (s *SysOperaLogById) SetUpdateBy(id int) {
-	
-}
 
+}
 ```
 
-代码里边针对各个函数已经添加说明备注；有什么问题也可以提交issues
+代码里边针对各个函数已经添加说明备注；有什么问题也可以提交 issues
 
 ## service
 
@@ -471,10 +471,9 @@ func (e *SysOperaLog) RemoveSysOperaLog(d *dto.SysOperaLogById) error {
 	}
 	return nil
 }
-
 ```
 
-service中包含了对数据的一个数据操作
+service 中包含了对数据的一个数据操作
 
 ## apis
 
@@ -658,7 +657,6 @@ func (e *SysOperaLog) DeleteSysOperaLog(c *gin.Context) {
 	}
 	e.OK(c, control.GetId(), "删除成功")
 }
-
 ```
 
 ## routers
@@ -689,11 +687,10 @@ func registerSysOperaLogRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMi
 		r.DELETE("", api.DeleteSysOperaLog)
 	}
 }
-
 ```
 
-创建一个空的go文件，设置init初始化接口方法，根据业务定义好路由注册函数名称，并且正确配置正确的权限控制中间件，一套业务就结束了；
+创建一个空的 go 文件，设置 init 初始化接口方法，根据业务定义好路由注册函数名称，并且正确配置正确的权限控制中间件，一套业务就结束了；
 
-有什么问题给作者在github中提交issues吧！
+有什么问题给作者在 github 中提交 issues 吧！
 
 谢谢阅读！

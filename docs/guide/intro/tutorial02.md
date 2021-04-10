@@ -10,7 +10,7 @@
 
 现在，打开 `config/settings.yml` 。这是个包含了 `go-admin` 项目的配置信息。
 
-```shell
+```bash
   database:
     # 数据库类型 mysql，sqlite3， postgres
     driver: mysql
