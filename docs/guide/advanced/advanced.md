@@ -1,30 +1,52 @@
-# 无代码 CRUD
+# actions 模式
+
+:::tip 说明
+`go-admin`服务是存在两种处理模式的;
+
+简单的 crud 可以直接使用 `actions模式`；
+
+复杂的业务可以使用 `常规模式`；
+:::
 
 当前项目内置了单表的 CRUD 函数，可以零代码实现单表的增删改查；只用简单配置路由即可；
 
 无代码 CRUD，需要有 路由、dto、model 三部分组成；以下是三块的示例代码；
 
-## 路由
+## router
 
 完整示例：
 
 ```go
-func registerSysJobRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
+package router
 
- r := v1.Group("/sysjob").Use(authMiddleware.MiddlewareFunc()).Use(middleware.AuthCheckRole())
- {
-  sysJob := &models.SysJob{}
-  r.GET("", actions.PermissionAction(), actions.IndexAction(sysJob, new(dto.SysJobSearch), func() interface{} {
-   list := make([]models.SysJob, 0)
-   return &list
-  }))
-  r.GET("/:id", actions.PermissionAction(), actions.ViewAction(new(dto.SysJobById), func() interface{} {
-   return &dto.SysJobItem{}
-  }))
-  r.POST("", actions.CreateAction(new(dto.SysJobControl)))
-  r.PUT("", actions.PermissionAction(), actions.UpdateAction(new(dto.SysJobControl)))
-  r.DELETE("", actions.PermissionAction(), actions.DeleteAction(new(dto.SysJobById)))
- }
+import (
+	"github.com/gin-gonic/gin"
+	"go-admin/common/middleware"
+
+	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
+	"go-admin/app/admin/models"
+	"go-admin/app/admin/service/dto"
+	"go-admin/common/actions"
+)
+
+func init() {
+	routerCheckRole = append(routerCheckRole, registerSysCategoryRouter)
+}
+
+// 需认证的路由代码
+func registerSysCategoryRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
+	r := v1.Group("/syscategory").Use(authMiddleware.MiddlewareFunc()).Use(middleware.AuthCheckRole())
+	{
+		model := &models.SysCategory{}
+		r.GET("", actions.PermissionAction(), actions.IndexAction(model, new(dto.SysCategorySearch), func() interface{} {
+			list := make([]models.SysCategory, 0)
+			return &list
+		}))
+		r.GET("/:id", actions.PermissionAction(), actions.ViewAction(new(dto.SysCategoryById), nil))
+		r.POST("", actions.CreateAction(new(dto.SysCategoryControl)))
+		r.PUT("/:id", actions.PermissionAction(), actions.UpdateAction(new(dto.SysCategoryControl)))
+		r.DELETE("", actions.PermissionAction(), actions.DeleteAction(new(dto.SysCategoryById)))
+	}
 }
 ```
 
@@ -32,21 +54,24 @@ func registerSysJobRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddlew
 
 dto 支持多种查询条件判断：
 
-```go
-/**
- * exact / iexact 等于
- * contains / icontains 包含
- * gt / gte 大于 / 大于等于
- * lt / lte 小于 / 小于等于
- * startswith / istartswith 以…起始
- * endswith / iendswith 以…结束
- * in
- * isnull
- * order 排序
- */
-```
+| 名称   | 说明         | 示例         |
+| ------ | ------------ | ------------ |
+| type   | 条件类型     | exact        |
+| column | 数据库对应列 | name         |
+| table  | 数据库对应表 | sys_category |
 
-例如：
+:::tip type 支持的类型
+
+- exact / iexact 等于
+- contains / icontains 包含
+- gt / gte 大于 / 大于等于
+- lt / lte 小于 / 小于等于
+- startswith / istartswith 以…起始
+- endswith / iendswith 以…结束
+- in
+- isnull
+- order 排序
+  :::
 
 ```go
 search:"type:exact;column:job_id;table:sys_job"`
@@ -58,95 +83,106 @@ search:"type:exact;column:job_id;table:sys_job"`
 package dto
 
 import (
+	"errors"
+	vd "github.com/bytedance/go-tagexpr/v2/validator"
 	"github.com/gin-gonic/gin"
+	"github.com/go-admin-team/go-admin-core/sdk/api"
 
 	"go-admin/app/admin/models"
 	"go-admin/common/dto"
-	"go-admin/common/log"
 	common "go-admin/common/models"
 )
 
-type SysJobSearch struct {
+type SysCategorySearch struct {
 	dto.Pagination `search:"-"`
-	JobId          int    `form:"jobId" search:"type:exact;column:job_id;table:sys_job"`
-	JobName        string `form:"jobName" search:"type:icontains;column:job_name;table:sys_job"`
-	JobGroup       string `form:"jobGroup" search:"type:exact;column:job_group;table:sys_job"`
-	CronExpression string `form:"cronExpression" search:"type:exact;column:cron_expression;table:sys_job"`
-	InvokeTarget   string `form:"invokeTarget" search:"type:exact;column:invoke_target;table:sys_job"`
-	Status         int    `form:"status" search:"type:exact;column:status;table:sys_job"`
+	Name           string `form:"name" search:"type:exact;column:name;table:sys_category" comment:"名称" vd:"?"`
+	Status         string `form:"status" search:"type:exact;column:status;table:sys_category" comment:"状态" vd:"?"`
+	CateId         int    `form:"cateId" search:"type:exact;column:cate_id;table:sys_category" comment:"分类id" vd:"?"`
 }
 
-func (m *SysJobSearch) GetNeedSearch() interface{} {
+func (m *SysCategorySearch) GetNeedSearch() interface{} {
 	return *m
 }
 
-func (m *SysJobSearch) Bind(ctx *gin.Context) error {
+func (m *SysCategorySearch) Bind(ctx *gin.Context) error {
+	log := api.GetRequestLogger(ctx)
+
 	err := ctx.ShouldBind(m)
 	if err != nil {
-		log.Errorf("MsgID[%s] Bind error: %s", err)
+		log.Debugf("ShouldBind error: %s", err.Error())
+	}
+
+	if err = vd.Validate(m); err != nil {
+		log.Errorf("Validate error: %s", err.Error())
+		return err
 	}
 	return err
 }
 
-func (m *SysJobSearch) Generate() dto.Index {
+func (m *SysCategorySearch) Generate() dto.Index {
 	o := *m
 	return &o
 }
 
-type SysJobControl struct {
-	JobId          uint    `json:"jobId"`
-	JobName        string `json:"jobName" validate:"required"` // 名称
-	JobGroup       string `json:"jobGroup"`                    // 任务分组
-	JobType        int    `json:"jobType"`                     // 任务类型
-	CronExpression string `json:"cronExpression"`              // cron表达式
-	InvokeTarget   string `json:"invokeTarget"`                // 调用目标
-	Args           string `json:"args"`                        // 目标参数
-	MisfirePolicy  int    `json:"misfirePolicy"`               // 执行策略
-	Concurrent     int    `json:"concurrent"`                  // 是否并发
-	Status         int    `json:"status"`                      // 状态
-	EntryId        int    `json:"entryId"`                     // job启动时返回的id
+type SysCategoryControl struct {
+	ID     int    `uri:"Id" comment:"标识"`
+	Name   string `json:"name" comment:"名称" vd:"len($)>0 && $!=' '; msg:'invalid name: 不能是空字符串'"`
+	Img    string `json:"img" comment:"图标" vd:"?"`
+	Sort   int    `json:"sort" comment:"排序" vd:"?"`
+	Status int    `json:"status" comment:"状态" vd:"$>0; msg:'invalid status: 状态无效'"`
+	Remark string `json:"remark" comment:"备注" vd:"?"`
 }
 
-func (s *SysJobControl) Bind(ctx *gin.Context) error {
-	return ctx.ShouldBind(s)
+func (s *SysCategoryControl) Bind(ctx *gin.Context) error {
+	log := api.GetRequestLogger(ctx)
+	err := ctx.ShouldBindUri(s)
+	if err != nil {
+		log.Errorf("ShouldBindUri error: %s", err.Error())
+		return errors.New("数据绑定出错")
+	}
+	err = ctx.ShouldBind(s)
+	if err != nil {
+		log.Errorf("ShouldBind error: %s", err.Error())
+		err = errors.New("数据绑定出错")
+	}
+	if err1 := vd.Validate(s); err != nil {
+		log.Errorf("Validate error: %s", err1.Error())
+		return err1
+	}
+	return err
 }
 
-func (s *SysJobControl) Generate() dto.Control {
+func (s *SysCategoryControl) Generate() dto.Control {
 	cp := *s
 	return &cp
 }
 
-func (s *SysJobControl) GenerateM() (common.ActiveRecord, error) {
-	return &models.SysJob{
-		JobId:          s.JobId,
-		JobName:        s.JobName,
-		JobGroup:       s.JobGroup,
-		JobType:        s.JobType,
-		CronExpression: s.CronExpression,
-		InvokeTarget:   s.InvokeTarget,
-		Args:           s.Args,
-		MisfirePolicy:  s.MisfirePolicy,
-		Concurrent:     s.Concurrent,
-		Status:         s.Status,
-		EntryId:        s.EntryId,
+func (s *SysCategoryControl) GenerateM() (common.ActiveRecord, error) {
+	return &models.SysCategory{
+		Model:  common.Model{Id: s.ID},
+		Name:   s.Name,
+		Img:    s.Img,
+		Sort:   s.Sort,
+		Status: s.Status,
+		Remark: s.Remark,
 	}, nil
 }
 
-func (s *SysJobControl) GetId() interface{} {
-	return s.JobId
+func (s *SysCategoryControl) GetId() interface{} {
+	return s.ID
 }
 
-type SysJobById struct {
-	dto.ObjectById
+type SysCategoryById struct {
+	dto.ObjectById `vd:"?"`
 }
 
-func (s *SysJobById) Generate() dto.Control {
+func (s *SysCategoryById) Generate() dto.Control {
 	cp := *s
 	return &cp
 }
 
-func (s *SysJobById) GenerateM() (common.ActiveRecord, error) {
-	return &models.SysJob{}, nil
+func (s *SysCategoryById) GenerateM() (common.ActiveRecord, error) {
+	return &models.SysCategory{}, nil
 }
 ```
 
@@ -155,22 +191,33 @@ func (s *SysJobById) GenerateM() (common.ActiveRecord, error) {
 完整示例：
 
 ```go
-type SysJob struct {
-	JobId          uint   `json:"jobId" gorm:"primary_key;AUTO_INCREMENT"` // 编码
-	JobName        string `json:"jobName" gorm:"size:255;"`                // 名称
-	JobGroup       string `json:"jobGroup" gorm:"size:255;"`               // 任务分组
-	JobType        int    `json:"jobType" gorm:"size:1;"`                  // 任务类型
-	CronExpression string `json:"cronExpression" gorm:"size:255;"`         // cron表达式
-	InvokeTarget   string `json:"invokeTarget" gorm:"size:255;"`           // 调用目标
-	Args           string `json:"args" gorm:"size:255;"`                   // 目标参数
-	MisfirePolicy  int    `json:"misfirePolicy" gorm:"size:255;"`          // 执行策略
-	Concurrent     int    `json:"concurrent" gorm:"size:1;"`               // 是否并发
-	Status         int    `json:"status" gorm:"size:1;"`                   // 状态
-	EntryId        int    `json:"entry_id" gorm:"size:11;"`                // job启动时返回的id
-	CreateBy       string `json:"createBy" gorm:"size:128;"`               //
-	UpdateBy       string `json:"updateBy" gorm:"size:128;"`               //
-	BaseModel
+package models
 
-	DataScope      string `json:"dataScope" gorm:"-"`
+import (
+	"go-admin/common/models"
+)
+
+type SysCategory struct {
+	models.Model
+	Name   string `json:"name" gorm:"type:varchar(255);comment:名称"`
+	Img    string `json:"img" gorm:"type:varchar(255);comment:图标"`
+	Sort   int    `json:"sort" gorm:"type:int(4);comment:排序"`
+	Status int    `json:"status" gorm:"type:int(1);comment:状态"`
+	Remark string `json:"remark" gorm:"type:varchar(255);comment:备注"`
+	models.ControlBy
+	models.ModelTime
+}
+
+func (SysCategory) TableName() string {
+	return "sys_category"
+}
+
+func (e *SysCategory) Generate() models.ActiveRecord {
+	o := *e
+	return &o
+}
+
+func (e *SysCategory) GetId() interface{} {
+	return e.Id
 }
 ```

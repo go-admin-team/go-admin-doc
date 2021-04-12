@@ -53,7 +53,7 @@ module.exports = {
             {
               title: '规范',
               collapsable: false,
-              children: ['/guide/norm.md']
+              children: ['/guide/norm.md', '/guide/db.md']
             },
             {
               title: '第一个go-admin应用',
@@ -61,9 +61,14 @@ module.exports = {
               children: genAdvancedSidebar()
             },
             {
-              title: '高级',
+              title: '进阶',
               collapsable: false,
               children: [
+                '/guide/advanced/api.md',
+                '/guide/advanced/models.md',
+                '/guide/advanced/dto.md',
+                '/guide/advanced/service.md',
+                '/guide/advanced/router.md',
                 '/guide/advanced/advanced.md',
                 '/guide/advanced/bus.md'
               ]
@@ -71,7 +76,7 @@ module.exports = {
             {
               title: '其他',
               collapsable: false,
-              children: ['/guide/other/faq.md']
+              children: ['/guide/other/faq.md', '/guide/other/ide.md']
             }
           ]
         }
@@ -146,12 +151,10 @@ function genEssentialsSidebar(type = '') {
   const mapArr = [
     '/guide/',
     '/guide/ksks.md',
-    '/guide/hjbs.md',
     '/guide/path.md',
     '/guide/settings.md',
     '/guide/spjc.md',
-    '/guide/ide.md',
-    '/guide/db.md'
+    '/guide/hjbs.md'
   ]
   return mapArr.map(i => {
     return type + i

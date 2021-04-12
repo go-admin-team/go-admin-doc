@@ -148,6 +148,8 @@ https://gitee.com/mydearzwj/image/raw/master/img/genimport5v1.0.0.png"  height="
 
 OK！，内容到这里已经介绍了开始第一个 go-admin 应用的全部过程，虽然图片居多，主要也是编码内容比较少，希望大家能够掌握，如在使用中遇到了什么问题都可以在 qq 群或者微信群中沟通交流！谢谢！
 
+如果需要了解更进一步的 go-admin 相关内容，请前往[进阶](/guide/advanced/api.html) 继续查看！
+
 :::tip 从哪里获得帮助：
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 :::

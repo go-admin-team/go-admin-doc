@@ -96,7 +96,6 @@ settings:
 ├── app # 应用文件夹
 │   ├── admin # admin应用
 │   │   ├── apis # api
-│   │   ├── middleware # 中间件
 │   │   ├── models # 模型
 │   │   ├── router # 路由
 │   │   └── service # 业务逻辑
@@ -107,14 +106,12 @@ settings:
 ├── cmd # 命令
 ├── common #公共类
 ├── config # 系统配置
-├── debug
 ├── docs # 文档
 ├── go.mod
 ├── go.sum
 ├── logger # 日志包
 ├── main.go
 ├── package-lock.json
-├── pkg # 其他引用包
 ├── static # 静态文件
 ├── temp # 临时文件
 ├── template # 模版文件
@@ -133,8 +130,6 @@ settings:
     - middleware: 中间件
 - config： 配置相关的文件以及类
 - docs： 接口文档
-- handler： 处理程序类
-- pkg： 程序包
 - static： 上传静态文件
 - temp： 临时日志文件
 - template： 模板文件
@@ -201,21 +196,17 @@ application:
 package apis
 
 import (
-  "net/http"
-
-  "github.com/gin-gonic/gin"
-
-  "go-admin/tools/app"
-  "go-admin/app/admin/models"
+	"github.com/gin-gonic/gin"
+	"go-admin/common/apis"
 )
 
+type Article struct {
+	apis.Api
+}
+
 // GetArticleList 获取文章列表
-func GetArticleList(c *gin.Context) {
-
-	var res app.Response
-	res.Data = "hello world ！"
-
-	c.JSON(http.StatusOK, res.ReturnOK())
+func (e *Article)GetArticleList(c *gin.Context) {
+	e.OK(c,"hello world ！","success")
 }
 ```
 
@@ -230,28 +221,32 @@ go-admin
       apis
       models
       router
-      middleware
-    config
-    docs
-    pkg
-    statie
-    temp
-    template
-    test
-    utils
-    main.go
-    sqlite3.db
+      service
 ```
 
-在 `go-admin/app/admin/router/router.go` 中，输入以下代码：
+在 `go-admin/app/admin/router/article.go` 中，输入以下代码：
 
 ```go
-func InitRouter() *gin.Engine {
+package router
 
-    r := gin.New()
+import (
+	"go-admin/app/admin/apis"
 
-    r.GET("/articleList",apis.GetArticleList)
+	"github.com/gin-gonic/gin"
+	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
+)
 
+func init() {
+	routerCheckRole = append(routerCheckRole, registerArticleRouter)
+}
+
+// 需认证的路由代码
+func registerArticleRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
+	api:=&apis.Article{}
+	r := v1.Group("")
+	{
+		r.GET("/articleList", api.GetArticleList)
+	}
 }
 ```
 
@@ -263,11 +258,11 @@ go build
 ./go-admin server -c=config/settings.dev.yml
 ```
 
-用你的浏览器访问 http://localhost:8000/articleList，你应该能够看见 "{"code":200,"data":"hello world ！","msg":""}" ，这是你在接口中定义的。
+用你的浏览器访问 http://localhost:8000/api/v1/articleList，你应该能够看见 "{"requestId":"4085aca9-1ea2-4088-8e26-8ba0bc4e8bdb","code":200,"msg":"success","data":"hello world ！"}" ，这是你在接口中定义的。
 
 :::tip 404 page not found
 
-如果你在这里得到了一个错误页面，检查一下你是不是正访问着http://localhost:8000/articleList 而不应该是 http://localhost:8000/。
+如果你在这里得到了一个错误页面，检查一下你是不是正访问着http://localhost:8000/api/v1/articleList 而不应该是 http://localhost:8000/。
 
 :::
 

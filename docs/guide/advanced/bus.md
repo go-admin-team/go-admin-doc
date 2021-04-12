@@ -1,136 +1,28 @@
-# 通用方法
+# 常规模式
+
+:::tip 说明
+`go-admin`服务是存在两种处理模式的;
+
+简单的 crud 可以直接使用 `actions模式`；
+
+复杂的业务可以使用 `常规模式`；
+:::
 
 首先说明一下结构：
 这里只是针对`app`文件夹说明；
 
 ```bash
 .
-├── admin
-│   ├── apis
-│   │   ├── monitor
-│   │   │   └── server.go
-│   │   ├── public
-│   │   │   └── file.go
-│   │   ├── sys_file
-│   │   │   ├── sys_file_dir.go
-│   │   │   └── sys_file_info.go
-│   │   ├── syscontent
-│   │   │   └── syscontent.go
-│   │   ├── sysjob
-│   │   │   └── sysjob.go
-│   │   ├── system
-│   │   │   ├── captcha.go
-│   │   │   ├── dept.go
-│   │   │   ├── dict
-│   │   │   │   ├── dictdata.go
-│   │   │   │   └── dicttype.go
-│   │   │   ├── index.go
-│   │   │   ├── info.go
-│   │   │   ├── menu.go
-│   │   │   ├── post.go
-│   │   │   ├── role.go
-│   │   │   ├── rolemenu.go
-│   │   │   ├── settings.go
-│   │   │   ├── sys_config
-│   │   │   │   └── sys_config.go
-│   │   │   ├── sys_login_log
-│   │   │   │   └── sys_login_log.go
-│   │   │   ├── sys_opera_log
-│   │   │   │   └── sys_opera_log.go
-│   │   │   └── sysuser.go
-│   │   └── tools
-│   │       ├── dbcolumns.go
-│   │       ├── dbtables.go
-│   │       ├── gen.go
-│   │       └── systables.go
-│   ├── middleware
-│   │   ├── auth.go
-│   │   ├── customerror.go
-│   │   ├── db.go
-│   │   ├── db_other.go
-│   │   ├── db_sqlite3.go
-│   │   ├── handler
-│   │   │   ├── auth.go
-│   │   │   ├── httpshandler.go
-│   │   │   └── ping.go
-│   │   ├── header.go
-│   │   ├── init.go
-│   │   ├── logger.go
-│   │   └── permission.go
-│   ├── models
-│   │   ├── casbinrule.go
-│   │   ├── datascope.go
-│   │   ├── dept.go
-│   │   ├── dictdata.go
-│   │   ├── dicttype.go
-│   │   ├── gorm
-│   │   │   └── data.go
-│   │   ├── initdb.go
-│   │   ├── login.go
-│   │   ├── menu.go
-│   │   ├── model.go
-│   │   ├── post.go
-│   │   ├── role.go
-│   │   ├── roledept.go
-│   │   ├── rolemenu.go
-│   │   ├── sys_file_dir.go
-│   │   ├── sys_file_info.go
-│   │   ├── syscategory.go
-│   │   ├── syscontent.go
-│   │   ├── sysjob.go
-│   │   ├── system
-│   │   │   ├── sys_config.go
-│   │   │   ├── sys_login_log.go
-│   │   │   └── sys_opera_log.go
-│   │   ├── system.go
-│   │   ├── sysuser.go
-│   │   └── tools
-│   │       ├── dbcolumns.go
-│   │       ├── dbtables.go
-│   │       ├── syscolumns.go
-│   │       └── systables.go
-│   ├── router
-│   │   ├── initrouter.go
-│   │   ├── monitor.go
-│   │   ├── router.go
-│   │   ├── sys_category.go
-│   │   ├── sys_config.go
-│   │   ├── sys_file_dir.go
-│   │   ├── sys_file_info.go
-│   │   ├── sys_login_log.go
-│   │   ├── sys_opera_log.go
-│   │   ├── syscontent.go
-│   │   ├── sysjob.go
-│   │   └── sysrouter.go
-│   └── service
-│       ├── dto
-│       │   ├── sys_category.go
-│       │   ├── sys_config.go
-│       │   ├── sys_file_dir.go
-│       │   ├── sys_login_log.go
-│       │   ├── sys_opera_log.go
-│       │   ├── sys_setting.go
-│       │   ├── sysfileinfo.go
-│       │   ├── sysjob.go
-│       │   └── systables.go
-│       ├── sys_config.go
-│       ├── sys_file_dir.go
-│       ├── sys_login_log.go
-│       ├── sys_opera_log.go
-│       ├── sys_setting.go
-│       ├── sysfileinfo.go
-│       └── sysjob.go
-└── jobs
-    ├── examples.go
-    ├── jobbase.go
-    └── type.go
+└── admin
+    ├── apis
+    ├── models
+    ├── router
+    └── service
 ```
 
 admin：可以理解成一个 project
 
 apis：是 project 的 api 文件
-
-middleware：是 project 的中间件
 
 models：是 project 的数据库层的模型
 
@@ -149,49 +41,45 @@ service.dto：是 project 的 api 对应的数据接收以及解析模型
 ## models
 
 ```go
-package system
+package models
 
 import (
 	"go-admin/common/models"
-
-	"time"
 )
 
-type SysOperaLog struct {
+type SysFileDir struct {
 	models.Model
-	Title         string    `json:"title" gorm:"type:varchar(255);comment:操作模块"`                  //
-	BusinessType  string    `json:"businessType" gorm:"type:varchar(128);comment:操作类型"`           //
-	BusinessTypes string    `json:"businessTypes" gorm:"type:varchar(128);comment:BusinessTypes"` //
-	Method        string    `json:"method" gorm:"type:varchar(128);comment:函数"`                   //
-	RequestMethod string    `json:"requestMethod" gorm:"type:varchar(128);comment:请求方式"`          //
-	OperatorType  string    `json:"operatorType" gorm:"type:varchar(128);comment:操作类型"`           //
-	OperName      string    `json:"operName" gorm:"type:varchar(128);comment:操作者"`                //
-	DeptName      string    `json:"deptName" gorm:"type:varchar(128);comment:部门名称"`               //
-	OperUrl       string    `json:"operUrl" gorm:"type:varchar(255);comment:访问地址"`                //
-	OperIp        string    `json:"operIp" gorm:"type:varchar(128);comment:客户端ip"`                //
-	OperLocation  string    `json:"operLocation" gorm:"type:varchar(128);comment:访问位置"`           //
-	OperParam     string    `json:"operParam" gorm:"type:varchar(255);comment:请求参数"`              //
-	Status        string    `json:"status" gorm:"type:varchar(4);comment:操作状态"`                   //
-	OperTime      time.Time `json:"operTime" gorm:"type:timestamp;comment:操作时间"`                  //
-	JsonResult    string    `json:"jsonResult" gorm:"type:varchar(255);comment:返回数据"`             //
-	Remark        string    `json:"remark" gorm:"type:varchar(255);comment:备注"`                   //
-	LatencyTime   string    `json:"latencyTime" gorm:"type:varchar(128);comment:耗时"`              //
-	UserAgent     string    `json:"userAgent" gorm:"type:varchar(255);comment:ua"`                //
+	Label    string       `json:"label" gorm:"type:varchar(255);comment:目录名称"` // 目录名称
+	PId      int          `json:"pId" gorm:"type:int(11);comment:上级目录"`        // 上级目录
+	Sort     string       `json:"sort" gorm:"type:bigint(20);comment:排序"`      // 排序
+	Path     string       `json:"path" gorm:"type:varchar(255);comment:路径"`    // 路径
+	Children []SysFileDir `json:"children,omitempty" gorm:"-"`                 // 下级信息
 	models.ControlBy
 	models.ModelTime
 }
 
-func (SysOperaLog) TableName() string {
-	return "sys_opera_log"
+type SysFileDirL struct {
+	models.Model
+	Label string `json:"label" gorm:"type:varchar(255);comment:目录名称"` // 目录名称
+	PId   int    `json:"pId" gorm:"type:int(11);comment:上级目录"`        // 上级目录
+	Sort  string `json:"sort" gorm:"type:bigint(20);comment:排序"`      // 排序
+	Path  string `json:"path" gorm:"type:varchar(255);comment:路径"`    // 路径
+	models.ControlBy
+	models.ModelTime
+	Children []SysFileDirL `json:"children,omitempty" gorm:"-"` // 下级信息
 }
 
-func (e *SysOperaLog) Generate() models.ActiveRecord {
+func (SysFileDir) TableName() string { /**/
+	return "sys_file_dir"
+}
+
+func (e *SysFileDir) Generate() models.ActiveRecord {
 	o := *e
 	return &o
 }
 
-func (e *SysOperaLog) GetId() interface{} {
-	return e.ID
+func (e *SysFileDir) GetId() interface{} {
+	return e.Id
 }
 ```
 
@@ -213,147 +101,130 @@ func (e *SysOperaLog) GetId() interface{} {
 
 ## dto
 
+to 支持多种查询条件判断：
+
+| 名称   | 说明         | 示例         |
+| ------ | ------------ | ------------ |
+| type   | 条件类型     | exact        |
+| column | 数据库对应列 | name         |
+| table  | 数据库对应表 | sys_category |
+
+:::tip type 支持的类型
+
+- exact / iexact 等于
+- contains / icontains 包含
+- gt / gte 大于 / 大于等于
+- lt / lte 小于 / 小于等于
+- startswith / istartswith 以…起始
+- endswith / iendswith 以…结束
+- in
+- isnull
+- order 排序
+  :::
+
+```go
+search:"type:exact;column:job_id;table:sys_job"`
+```
+
 ```go
 package dto
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/go-admin-team/go-admin-core/sdk/api"
 
-	"go-admin/app/admin/models/system"
+	"go-admin/app/admin/models"
 	"go-admin/common/dto"
-	"go-admin/common/log"
 	common "go-admin/common/models"
-	"go-admin/tools"
-
-	"time"
 )
 
-// SysOperaLogSearch 搜索列表对应的数据接收模型 主要针对分页、列表；
-type SysOperaLogSearch struct {
+type SysFileDirSearch struct {
 	dto.Pagination `search:"-"`
-	Title         string `form:"title" search:"type:contains;column:title;table:sys_opera_log" comment:"操作模块"`
-	Method        string `form:"method" search:"type:contains;column:method;table:sys_opera_log" comment:"函数"`
-	RequestMethod string `form:"requestMethod" search:"type:contains;column:request_method;table:sys_opera_log" comment:"请求方式"`
-	OperUrl       string `form:"operUrl" search:"type:contains;column:oper_url;table:sys_opera_log" comment:"访问地址"`
-	OperIp        string `form:"operIp" search:"type:exact;column:oper_ip;table:sys_opera_log" comment:"客户端ip"`
+
+	ID    int    `form:"Id" search:"type:exact;column:id;table:sys_file_dir" comment:"标识"`
+	Label string `form:"label" search:"type:exact;column:label;table:sys_file_dir" comment:"目录名称"`
+	PId   string `form:"pId" search:"type:exact;column:p_id;table:sys_file_dir" comment:"上级目录"`
+	//Sort  string `form:"sort" search:"type:exact;column:sort;table:sys_file_dir" comment:"排序"`
+	Path string `form:"path" search:"type:exact;column:path;table:sys_file_dir" comment:"路径"`
 }
 
-// GetNeedSearch 将search 转化为interface
-func (m *SysOperaLogSearch) GetNeedSearch() interface{} {
+func (m *SysFileDirSearch) GetNeedSearch() interface{} {
 	return *m
 }
 
-// Bind 从上下文中解析数据
-func (m *SysOperaLogSearch) Bind(ctx *gin.Context) error {
-	msgID := tools.GenerateMsgIDFromContext(ctx)
+func (m *SysFileDirSearch) Bind(ctx *gin.Context) error {
+	log := api.GetRequestLogger(ctx)
 	err := ctx.ShouldBind(m)
 	if err != nil {
-		log.Debugf("MsgID[%s] ShouldBind error: %s", msgID, err.Error())
+		log.Debugf("ShouldBind error: %s", err.Error())
 	}
 	return err
 }
 
-// SysOperaLogControl 创建、修改使用的数据接收模型
-type SysOperaLogControl struct {
-	ID            int       `uri:"ID" comment:"编码"` // 编码
-	Title         string    `json:"title" comment:"操作模块"`
-	BusinessType  string    `json:"businessType" comment:"操作类型"`
-	BusinessTypes string    `json:"businessTypes" comment:""`
-	Method        string    `json:"method" comment:"函数"`
-	RequestMethod string    `json:"requestMethod" comment:"请求方式"`
-	OperatorType  string    `json:"operatorType" comment:"操作类型"`
-	OperName      string    `json:"operName" comment:"操作者"`
-	DeptName      string    `json:"deptName" comment:"部门名称"`
-	OperUrl       string    `json:"operUrl" comment:"访问地址"`
-	OperIp        string    `json:"operIp" comment:"客户端ip"`
-	OperLocation  string    `json:"operLocation" comment:"访问位置"`
-	OperParam     string    `json:"operParam" comment:"请求参数"`
-	Status        string    `json:"status" comment:"操作状态"`
-	OperTime      time.Time `json:"operTime" comment:"操作时间"`
-	JsonResult    string    `json:"jsonResult" comment:"返回数据"`
-	Remark        string    `json:"remark" comment:"备注"`
-	LatencyTime   string    `json:"latencyTime" comment:"耗时"`
-	UserAgent     string    `json:"userAgent" comment:"ua"`
+func (m *SysFileDirSearch) Generate() dto.Index {
+	o := *m
+	return &o
 }
 
-// Bind 从上下文中解析数据
-func (s *SysOperaLogControl) Bind(ctx *gin.Context) error {
-	msgID := tools.GenerateMsgIDFromContext(ctx)
+type SysFileDirControl struct {
+	ID       int    `uri:"Id" comment:"标识"` // 标识
+	Label    string `json:"label" comment:"目录名称"`
+	PId      int    `json:"pId" comment:"上级目录"`
+	Sort     string `json:"sort" comment:"排序"`
+	Path     string `json:"path" comment:"路径"`
+	CreateBy int    `json:"-"`
+	UpdateBy int    `json:"-"`
+}
+
+func (s *SysFileDirControl) Bind(ctx *gin.Context) error {
+	log := api.GetRequestLogger(ctx)
 	err := ctx.ShouldBindUri(s)
 	if err != nil {
-		log.Debugf("MsgID[%s] ShouldBindUri error: %s", msgID, err.Error())
+		log.Debugf("ShouldBindUri error: %s", err.Error())
 		return err
 	}
 	err = ctx.ShouldBind(s)
 	if err != nil {
-		log.Debugf("MsgID[%s] ShouldBind error: %#v", msgID, err.Error())
+		log.Debugf("ShouldBind error: %s", err.Error())
 	}
 	return err
 }
 
-// Generate 将数据转化成数据库使用的结构体
-func (s *SysOperaLogControl) Generate() (*system.SysOperaLog, error) {
-	return &system.SysOperaLog{
-		Model:         common.Model{ID: s.ID},
-		Title:         s.Title,
-		BusinessType:  s.BusinessType,
-		BusinessTypes: s.BusinessTypes,
-		Method:        s.Method,
-		RequestMethod: s.RequestMethod,
-		OperatorType:  s.OperatorType,
-		OperName:      s.OperName,
-		DeptName:      s.DeptName,
-		OperUrl:       s.OperUrl,
-		OperIp:        s.OperIp,
-		OperLocation:  s.OperLocation,
-		OperParam:     s.OperParam,
-		Status:        s.Status,
-		OperTime:      s.OperTime,
-		JsonResult:    s.JsonResult,
-		Remark:        s.Remark,
-		LatencyTime:   s.LatencyTime,
-		UserAgent:     s.UserAgent,
+func (s *SysFileDirControl) Generate() dto.Control {
+	cp := *s
+	return &cp
+}
+
+func (s *SysFileDirControl) GenerateM() (common.ActiveRecord, error) {
+	return &models.SysFileDir{
+		Model: common.Model{Id: s.ID},
+		Label: s.Label,
+		PId:   s.PId,
+		//Sort:  s.Sort,
+		Path: s.Path,
+		ControlBy: common.ControlBy{
+			CreateBy: s.CreateBy,
+			UpdateBy: s.UpdateBy,
+		},
 	}, nil
 }
 
-// GetId 获取id
-func (s *SysOperaLogControl) GetId() interface{} {
+func (s *SysFileDirControl) GetId() interface{} {
 	return s.ID
 }
 
-// SysOperaLogById 通过id查询、删除等使用的模型
-type SysOperaLogById struct {
-	Id  int   `uri:"id"`
-	Ids []int `json:"ids"`
+type SysFileDirById struct {
+	dto.ObjectById
+	UpdateBy int `json:"-"`
 }
 
-// GetId 获取ID 这里将url中的id和body中的id数组合并统一返回
-func (s *SysOperaLogById) GetId() interface{} {
-	if len(s.Ids) > 0 {
-		s.Ids = append(s.Ids, s.Id)
-		return s.Ids
-	}
-	return s.Id
+func (s *SysFileDirById) Generate() dto.Control {
+	cp := *s
+	return &cp
 }
 
-// Bind 绑定上下文中的数据
-func (s *SysOperaLogById) Bind(ctx *gin.Context) error {
-	msgID := tools.GenerateMsgIDFromContext(ctx)
-	err := ctx.ShouldBindUri(s)
-	if err != nil {
-		log.Debugf("MsgID[%s] ShouldBindUri error: %s", msgID, err.Error())
-		return err
-	}
-	err = ctx.ShouldBind(s)
-	if err != nil {
-		log.Debugf("MsgID[%s] ShouldBind error: %#v", msgID, err.Error())
-	}
-	return err
-}
-
-// 设置更新人id
-func (s *SysOperaLogById) SetUpdateBy(id int) {
-
+func (s *SysFileDirById) GenerateM() (common.ActiveRecord, error) {
+	return &models.SysFileDir{}, nil
 }
 ```
 
@@ -366,103 +237,121 @@ package service
 
 import (
 	"errors"
-	"go-admin/app/admin/models/system"
-	"go-admin/app/admin/service/dto"
-	cDto "go-admin/common/dto"
-	"go-admin/common/log"
-	"go-admin/common/service"
+	"fmt"
+
 	"gorm.io/gorm"
+
+	"go-admin/app/admin/models"
+	"go-admin/app/admin/service/dto"
+	"go-admin/common/actions"
+	cDto "go-admin/common/dto"
+	"go-admin/common/service"
 )
 
-type SysOperaLog struct {
+type SysFileDir struct {
 	service.Service
 }
 
-// GetSysOperaLogPage 获取SysOperaLog列表
-func (e *SysOperaLog) GetSysOperaLogPage(c *dto.SysOperaLogSearch, list *[]system.SysOperaLog, count *int64) error {
+// GetSysFileDirPage 获取SysFileDir列表
+func (e *SysFileDir) GetSysFileDirPage(c *dto.SysFileDirSearch, list *[]models.SysFileDirL) error {
 	var err error
-	var data system.SysOperaLog
-	msgID := e.MsgID
+	var data models.SysFileDir
 
 	err = e.Orm.Model(&data).
 		Scopes(
 			cDto.MakeCondition(c.GetNeedSearch()),
-			cDto.Paginate(c.GetPageSize(), c.GetPageIndex()),
 		).
-		Find(list).Limit(-1).Offset(-1).
-		Count(count).Error
+		Find(list). //Limit(-1).Offset(-1).
+		Error
 	if err != nil {
-		log.Errorf("msgID[%s] db error:%s", msgID, err)
+		e.Log.Errorf("db error: %s", err)
 		return err
 	}
 	return nil
 }
 
-// GetSysOperaLog 获取SysOperaLog对象
-func (e *SysOperaLog) GetSysOperaLog(d *dto.SysOperaLogById, model *system.SysOperaLog) error {
+// GetSysFileDir 获取SysFileDir对象
+func (e *SysFileDir) GetSysFileDir(d cDto.Control, model *models.SysFileDir) error {
 	var err error
-	var data system.SysOperaLog
-	msgID := e.MsgID
+	var data models.SysFileDir
 
 	db := e.Orm.Model(&data).
 		First(model, d.GetId())
 	err = db.Error
 	if err != nil && errors.Is(err, gorm.ErrRecordNotFound) {
 		err = errors.New("查看对象不存在或无权查看")
-		log.Errorf("msgID[%s] db error:%s", msgID, err)
+		e.Log.Errorf("db error: %s", err)
 		return err
 	}
 	if db.Error != nil {
-		log.Errorf("msgID[%s] db error:%s", msgID, err)
+		e.Log.Errorf("db error:%s", err)
 		return err
 	}
 	return nil
 }
 
-// InsertSysOperaLog 创建SysOperaLog对象
-func (e *SysOperaLog) InsertSysOperaLog(model *system.SysOperaLog) error {
+// InsertSysFileDir 创建SysFileDir对象
+func (e *SysFileDir) InsertSysFileDir(model *dto.SysFileDirControl) error {
 	var err error
-	var data system.SysOperaLog
-	msgID := e.MsgID
+	data, _ := model.GenerateM()
 
-	err = e.Orm.Model(&data).
-		Create(model).Error
+	err = e.Orm.Create(data).Error
 	if err != nil {
-		log.Errorf("msgID[%s] db error:%s", msgID, err)
+		e.Log.Errorf("db error: %s", err)
 		return err
 	}
+	path := fmt.Sprintf("/%d", model.ID)
+	//db = e.Orm.Model(&data).
+	//	First(&data, model.GetId())
+	//err = db.Error
+
+	if model.PId != 0 {
+		var dept models.SysFileDir
+		e.Orm.Model(&models.SysFileDir{}).Where("id = ?", model.PId).First(&dept)
+		path = dept.Path + path
+	} else {
+		path = "/0" + path
+	}
+	//var mp = map[string]string{}
+	//mp["path"] = path
+	if err = e.Orm.Model(&models.SysFileDir{}).Where("id = ?", model.ID).Update("path", path).Error; err != nil {
+		return err
+	}
+
 	return nil
 }
 
-// UpdateSysOperaLog 修改SysOperaLog对象
-func (e *SysOperaLog) UpdateSysOperaLog(c *system.SysOperaLog) error {
+// UpdateSysFileDir 修改SysFileDir对象
+func (e *SysFileDir) UpdateSysFileDir(c *dto.SysFileDirControl, p *actions.DataPermission) error {
 	var err error
-	var data system.SysOperaLog
-	msgID := e.MsgID
+	data, _ := c.GenerateM()
 
-	db := e.Orm.Model(&data).
-		Where(c.GetId()).Updates(c)
+	db := e.Orm.
+		Scopes(
+			actions.Permission(data.TableName(), p),
+		).Where(c.ID).Updates(data)
 	if db.Error != nil {
-		log.Errorf("msgID[%s] db error:%s", msgID, err)
+		e.Log.Errorf("db error: %s", err)
 		return err
 	}
 	if db.RowsAffected == 0 {
 		return errors.New("无权更新该数据")
-
 	}
 	return nil
 }
 
-// RemoveSysOperaLog 删除SysOperaLog
-func (e *SysOperaLog) RemoveSysOperaLog(d *dto.SysOperaLogById) error {
+// RemoveSysFileDir 删除SysFileDir
+func (e *SysFileDir) RemoveSysFileDir(d *dto.SysFileDirById, p *actions.DataPermission) error {
 	var err error
-	var data system.SysOperaLog
-	msgID := e.MsgID
+	var data models.SysFileDir
 
-	db := e.Orm.Model(&data).Delete(&data, d.GetId())
+	db := e.Orm.Model(&data).
+		Scopes(
+			actions.Permission(data.TableName(), p),
+		).Where(d.Id).Delete(&data)
 	if db.Error != nil {
 		err = db.Error
-		log.Errorf("MsgID[%s] Delete error: %s", msgID, err)
+		e.Log.Errorf("Delete error: %s", err)
 		return err
 	}
 	if db.RowsAffected == 0 {
@@ -471,6 +360,47 @@ func (e *SysOperaLog) RemoveSysOperaLog(d *dto.SysOperaLogById) error {
 	}
 	return nil
 }
+
+func (e *SysFileDir) SetSysFileDir(c *dto.SysFileDirSearch) (*[]models.SysFileDirL, error) {
+	var list []models.SysFileDirL
+	err := e.GetSysFileDirPage(c, &list)
+	m := make([]models.SysFileDirL, 0)
+	for i := 0; i < len(list); i++ {
+		if list[i].PId != 0 {
+			continue
+		}
+		info := SysFileDirCall(&list, list[i])
+		m = append(m, info)
+	}
+	return &m, err
+}
+
+func SysFileDirCall(list *[]models.SysFileDirL, m models.SysFileDirL) models.SysFileDirL {
+	listGroup := *list
+	min := make([]models.SysFileDirL, 0)
+	for j := 0; j < len(listGroup); j++ {
+		if m.Id != listGroup[j].PId {
+			continue
+		}
+		mi := models.SysFileDirL{}
+		mi.Id = listGroup[j].Id
+		mi.PId = listGroup[j].PId
+		mi.Label = listGroup[j].Label
+		//mi.Sort = listGroup[j].Sort
+		mi.CreatedAt = listGroup[j].CreatedAt
+		mi.UpdatedAt = listGroup[j].UpdatedAt
+		mi.Children = []models.SysFileDirL{}
+		ms := SysFileDirCall(list, mi)
+		min = append(min, ms)
+	}
+	if len(min) > 0 {
+		m.Children = min
+	} else {
+		m.Children = nil
+	}
+
+	return m
+}
 ```
 
 service 中包含了对数据的一个数据操作
@@ -478,213 +408,224 @@ service 中包含了对数据的一个数据操作
 ## apis
 
 ```go
-package sys_opera_log
+package sys_file
 
 import (
-	"github.com/gin-gonic/gin"
+	"net/http"
 
-	"go-admin/app/admin/models/system"
+	"github.com/gin-gonic/gin"
+	"github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth/user"
+
+	"go-admin/app/admin/models"
 	"go-admin/app/admin/service"
 	"go-admin/app/admin/service/dto"
+	"go-admin/common/actions"
 	"go-admin/common/apis"
-	"go-admin/common/log"
-	"go-admin/tools"
-
-	"net/http"
 )
 
-// SysOperaLog apis中的操作日志api对象
-type SysOperaLog struct {
+type SysFileDir struct {
 	apis.Api
 }
 
-// GetSysOperaLogList 分页查看数据列表
-func (e *SysOperaLog) GetSysOperaLogList(c *gin.Context) {
-	msgID := tools.GenerateMsgIDFromContext(c)
-	d := new(dto.SysOperaLogSearch)
-	db, err := tools.GetOrm(c)
+func (e *SysFileDir) GetSysFileDirList(c *gin.Context) {
+	log := e.GetLogger(c)
+	search := new(dto.SysFileDirSearch)
+	db, err := e.GetOrm(c)
 	if err != nil {
 		log.Error(err)
 		return
 	}
 
-	//查询列表
-	err = d.Bind(c)
+	err = c.ShouldBind(search)
 	if err != nil {
-		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
-		return
+		log.Debugf("ShouldBind error: %s", err.Error())
 	}
 
-	list := make([]system.SysOperaLog, 0)
-	var count int64
-	serviceStudent := service.SysOperaLog{}
-	serviceStudent.MsgID = msgID
+	var list *[]models.SysFileDirL
+	serviceStudent := service.SysFileDir{}
+	serviceStudent.Log = log
 	serviceStudent.Orm = db
-	err = serviceStudent.GetSysOperaLogPage(d, &list, &count)
+	list, err = serviceStudent.SetSysFileDir(search)
 	if err != nil {
+		log.Errorf("SetSysFileDir error, %s", err)
 		e.Error(c, http.StatusUnprocessableEntity, err, "查询失败")
 		return
 	}
 
-	e.PageOK(c, list, int(count), d.GetPageIndex(), d.GetPageSize(), "查询成功")
+	e.OK(c, list, "查询成功")
 }
 
-// GetSysOperaLog 通过id获取对象数据
-func (e *SysOperaLog) GetSysOperaLog(c *gin.Context) {
-	control := new(dto.SysOperaLogById)
-	db, err := tools.GetOrm(c)
+func (e *SysFileDir) GetSysFileDir(c *gin.Context) {
+	control := new(dto.SysFileDirById)
+	log := e.GetLogger(c)
+	db, err := e.GetOrm(c)
 	if err != nil {
 		log.Error(err)
 		return
 	}
 
-	msgID := tools.GenerateMsgIDFromContext(c)
 	//查看详情
-	err = control.Bind(c)
+	err = c.ShouldBindUri(control)
 	if err != nil {
+		log.Warnf("ShouldBindUri error: %s", err.Error())
 		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
-		return
 	}
-	var object system.SysOperaLog
 
-	serviceSysOperlog := service.SysOperaLog{}
-	serviceSysOperlog.MsgID = msgID
-	serviceSysOperlog.Orm = db
-	err = serviceSysOperlog.GetSysOperaLog(control, &object)
+	var object models.SysFileDir
+
+	serviceSysFileDir := service.SysFileDir{}
+	serviceSysFileDir.Log = log
+	serviceSysFileDir.Orm = db
+	err = serviceSysFileDir.GetSysFileDir(control, &object)
 	if err != nil {
-		e.Error(c, http.StatusUnprocessableEntity, err, "查询失败")
+		log.Errorf("GetSysFileDir error, %s", err)
+		e.Error(c, http.StatusInternalServerError, err, "查询失败")
 		return
 	}
 
 	e.OK(c, object, "查看成功")
 }
 
-// InsertSysOperaLog 数据新建
-func (e *SysOperaLog) InsertSysOperaLog(c *gin.Context) {
-	control := new(dto.SysOperaLogControl)
-	db, err := tools.GetOrm(c)
+func (e *SysFileDir) InsertSysFileDir(c *gin.Context) {
+	control := new(dto.SysFileDirControl)
+	log := e.GetLogger(c)
+	db, err := e.GetOrm(c)
 	if err != nil {
 		log.Error(err)
 		return
 	}
 
-	msgID := tools.GenerateMsgIDFromContext(c)
 	//新增操作
-	err = control.Bind(c)
+	err = c.ShouldBindUri(control)
 	if err != nil {
+		log.Warnf("ShouldBindUri error: %s", err.Error())
 		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
 		return
 	}
-	object, err := control.Generate()
+	err = c.ShouldBind(control)
 	if err != nil {
-		e.Error(c, http.StatusInternalServerError, err, "模型生成失败")
+		log.Warnf("ShouldBind error: %s", err.Error())
+		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
 		return
 	}
 	// 设置创建人
-	object.SetCreateBy(tools.GetUserId(c))
+	control.CreateBy = user.GetUserId(c)
 
-	serviceSysOperaLog := service.SysOperaLog{}
-	serviceSysOperaLog.Orm = db
-	serviceSysOperaLog.MsgID = msgID
-	err = serviceSysOperaLog.InsertSysOperaLog(object)
+	serviceSysFileDir := service.SysFileDir{}
+	serviceSysFileDir.Orm = db
+	serviceSysFileDir.Log = log
+	err = serviceSysFileDir.InsertSysFileDir(control)
 	if err != nil {
-		log.Error(err)
+		log.Errorf("InsertSysFileDir error, %s", err)
 		e.Error(c, http.StatusInternalServerError, err, "创建失败")
 		return
 	}
 
-	e.OK(c, object.GetId(), "创建成功")
+	e.OK(c, control.ID, "创建成功")
 }
 
-// UpdateSysOperaLog 数据更新
-func (e *SysOperaLog) UpdateSysOperaLog(c *gin.Context) {
-	control := new(dto.SysOperaLogControl)
-	db, err := tools.GetOrm(c)
+func (e *SysFileDir) UpdateSysFileDir(c *gin.Context) {
+	control := new(dto.SysFileDirControl)
+	log := e.GetLogger(c)
+	db, err := e.GetOrm(c)
 	if err != nil {
 		log.Error(err)
 		return
 	}
 
-	msgID := tools.GenerateMsgIDFromContext(c)
-	//更新操作
-	err = control.Bind(c)
+	err = c.ShouldBindUri(control)
 	if err != nil {
+		log.Warnf("ShouldBindUri error: %s", err.Error())
 		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
-		return
 	}
-	object, err := control.Generate()
+	err = c.ShouldBind(control)
 	if err != nil {
-		e.Error(c, http.StatusInternalServerError, err, "模型生成失败")
-		return
+		log.Warnf("ShouldBind error: %#v", err.Error())
+		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
 	}
-	object.SetUpdateBy(tools.GetUserId(c))
+	// 设置创建人
+	control.UpdateBy = user.GetUserId(c)
 
-	serviceSysOperaLog := service.SysOperaLog{}
-	serviceSysOperaLog.Orm = db
-	serviceSysOperaLog.MsgID = msgID
-	err = serviceSysOperaLog.UpdateSysOperaLog(object)
+	//数据权限检查
+	p := actions.GetPermissionFromContext(c)
+
+	serviceSysFileDir := service.SysFileDir{}
+	serviceSysFileDir.Orm = db
+	serviceSysFileDir.Log = log
+	err = serviceSysFileDir.UpdateSysFileDir(control, p)
 	if err != nil {
-		log.Error(err)
+		log.Errorf("UpdateSysFileDir error, %s", err)
+		e.Error(c, http.StatusInternalServerError, err, "更新失败")
 		return
 	}
-	e.OK(c, object.GetId(), "更新成功")
+	e.OK(c, control.ID, "更新成功")
 }
 
-func (e *SysOperaLog) DeleteSysOperaLog(c *gin.Context) {
-	control := new(dto.SysOperaLogById)
-	db, err := tools.GetOrm(c)
+func (e *SysFileDir) DeleteSysFileDir(c *gin.Context) {
+	control := new(dto.SysFileDirById)
+	log := e.GetLogger(c)
+	db, err := e.GetOrm(c)
 	if err != nil {
 		log.Error(err)
 		return
 	}
 
-	msgID := tools.GenerateMsgIDFromContext(c)
 	//删除操作
-	err = control.Bind(c)
+	err = c.ShouldBindUri(control)
 	if err != nil {
-		log.Errorf("MsgID[%s] Bind error: %s", msgID, err)
+		log.Warnf("ShouldBindUri error: %s",err.Error())
 		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
-		return
+	}
+	err = c.ShouldBind(control)
+	if err != nil {
+		log.Warnf("ShouldBind error: %#v",err.Error())
+		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
 	}
 
-	serviceSysOperaLog := service.SysOperaLog{}
-	serviceSysOperaLog.Orm = db
-	serviceSysOperaLog.MsgID = msgID
-	err = serviceSysOperaLog.RemoveSysOperaLog(control)
+	// 设置编辑人
+	control.UpdateBy = user.GetUserId(c)
+
+	// 数据权限检查
+	p := actions.GetPermissionFromContext(c)
+
+	serviceSysFileDir := service.SysFileDir{}
+	serviceSysFileDir.Orm = db
+	err = serviceSysFileDir.RemoveSysFileDir(control, p)
 	if err != nil {
-		log.Error(err)
+		log.Errorf("RemoveSysFileDir error, %s", err)
+		e.Error(c, http.StatusInternalServerError, err, "删除失败")
 		return
 	}
-	e.OK(c, control.GetId(), "删除成功")
+	e.OK(c, control.Id, "删除成功")
 }
 ```
 
-## routers
+## router
 
 ```go
 package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-admin/app/admin/apis/system/sys_opera_log"
-	"go-admin/app/admin/middleware"
-	jwt "go-admin/pkg/jwtauth"
+	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
+	"go-admin/app/admin/apis/sys_file"
+	"go-admin/common/middleware"
 )
 
 func init() {
-	routerCheckRole = append(routerCheckRole, registerSysOperaLogRouter)
+	routerCheckRole = append(routerCheckRole, registerSysFileDirRouter)
 }
 
 // 需认证的路由代码
-func registerSysOperaLogRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
-	api := &sys_opera_log.SysOperaLog{}
-	r := v1.Group("/sys-opera-log").Use(authMiddleware.MiddlewareFunc()).Use(middleware.AuthCheckRole())
+func registerSysFileDirRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
+	api := &sys_file.SysFileDir{}
+	r := v1.Group("/sysfiledir").Use(authMiddleware.MiddlewareFunc()).Use(middleware.AuthCheckRole())
 	{
-		r.GET("", api.GetSysOperaLogList)
-		r.GET("/:id", api.GetSysOperaLog)
-		r.POST("", api.InsertSysOperaLog)
-		r.PUT("/:id", api.UpdateSysOperaLog)
-		r.DELETE("", api.DeleteSysOperaLog)
+		r.GET("", api.GetSysFileDirList)
+		r.GET("/:id", api.GetSysFileDir)
+		r.POST("", api.InsertSysFileDir)
+		r.PUT("/:id", api.UpdateSysFileDir)
+		r.DELETE("/:id", api.DeleteSysFileDir)
 	}
 }
 ```

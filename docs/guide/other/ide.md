@@ -1,6 +1,6 @@
-# IDE 开发
+# IDE 开发配置
 
-## goland
+## goland 配置
 
 众多 IDE 里边，推荐使用 `goland IDE`进行调试
 
@@ -64,58 +64,58 @@
 
 ## VSCode
 
-有好多朋友反馈需要在vscode环境下进行开发，那么提供一份完成的调试配置，供大家参考使用；
+有好多朋友反馈需要在 vscode 环境下进行开发，那么提供一份完成的调试配置，供大家参考使用；
 
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "go build go-admin",
-            "type": "go",
-            "request": "launch",
-            "mode": "debug",
-            "port": 8000,
-            "host": "127.0.0.1",
-            "program": "${workspaceRoot}",
-            "env": {
-                "GOPATH":"/Users/zhangwenjian/go"
-            },
-            "args": ["server", "-c", "config/settings.dev.yml"]
-        },
-        {
-            "name": "go migrate go-admin to db",
-            "type": "go",
-            "request": "launch",
-            "mode": "debug",
-            "program": "${workspaceRoot}",
-            "env": {
-                "GOPATH":"/Users/zhangwenjian/go"
-            },
-            "args": ["migrate", "-c", "config/settings.dev.yml"]
-        },
-        {
-            "name": "go migrate go-admin to file",
-            "type": "go",
-            "request": "launch",
-            "mode": "debug",
-            "program": "${workspaceRoot}",
-            "env": {
-                "GOPATH":"/Users/zhangwenjian/go"
-            },
-            "args": ["migrate", "-c", "config/settings.dev.yml", "-g", "true"]
-        },
-        {
-            "name": "go version goadmin",
-            "type": "go",
-            "request": "launch",
-            "mode": "debug",
-            "program": "${workspaceRoot}",
-            "env": {
-                "GOPATH":"/Users/zhangwenjian/go"
-            },
-            "args": ["version"]
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "go build go-admin",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "port": 8000,
+      "host": "127.0.0.1",
+      "program": "${workspaceRoot}",
+      "env": {
+        "GOPATH": "/Users/zhangwenjian/go"
+      },
+      "args": ["server", "-c", "config/settings.dev.yml"]
+    },
+    {
+      "name": "go migrate go-admin to db",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceRoot}",
+      "env": {
+        "GOPATH": "/Users/zhangwenjian/go"
+      },
+      "args": ["migrate", "-c", "config/settings.dev.yml"]
+    },
+    {
+      "name": "go migrate go-admin to file",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceRoot}",
+      "env": {
+        "GOPATH": "/Users/zhangwenjian/go"
+      },
+      "args": ["migrate", "-c", "config/settings.dev.yml", "-g", "true"]
+    },
+    {
+      "name": "go version goadmin",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceRoot}",
+      "env": {
+        "GOPATH": "/Users/zhangwenjian/go"
+      },
+      "args": ["version"]
+    }
+  ]
 }
 ```
