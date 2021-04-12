@@ -51,6 +51,11 @@ module.exports = {
               children: genEssentialsSidebar()
             },
             {
+              title: '规范',
+              collapsable: false,
+              children: ['/guide/norm.md']
+            },
+            {
               title: '第一个go-admin应用',
               collapsable: false,
               children: genAdvancedSidebar()
@@ -67,11 +72,6 @@ module.exports = {
               title: '其他',
               collapsable: false,
               children: ['/guide/other/faq.md']
-            },
-            {
-              title: '规范',
-              collapsable: false,
-              children: ['/guide/norm.md']
             }
           ]
         }
