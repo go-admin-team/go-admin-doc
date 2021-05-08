@@ -39,10 +39,18 @@ $ vi config/settings.yml
 #     source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
 
 # 初始化数据库
-$ ./go-admin migrate -c=config/settings.yml
+# macOS or linux 下使用
+$ ./go-admin migrate -c=config/settings.dev.yml
+
+# ⚠️注意:windows 下使用
+$ ./go-admin.exe migrate -c=config/settings.dev.yml
 
 # 启动服务
+# macOS or linux 下使用
 $ ./go-admin server -c=config/settings.yml
+
+# ⚠️注意:windows 下使用
+$ ./go-admin.exe server -c=config/settings.yml
 ```
 
 ## 反馈
