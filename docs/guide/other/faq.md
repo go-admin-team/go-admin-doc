@@ -94,6 +94,57 @@ https://gitee.com/mydearzwj/image/raw/master/img/noauthapi_log.png"  style="marg
 
 可以根据这个日志，酌情进行配置
 
+## 5. # github.com/mattn/go-sqlite3 cgo: exec gcc: ****\*\*****
+
+> 问题详情
+
+在 windows 环境中会出现这个问题；
+
+```bash
+E:\go-admin>go build
+# github.com/mattn/go-sqlite3
+cgo: exec /missing-cc: exec: "/missing-cc": file does not exist
+```
+
+or
+
+```bash
+D:\Code\go-admin>go build
+# github.com/mattn/go-sqlite3
+cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
+```
+
+> 解决方案
+
+下载符合自己系统版本的压缩包
+
+https://sourceforge.net/projects/mingw-w64/files/mingw-w64/
+
+:::tip ⚠️ 使用注意
+当前是`MinGW-W64 GCC-8.1.0`版本，如果版本不匹配，可以根据对应的操作系统进行下载配置；
+
+64 位操作系统，下载这个版本
+
+[x86_64-posix-seh](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/seh/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z)
+
+32 位操作系统，下载这个版本
+
+[x86_64-win32-seh](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z)
+
+:::
+
+![](https://gitee.com/mydearzwj/image/raw/master/img/minigw.png)
+
+直接解压以后 , 把 bin 目录配置到 系统环境变量中的 PATH 变量中即可
+
+:::tip
+windows 环境变量配置时，`bin`目录的路径中间不要出现空格；
+
+例如：`C:/go go/bin` 这样的路径是不能被正常使用的；
+
+例如：`C:/go_go/bin` ✔️；
+:::
+
 :::tip 从哪里获得帮助：
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 :::

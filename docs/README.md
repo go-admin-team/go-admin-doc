@@ -43,15 +43,36 @@ $ vi config/settings.yml
 $ ./go-admin migrate -c=config/settings.dev.yml
 
 # ⚠️注意:windows 下使用
-$ ./go-admin.exe migrate -c=config/settings.dev.yml
+$ go-admin.exe migrate -c=config/settings.dev.yml
 
 # 启动服务
 # macOS or linux 下使用
 $ ./go-admin server -c=config/settings.yml
 
 # ⚠️注意:windows 下使用
-$ ./go-admin.exe server -c=config/settings.yml
+$ go-admin.exe server -c=config/settings.yml
 ```
+
+:::tip ⚠️ 注意
+在 windows 环境中会出现这个问题；
+
+```bash
+E:\go-admin>go build
+# github.com/mattn/go-sqlite3
+cgo: exec /missing-cc: exec: "/missing-cc": file does not exist
+```
+
+or
+
+```bash
+D:\Code\go-admin>go build
+# github.com/mattn/go-sqlite3
+cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
+```
+
+[解决 cgo 问题进入](/guide/other/faq.html#_5-cgo-exec-missing-cc-exec-missing-cc-file-does-not-exist)
+
+:::
 
 ## 反馈
 

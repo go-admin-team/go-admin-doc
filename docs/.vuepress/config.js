@@ -7,7 +7,7 @@ var { genNav, getComponentSidebar, deepClone } = utils
 module.exports = {
   title: 'go-admin',
   description: 'A magical vue admin',
-  base: '/',
+  base: '/1.3.2/',
   head: [
     [
       'link',
@@ -41,6 +41,10 @@ module.exports = {
           {
             text: '捐赠',
             link: '/donate/'
+          },
+          {
+            text: '最新doc',
+            link: 'https://doc.go-admin.dev/'
           }
         ],
         sidebar: {
@@ -151,6 +155,7 @@ function genEssentialsSidebar(type = '') {
   const mapArr = [
     '/guide/',
     '/guide/ksks.md',
+    '/guide/env.md',
     '/guide/path.md',
     '/guide/settings.md',
     '/guide/spjc.md',
