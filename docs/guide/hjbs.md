@@ -87,9 +87,9 @@ settings:
 
 #### 修改默认端口的代码文件
 
-#### 编写自动打包上传的 shell 角本文件
+#### 编写自动打包上传的 shell 脚本文件
 
-##### 新建打包角本 `go-admin/build-go-admin.sh`
+##### 新建打包脚本 `go-admin/build-go-admin.sh`
 
 **注意**
 如果是 mac 和 windows 自己百度 go 交叉编译的方法或者参考下面的地址
@@ -113,11 +113,11 @@ go build -o go-admin main.go
 
 echo "复制文件到服务器"
 echo "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go"
-#调用上传文件角本把打包好的go-admin二进制文件上传到服务器上
+#调用上传文件脚本把打包好的go-admin二进制文件上传到服务器上
 expect ./scpToServer.sh $i $j
 ```
 
-##### 新建上传角本 `/go-admin/scpToServer.sh`
+##### 新建上传脚本 `/go-admin/scpToServer.sh`
 
 ```bash
 #!/usr/bin/expect -f
@@ -163,7 +163,7 @@ go-admin                                                                        
       <img src="https://gitee.com/mydearzwj/image/raw/master/img/bs1.gif" alt="" width="100%">
 </a>
 
-#### 编写后台启动 go 服务角本
+#### 编写后台启动 go 服务脚本
 
 ##### 在服务器上新建 go-admin/restart.sh 文件
 
@@ -247,7 +247,7 @@ tcp6       0      0 :::8887                 :::*                    LISTEN      
 
 这里的域名地址和 1.2nginx 里配置的 go 后台 api 接口地址 保持一致
 
-### 编写自动打包上传的 shell 角本文件
+### 编写自动打包上传的 shell 脚本文件
 
 ##### 新建`/go-admin-ui/npmbuild.sh`
 
@@ -280,9 +280,9 @@ expect {
 interact
 ```
 
-### 执行角本文件
+### 执行脚本文件
 
-执行角本文件,打包并上传到服务器
+执行脚本文件,打包并上传到服务器
 
 `./npmbuild.sh`
 
@@ -294,7 +294,7 @@ http://www.zhangwj.com
 
 ### 更新前端代码到服务器
 
-重复【执行角本文件】步骤,就会重新打包并覆盖到线上的 dist 目录文件了
+重复【执行脚本文件】步骤,就会重新打包并覆盖到线上的 dist 目录文件了
 
 <a href="https://gitee.com/mydearzwj/image/raw/master/img/bs2.gif" target="_blank">
       <img src="https://gitee.com/mydearzwj/image/raw/master/img/bs2.gif" alt="" width="100%">
