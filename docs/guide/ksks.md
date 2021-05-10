@@ -8,6 +8,12 @@
 请注意 Go version >= 1.15，并且 GO111MODULE=on (Go MOdule 模式)；
 :::
 
+#### 环境变量
+
+[配置环境变量请进入](/guide/env.html)
+
+#### 设置工作目录
+
 ```bash
 # 工作目录
 $ mkdir myproject && cd myproject
@@ -27,6 +33,27 @@ $ git clone https://github.com/go-admin-team/go-admin.git
 $ cd ./go-admin
 $ go build
 ```
+
+:::tip windows 下 CGO 的问题
+请注意 您如果是 windows 环境您或许可能会遇到 `CGO` 的问题
+
+```bash
+E:\go-admin>go build
+# github.com/mattn/go-sqlite3
+cgo: exec /missing-cc: exec: "/missing-cc": file does not exist
+```
+
+or
+
+```bash
+D:\Code\go-admin>go build
+# github.com/mattn/go-sqlite3
+cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
+```
+
+[如何解决 cgo: exec /missing-cc: exec: "/missing-cc": file does not exist](/guide/other/faq.html#_5-cgo-exec-missing-cc-exec-missing-cc-file-does-not-exist)
+
+:::
 
 ### 配置数据源
 
@@ -52,7 +79,7 @@ database:
 $ ./go-admin migrate -c=config/settings.dev.yml
 
 # ⚠️注意:windows 下使用
-$ ./go-admin.exe migrate -c=config/settings.dev.yml
+$ go-admin.exe migrate -c=config/settings.dev.yml
 ```
 
 :::tip
@@ -142,6 +169,28 @@ Resolving deltas: 100% (127/127), done.
 ```
 
 > 恭喜！到目前为止说明 go-admin-ui 代码已经下载完成。
+
+### 安装 node & npm
+
+如果本地已经安装过的可以跳过当前步骤；
+
+[nodejs download](https://nodejs.org/zh-cn/download/)
+
+![](https://gitee.com/mydearzwj/image/raw/master/img/nodejs.png)
+
+根据本地系统进行版本选择 nodejs 不同版本的下载安装；
+
+版本信息查看
+
+```bash
+$ node -v
+v14.16.0
+
+$ npm -v
+6.14.11
+```
+
+正常返回版本号说明安装成功了可以进行下一步；
 
 ### npm install
 
