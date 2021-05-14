@@ -7,7 +7,7 @@ var { genNav, getComponentSidebar, deepClone } = utils
 module.exports = {
   title: 'go-admin',
   description: 'A magical vue admin',
-  base: '/go-admin-doc/',
+  base: '/',
   head: [
     [
       'link',
