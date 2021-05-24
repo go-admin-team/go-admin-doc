@@ -121,3 +121,19 @@ func GetArticleList(c *gin.Context) {
 ### init
 
 请勿自行使用系统内置`init`函数，如果执行顺序控制不当，可能会出现问题；
+
+## 系统配置
+
+### 菜单管理
+
+业务名称：list 、 add 、 remove 、 edit 、 query 、
+
+#### 权限标识
+
+请使用小驼峰
+
+[v1.4.0+]
+
+格式：`{module}/{name}/业务名称`
+
+示例：`admin/sysUser/list`
