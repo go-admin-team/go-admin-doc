@@ -206,7 +206,7 @@ type Article struct {
 
 // GetArticleList 获取文章列表
 func (e *Article)GetArticleList(c *gin.Context) {
-  e.Context = c
+	e.Context = c
 	e.OK(c,"hello world ！","success")
 }
 ```
