@@ -27,10 +27,11 @@ import (
 | Bind          | 数据 Bind          |
 | Generate      | 模型转换           |
 
+样例代码：
+
 ```go
 type SysFileDirSearch struct {
 	dto.Pagination `search:"-"`
-
 	ID    int    `form:"Id" search:"type:exact;column:id;table:sys_file_dir" comment:"标识"`
 	Label string `form:"label" search:"type:exact;column:label;table:sys_file_dir" comment:"目录名称"`
 	PId   string `form:"pId" search:"type:exact;column:p_id;table:sys_file_dir" comment:"上级目录"`
@@ -55,6 +56,53 @@ func (m *SysFileDirSearch) Bind(ctx *gin.Context) error {
 func (m *SysFileDirSearch) Generate() dto.Index {
 	o := *m
 	return &o
+}
+```
+
+### struct 说明
+
+只针对 serach 中内容说明：
+
+| tags 名称 | 说明           |
+| --------- | -------------- |
+| type      | 操作类型       |
+| column    | 数据库表字段名 |
+| table     | 数据库表名称   |
+
+### type 说明
+
+| type                   | 描述          | query 示例            |
+| :--------------------- | :------------ | :-------------------- |
+| exact/iexact           | 等于          | status=1              |
+| contains/icontanins    | 包含          | name=n                |
+| gt/gte                 | 大于/大于等于 | age=18                |
+| lt/lte                 | 小于/小于等于 | age=18                |
+| startswith/istartswith | 以…起始       | content=hell          |
+| endswith/iendswith     | 以…结束       | content=world         |
+| in                     | in 查询       | status[]=0&status[]=1 |
+| isnull                 | isnull 查询   | startTime=1           |
+| order                  | 排序          | sort=asc/sort=desc    |
+| join                   | 链接          | -                     |
+
+示例：
+
+```go
+type ApplicationQuery struct {
+	Id       string    `search:"type:icontains;column:id;table:receipt" form:"id"`
+	Domain   string    `search:"type:icontains;column:domain;table:receipt" form:"domain"`
+	Version  string    `search:"type:exact;column:version;table:receipt" form:"version"`
+	Status   []int     `search:"type:in;column:status;table:receipt" form:"status"`
+	Start    time.Time `search:"type:gte;column:created_at;table:receipt" form:"start"`
+	End      time.Time `search:"type:lte;column:created_at;table:receipt" form:"end"`
+	TestJoin `search:"type:left;on:id:receipt_id;table:receipt_goods;join:receipts"`
+	ApplicationOrder
+}
+type ApplicationOrder struct {
+	IdOrder string `search:"type:order;column:id;table:receipt" form"id_order"`
+}
+
+type TestJoin struct {
+	PaymentAccount string `search:"type:icontains;column:payment_account;table:receipts" form:"payment_account"`
 }
 ```
 

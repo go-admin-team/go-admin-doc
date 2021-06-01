@@ -74,8 +74,9 @@ module.exports = {
               collapsable: false,
               children: [
                 '/guide/go-install.md',
-                '/guide/go-modules.md',
                 '/guide/ide-env.md',
+                '/guide/go-modules.md',
+                '/guide/env.md',
                 '/guide/vue-install.md'
               ]
             },
@@ -185,7 +186,6 @@ function genEssentialsSidebar(type = '') {
   const mapArr = [
     '/guide/',
     '/guide/ksks.md',
-    '/guide/env.md',
     '/guide/path.md',
     '/guide/settings.md',
     '/guide/spjc.md',
