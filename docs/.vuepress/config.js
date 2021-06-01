@@ -5,6 +5,9 @@ var utils = require('./utils.js')
 var { genNav, getComponentSidebar, deepClone } = utils
 
 module.exports = {
+  markdown: {
+    lineNumbers: true
+  },
   title: 'go-admin',
   description: 'A magical vue admin',
   base: '/go-admin-doc/',
@@ -44,11 +47,25 @@ module.exports = {
           },
           {
             text: '1.3.2',
-            link: 'https://doc.go-admin.dev/1.3.2/'
+            // link: 'https://doc.go-admin.dev/1.3.2/',
+            items: [
+              { text: '1.3.2', link: '/1.3.2/' }
+              // { text: '1.3.x', link: '/1.3.x/' }
+            ]
           }
         ],
         sidebar: {
           '/guide/': [
+            {
+              title: '准备工作',
+              collapsable: false,
+              children: [
+                '/guide/go-install.md',
+                '/guide/go-modules.md',
+                '/guide/ide-env.md',
+                '/guide/vue-install.md'
+              ]
+            },
             {
               title: '指南',
               collapsable: false,
