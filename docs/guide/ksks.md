@@ -31,6 +31,7 @@ $ git clone https://github.com/go-admin-team/go-admin.git
 ```bash
 # 编译
 $ cd ./go-admin
+$ go mod tidy
 $ go build
 ```
 

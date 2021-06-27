@@ -62,8 +62,8 @@ module.exports = {
             text: '1.3.2',
             // link: 'https://doc.go-admin.dev/1.3.2/',
             items: [
-              { text: '1.3.2', link: '/1.3.2/' }
-              // { text: '1.3.x', link: '/1.3.x/' }
+              { text: '1.3.2', link: 'https://doc.go-admin.dev/1.3.2/' },
+              { text: '1.3.x', link: 'https://doc.go-admin.dev/1.3.x/' }
             ]
           }
         ],
