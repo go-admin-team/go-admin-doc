@@ -10,7 +10,7 @@ module.exports = {
   },
   title: 'go-admin',
   description: 'A magical vue admin',
-  base: '/go-admin-doc/',
+  base: '/1.3.x/',
   head: [
     [
       'link',
