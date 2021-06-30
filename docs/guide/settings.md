@@ -2,6 +2,8 @@
 
 ## go-admin 配置
 
+### 单点应用配置
+
 ```yml
 settings:
   application:
@@ -36,39 +38,102 @@ settings:
     driver: mysql
     # 数据库连接字符串 mysql 缺省信息 charset=utf8&parseTime=True&loc=Local&timeout=1000ms
     source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
-  #  databases:
-  #    'locaohost:8000':
-  #      driver: mysql
-  #      # 数据库连接字符串 mysql 缺省信息 charset=utf8&parseTime=True&loc=Local&timeout=1000ms
-  #      source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
-  #      registers:
-  #        - sources:
-  #            - user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
   gen:
     # 代码生成读取的数据库名称
     dbname: dbname
     # 代码生成是使用前端代码存放位置，需要指定到src文件夹，相对路径
     frontpath: ../go-admin-ui/src
-  cache:
-    driver: memory
-    # memory：使用内存作为介质；redis：使用redis作为介质；
-    addr: 127.0.0.1:6379
-    # 存储地址
-    db: 1
-    # 指定db
-    password: ''
-    # 密码配置项，如果为空可以不配置
-    visibility_timeout: 1001
-    # 队列的visibility_timeout 确保消息不会超时
-    # 队列的visibility_timeout，worker在接收到消息后，timeout就开始计时了。
-    buffer_size: 10
-    # 缓冲区
-    concurrency: 1
-    # 并发
-    approximate_max_length: false
   extend: # 扩展项使用说明
     demo:
       name: data
+  cache:
+    redis:
+      addr: 127.0.0.1:6379
+      password: xxxxxx
+      db: 2
+  #    memory: '' key存在即可
+  queue:
+    memory:
+      poolSize: 100
+#    redis:
+#      addr: 127.0.0.1:6379
+#      password: xxxxxx
+#      producer:
+#        streamMaxLength: 100
+#        approximateMaxLength: true
+#      consumer:
+#        visibilityTimeout: 60
+#        bufferSize: 100
+#        concurrency: 10
+#        blockingTimeout: 5
+#        reclaimInterval: 1
+```
+
+### 多租户配置
+
+```yml
+settings:
+  application:
+    # dev开发环境 test测试环境 prod线上环境
+    mode: dev
+    # 服务器ip，默认使用 0.0.0.0
+    host: 0.0.0.0
+    # 服务名称
+    name: testApp
+    # 端口号
+    port: 8000 # 服务端口号
+    readtimeout: 1
+    writertimeout: 2
+    # 数据权限功能开关
+    enabledp: false
+  logger:
+    # 日志存放路径
+    path: temp/logs
+    # 日志输出，file：文件，default：命令行，其他：命令行
+    stdout: '' #控制台日志，启用后，不输出到文件
+    # 日志等级, trace, debug, info, warn, error, fatal
+    level: trace
+    # 数据库日志开关 dev模式，将自动开启
+    enableddb: false
+  jwt:
+    # token 密钥，生产环境时及的修改
+    secret: go-admin
+    # token 过期时间 单位：秒
+    timeout: 3600
+  databases:
+    'localhost:8000': # 这里需要⚠️ 要和请求进来的域名一致，否则会导致获取不到链接 如果经过nginx转发需要一转发地址为准
+      driver: mysql
+      # 数据库连接字符串 mysql 缺省信息 charset=utf8&parseTime=True&loc=Local&timeout=1000ms
+      source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
+  gen:
+    # 代码生成读取的数据库名称
+    dbname: dbname
+    # 代码生成是使用前端代码存放位置，需要指定到src文件夹，相对路径
+    frontpath: ../go-admin-ui/src
+  extend: # 扩展项使用说明
+    demo:
+      name: data
+  cache:
+    redis:
+      addr: 127.0.0.1:6379
+      password: xxxxxx
+      db: 2
+  #    memory: '' key存在即可
+  queue:
+    memory:
+      poolSize: 100
+#    redis:
+#      addr: 127.0.0.1:6379
+#      password: xxxxxx
+#      producer:
+#        streamMaxLength: 100
+#        approximateMaxLength: true
+#      consumer:
+#        visibilityTimeout: 60
+#        bufferSize: 100
+#        concurrency: 10
+#        blockingTimeout: 5
+#        reclaimInterval: 1
 ```
 
 ### application

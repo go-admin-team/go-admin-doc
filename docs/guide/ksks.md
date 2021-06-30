@@ -70,6 +70,11 @@ database:
   source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
 ```
 
+:::tip
+Mysql 版本 8.0+ ，在此版本下最优；
+其他低版本的会出现`Error 1071: Specified key was too long; max key length is 1000 bytes`等这类问题；请根据本地数据库版本进行对应修改；
+:::
+
 ### 初始化
 
 项目中支持使用命令方式初始化基本数据结构和基础数据。 可以方便的使用 `migrate` 命令进行项目数据库结构和数据初始化。如下操作：

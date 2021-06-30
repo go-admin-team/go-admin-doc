@@ -9,3 +9,5 @@ go-admin 内置了一些命令，如：server、version、migrate、config
 > migrate 数据库迁移; 一般使用的比较多的是项目数据库初始化
 
 > config 查看配置信息
+
+> createapp 创建新的 app; 【todo】

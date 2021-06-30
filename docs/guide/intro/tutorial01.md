@@ -36,14 +36,10 @@ settings:
   logger:
     # 日志存放路径
     path: temp/logs
-    # 控制台日志
-    stdout: true
-    # 日志等级
-    level: all
-    # 业务日志开关
-    enabledbus: true
-    # 请求日志开关
-    enabledreq: false
+    # 日志输出，file：文件，default：命令行，其他：命令行
+    stdout: '' #控制台日志，启用后，不输出到文件
+    # 日志等级, trace, debug, info, warn, error, fatal
+    level: trace
     # 数据库日志开关 dev模式，将自动开启
     enableddb: false
   jwt:
@@ -100,9 +96,10 @@ settings:
 │   │   ├── router # 路由
 │   │   └── service # 业务逻辑
 │   └── jobs #自动化作业
-│       ├── examples.go # 示例
-│       ├── jobbase.go
-│       └── type.go
+│       ├── apis # api
+│       ├── models # 模型
+│       ├── router # 路由
+│       └── service # 业务逻辑
 ├── cmd # 命令
 ├── common #公共类
 ├── config # 系统配置
@@ -206,7 +203,12 @@ type Article struct {
 
 // GetArticleList 获取文章列表
 func (e *Article)GetArticleList(c *gin.Context) {
-	e.Context = c
+	err := e.MakeContext(c).
+		Errors
+	if err != nil {
+		e.Logger.Error(err)
+		return
+	}
 	e.OK(c,"hello world ！","success")
 }
 ```
@@ -223,6 +225,7 @@ go-admin
       models
       router
       service
+        dto
 ```
 
 在 `go-admin/app/admin/router/article.go` 中，输入以下代码：
@@ -243,7 +246,7 @@ func init() {
 
 // 需认证的路由代码
 func registerArticleRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
-	api:=&apis.Article{}
+	api:= apis.Article{}
 	r := v1.Group("")
 	{
 		r.GET("/articleList", api.GetArticleList)
@@ -259,7 +262,18 @@ go build
 ./go-admin server -c=config/settings.dev.yml
 ```
 
-用你的浏览器访问 http://localhost:8000/api/v1/articleList，你应该能够看见 "{"requestId":"4085aca9-1ea2-4088-8e26-8ba0bc4e8bdb","code":200,"msg":"success","data":"hello world ！"}" ，这是你在接口中定义的。
+用你的浏览器访问 http://localhost:8000/api/v1/articleList，你应该能够看见
+
+```json
+{
+  "requestId": "4085aca9-1ea2-4088-8e26-8ba0bc4e8bdb",
+  "code": 200,
+  "msg": "success",
+  "data": "hello world ！"
+}
+```
+
+这是你在接口中定义的。
 
 :::tip 404 page not found
 

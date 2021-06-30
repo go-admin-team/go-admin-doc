@@ -22,14 +22,14 @@ driver: mysql
 source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
 ```
 
-### sqlite3
+### sqlite3 【TODO】
 
 ```yml
 driver: sqlite3
 source: sqlite3.db
 ```
 
-### postgres
+### postgres 【TODO】
 
 ```yml
 driver: postgres
