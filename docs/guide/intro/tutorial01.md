@@ -202,7 +202,7 @@ type Article struct {
 }
 
 // GetArticleList 获取文章列表
-func (e *Article)GetArticleList(c *gin.Context) {
+func (e Article)GetArticleList(c *gin.Context) {
 	err := e.MakeContext(c).
 		Errors
 	if err != nil {
