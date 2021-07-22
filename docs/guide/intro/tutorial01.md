@@ -209,7 +209,7 @@ func (e Article)GetArticleList(c *gin.Context) {
 		e.Logger.Error(err)
 		return
 	}
-	e.OK(c,"hello world ！","success")
+	e.OK("hello world ！","success")
 }
 ```
 
