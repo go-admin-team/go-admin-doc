@@ -10,16 +10,17 @@
 package sys_file
 
 import (
-	"net/http"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-admin-team/go-admin-core/sdk/api"
 	"github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth/user"
+	_ "github.com/go-admin-team/go-admin-core/sdk/pkg/response"
 
 	"go-admin/app/admin/models"
 	"go-admin/app/admin/service"
 	"go-admin/app/admin/service/dto"
-	"go-admin/common/actions"
-	"go-admin/common/apis"
 )
 ```
 
@@ -44,33 +45,43 @@ type SysFileDir struct {
 分页数据列表接口
 
 ```go
-func (e *SysFileDir) GetSysFileDirList(c *gin.Context) {
-	log := e.GetLogger(c) // <-----------------------------1、获取log
-	search := new(dto.SysFileDirSearch) // <---------------2、实例化dto构体
-	db, err := e.GetOrm(c)      // <-----------------------3、获取db
+// GetPage
+// @Summary 岗位列表数据
+// @Description 获取JSON
+// @Tags 岗位
+// @Param postName query string false "postName"
+// @Param postCode query string false "postCode"
+// @Param postId query string false "postId"
+// @Param status query string false "status"
+// @Success 200 {object} response.Response "{"code": 200, "data": [...]}"
+// @Router /api/v1/post [get]
+// @Security Bearer
+func (e SysPost) GetPage(c *gin.Context) {
+	// 实例化service
+	s := service.SysPost{}
+	// 实例化参数接收对象
+	req :=dto.SysPostPageReq{}
+	err := e.MakeContext(c).
+		MakeOrm().
+		Bind(&req, binding.Form).  // 数据bind
+		MakeService(&s.Service).   // service 初始化
+		Errors
 	if err != nil {
-		log.Error(err)
+		e.Logger.Error(err)
+		e.Error(500, err, err.Error())
 		return
 	}
 
-	err = control.Bind(c)        // <----------------------4、解析请求数据
-	if err != nil {
-		log.Warnf("ShouldBind error: %#v",err.Error())
-		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
-	}
+	list := make([]models.SysPost, 0)
+	var count int64
 
-	var list *[]models.SysFileDirL // <--------------------5、实例化输出参数模型
-	serviceStudent := service.SysFileDir{}  // <-----------6、实例化业务对象
-	serviceStudent.Log = log
-	serviceStudent.Orm = db
-	list, err = serviceStudent.SetSysFileDir(search) //<---7、函数调用
+	err = s.GetPage(&req, &list, &count)
 	if err != nil {
-		log.Errorf("SetSysFileDir error, %s", err)
-		e.Error(c, http.StatusUnprocessableEntity, err, "查询失败")
+		e.Error(500, err, "查询失败")
 		return
 	}
 
-	e.OK(c, list, "查询成功") // <--------------------------8、结果输出
+	e.PageOK(list, int(count), req.GetPageIndex(), req.GetPageSize(), "查询成功")
 }
 ```
 
@@ -79,35 +90,36 @@ func (e *SysFileDir) GetSysFileDirList(c *gin.Context) {
 数据详情接口
 
 ```go
-func (e *SysFileDir) GetSysFileDir(c *gin.Context) {
-	log := e.GetLogger(c)// <------------------------------------1、获取log
-    control := new(dto.SysFileDirById) // <----------------------2、实例化dto构体
-	db, err := e.GetOrm(c)     // <------------------------------3、获取db
+// Get
+// @Summary 获取岗位信息
+// @Description 获取JSON
+// @Tags 岗位
+// @Param id path int true "编码"
+// @Success 200 {object} response.Response "{"code": 200, "data": [...]}"
+// @Router /api/v1/post/{postId} [get]
+// @Security Bearer
+func (e SysPost) Get(c *gin.Context) {
+	s := service.SysPost{}
+	req :=dto.SysPostGetReq{}
+	err := e.MakeContext(c).
+		MakeOrm().
+		Bind(&req, nil).
+		MakeService(&s.Service).
+		Errors
 	if err != nil {
-		log.Error(err)
+		e.Logger.Error(err)
+		e.Error(500, err, err.Error())
+		return
+	}
+	var object models.SysPost
+
+	err = s.Get(&req, &object)
+	if err != nil {
+		e.Error(500, err, fmt.Sprintf("岗位信息获取失败！错误详情：%s", err.Error()))
 		return
 	}
 
-	//查看详情
-	err = control.Bind(c)         // <---------------------------4、解析请求数据
-	if err != nil {
-		log.Warnf("ShouldBind error: %#v",err.Error())
-		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
-	}
-
-	var object models.SysFileDir// <-----------------------------5、实例化输出参数模型
-
-	serviceSysFileDir := service.SysFileDir{}// <----------------6、实例化业务对象
-	serviceSysFileDir.Log = log
-	serviceSysFileDir.Orm = db
-	err = serviceSysFileDir.GetSysFileDir(control, &object)//<---7、函数调用
-	if err != nil {
-		log.Errorf("GetSysFileDir error, %s", err)
-		e.Error(c, http.StatusInternalServerError, err, "查询失败")
-		return
-	}
-
-	e.OK(c, object, "查看成功")// <-------------------------------8、结果输出
+	e.OK(object, "查询成功")
 }
 ```
 
@@ -116,35 +128,36 @@ func (e *SysFileDir) GetSysFileDir(c *gin.Context) {
 数据创建接口
 
 ```go
-func (e *SysFileDir) InsertSysFileDir(c *gin.Context) {
-    log := e.GetLogger(c)// <---------------------------------------1、获取log
-	control := new(dto.SysFileDirControl)// <-----------------------2、实例化dto构体
-	db, err := e.GetOrm(c)     // <---------------------------------3、获取db
+// Insert
+// @Summary 添加岗位
+// @Description 获取JSON
+// @Tags 岗位
+// @Accept  application/json
+// @Product application/json
+// @Param data body dto.SysPostInsertReq true "data"
+// @Success 200 {object} response.Response "{"code": 200, "data": [...]}"
+// @Router /api/v1/post [post]
+// @Security Bearer
+func (e SysPost) Insert(c *gin.Context) {
+	s := service.SysPost{}
+	req :=dto.SysPostInsertReq{}
+	err := e.MakeContext(c).
+		MakeOrm().
+		Bind(&req, binding.JSON).
+		MakeService(&s.Service).
+		Errors
 	if err != nil {
-		log.Error(err)
+		e.Logger.Error(err)
+		e.Error(500, err, err.Error())
 		return
 	}
-
-	//新增操作
-	err = control.Bind(c)     // <----------------------------------4、解析请求数据
+	req.SetCreateBy(user.GetUserId(c))
+	err = s.Insert(&req)
 	if err != nil {
-		log.Warnf("ShouldBind error: %#v",err.Error())
-		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
-	}
-	// 设置创建人
-	control.CreateBy = user.GetUserId(c)
-
-	serviceSysFileDir := service.SysFileDir{}// <-------------------5、实例化业务对象
-	serviceSysFileDir.Orm = db
-	serviceSysFileDir.Log = log
-	err = serviceSysFileDir.InsertSysFileDir(control)//<------------6、函数调用
-	if err != nil {
-		log.Errorf("InsertSysFileDir error, %s", err)
-		e.Error(c, http.StatusInternalServerError, err, "创建失败")
+		e.Error(500, err, fmt.Sprintf("新建岗位失败！错误详情：%s", err.Error()))
 		return
 	}
-
-	e.OK(c, control.ID, "创建成功")// <-------------------------------7、结果输出
+	e.OK(req.GetId(), "创建成功")
 }
 ```
 
@@ -153,36 +166,38 @@ func (e *SysFileDir) InsertSysFileDir(c *gin.Context) {
 数据修改接口
 
 ```go
-func (e *SysFileDir) UpdateSysFileDir(c *gin.Context) {
-    log := e.GetLogger(c)// <---------------------------------------1、获取log
-	control := new(dto.SysFileDirControl)// <-----------------------2、实例化dto构体
-	db, err := e.GetOrm(c)     // <---------------------------------3、获取db
+// Update
+// @Summary 修改岗位
+// @Description 获取JSON
+// @Tags 岗位
+// @Accept  application/json
+// @Product application/json
+// @Param data body dto.SysPostUpdateReq true "body"
+// @Success 200 {object} response.Response "{"code": 200, "data": [...]}"
+// @Router /api/v1/post/{id} [put]
+// @Security Bearer
+func (e SysPost) Update(c *gin.Context) {
+	s := service.SysPost{}
+	req :=dto.SysPostUpdateReq{}
+	err := e.MakeContext(c).
+		MakeOrm().
+		Bind(&req, binding.JSON, nil).
+		MakeService(&s.Service).
+		Errors
 	if err != nil {
-		log.Error(err)
+		e.Logger.Error(err)
+		e.Error(500, err, err.Error())
 		return
 	}
 
-	err = control.Bind(c)     // <----------------------------------4、解析请求数据
-	if err != nil {
-		log.Warnf("ShouldBind error: %#v",err.Error())
-		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
-	}
-	// 设置创建人
-	control.UpdateBy = user.GetUserId(c)
+	req.SetUpdateBy(user.GetUserId(c))
 
-	//数据权限检查
-	p := actions.GetPermissionFromContext(c)
-
-	serviceSysFileDir := service.SysFileDir{}// <-------------------5、实例化业务对象
-	serviceSysFileDir.Orm = db
-	serviceSysFileDir.Log = log
-	err = serviceSysFileDir.UpdateSysFileDir(control, p)//<---------6、函数调用
+	err = s.Update(&req)
 	if err != nil {
-		log.Errorf("UpdateSysFileDir error, %s", err)
-		e.Error(c, http.StatusInternalServerError, err, "更新失败")
+		e.Error(500, err, fmt.Sprintf("岗位更新失败！错误详情：%s", err.Error()))
 		return
 	}
-	e.OK(c, control.ID, "更新成功")// <------------------------------7、结果输出
+	e.OK(req.GetId(), "更新成功")
 }
 ```
 
@@ -191,36 +206,33 @@ func (e *SysFileDir) UpdateSysFileDir(c *gin.Context) {
 数据删除接口
 
 ```go
-func (e *SysFileDir) DeleteSysFileDir(c *gin.Context) {
-	log := e.GetLogger(c)// <---------------------------------------1、获取log
-    control := new(dto.SysFileDirById) // <-------------------------2、实例化dto构体
-	db, err := e.GetOrm(c)     // <---------------------------------3、获取db
+// Delete
+// @Summary 删除岗位
+// @Description 删除数据
+// @Tags 岗位
+// @Param id body dto.SysPostDeleteReq true "请求参数"
+// @Success 200 {object} response.Response "{"code": 200, "data": [...]}"
+// @Router /api/v1/post [delete]
+// @Security Bearer
+func (e SysPost) Delete(c *gin.Context) {
+	s := service.SysPost{}
+	req :=dto.SysPostDeleteReq{}
+	err := e.MakeContext(c).
+		MakeOrm().
+		Bind(&req, binding.JSON).
+		MakeService(&s.Service).
+		Errors
 	if err != nil {
-		log.Error(err)
+		e.Logger.Error(err)
+		e.Error(500, err, err.Error())
 		return
 	}
-
-	//删除操作
-	err = control.Bind(c)     // <----------------------------------4、解析请求数据
+	req.SetUpdateBy(user.GetUserId(c))
+	err = s.Remove(&req)
 	if err != nil {
-		log.Warnf("ShouldBind error: %#v",err.Error())
-		e.Error(c, http.StatusUnprocessableEntity, err, "参数验证失败")
-	}
-
-	// 设置编辑人
-	control.UpdateBy = user.GetUserId(c)
-
-	// 数据权限检查
-	p := actions.GetPermissionFromContext(c)
-
-	serviceSysFileDir := service.SysFileDir{}// <-------------------5、实例化业务对象
-	serviceSysFileDir.Orm = db
-	err = serviceSysFileDir.RemoveSysFileDir(control, p)//<---------6、函数调用
-	if err != nil {
-		log.Errorf("RemoveSysFileDir error, %s", err)
-		e.Error(c, http.StatusInternalServerError, err, "删除失败")
+		e.Error(500, err, fmt.Sprintf("岗位删除失败！错误详情：%s", err.Error()))
 		return
 	}
-	e.OK(c, control.Id, "删除成功")// <------------------------------7、结果输出
+	e.OK(req.GetId(), "删除成功")
 }
 ```

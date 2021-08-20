@@ -2,12 +2,20 @@
 
 go-admin 内置了一些命令，如：server、version、migrate、config
 
-> server 项目启动; 需要传参使用
+## server 项目启动
 
-> version 查看版本; 可以查看当前项目的版本信息
+需要传参使用
 
-> migrate 数据库迁移; 一般使用的比较多的是项目数据库初始化
+## version 查看版本
 
-> config 查看配置信息
+可以查看当前项目的版本信息
 
-> createapp 创建新的 app; 【todo】
+## migrate 数据库迁移
+
+一般使用的比较多的是项目数据库初始化
+
+## config 查看配置信息
+
+## createapp 创建新的 app
+
+在生成新应用的代码是请先创建 app 在生成代码，以保证代码能够正常加载。

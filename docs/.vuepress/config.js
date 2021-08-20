@@ -99,13 +99,15 @@ module.exports = {
               title: '进阶',
               collapsable: false,
               children: [
+                '/guide/advanced/advanced.md',
+                '/guide/advanced/bus.md',
                 '/guide/advanced/api.md',
                 '/guide/advanced/models.md',
                 '/guide/advanced/dto.md',
                 '/guide/advanced/service.md',
                 '/guide/advanced/router.md',
-                '/guide/advanced/advanced.md',
-                '/guide/advanced/bus.md'
+                '/guide/advanced/config.md',
+                '/guide/cmd.md'
               ]
             },
             {

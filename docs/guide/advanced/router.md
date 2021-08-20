@@ -28,18 +28,19 @@ import (
 
 ```go
 func init() {
-	routerCheckRole = append(routerCheckRole, registerSysFileDirRouter)
+	routerCheckRole = append(routerCheckRole, registerSyPostRouter)
 }
 
-func registerSysFileDirRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
-	api := &sys_file.SysFileDir{}
-	r := v1.Group("/sysfiledir").Use(authMiddleware.MiddlewareFunc()).Use(middleware.AuthCheckRole())
+// 需认证的路由代码
+func registerSyPostRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
+	api := apis.SysPost{}
+	r := v1.Group("/post").Use(authMiddleware.MiddlewareFunc()).Use(middleware.AuthCheckRole())
 	{
-		r.GET("", api.GetSysFileDirList)
-		r.GET("/:id", api.GetSysFileDir)
-		r.POST("", api.InsertSysFileDir)
-		r.PUT("/:id", api.UpdateSysFileDir)
-		r.DELETE("/:id", api.DeleteSysFileDir)
+		r.GET("", api.GetPage)
+		r.GET("/:id", api.Get)
+		r.POST("", api.Insert)
+		r.PUT("/:id", api.Update)
+		r.DELETE("", api.Delete)
 	}
 }
 ```
