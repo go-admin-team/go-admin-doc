@@ -82,10 +82,10 @@ Mysql 版本 8.0+ ，在此版本下最优；
 ```bash
 # 初始化
 # macOS or linux 下使用
-$ ./go-admin migrate -c=config/settings.dev.yml
+$ ./go-admin migrate -c config/settings.dev.yml
 
 # ⚠️注意:windows 下使用
-$ go-admin.exe migrate -c=config/settings.dev.yml
+$ go-admin.exe migrate -c config/settings.dev.yml
 ```
 
 :::tip
