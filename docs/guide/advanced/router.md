@@ -44,3 +44,36 @@ func registerSyPostRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddlew
 	}
 }
 ```
+## 路由路径注册
+app/ 目录下已经完成如下对应的模块文件
+xiangmu
+├── apis
+│   └── xiangmu_user.go
+├── models
+│   └── xiangmu_user.go
+├── router
+│   ├── int_router.go
+│   ├── xiangmu_user.go
+│   └── router.go
+└── service
+    ├── dto
+    │   └── xiangmu_user.go
+    └── xiangmu_user.go
+此时你需要的api接口还没有注册完成，会出现如下错误
+```sh
+$ curl "http://127.0.0.1:8000/api/v1/lantian-uslantian-user?pageIndex=1&pageSize=10&beginTime=&endTime="
+404 page not found
+```
+接下来到cmd/api文件夹下创建xiangmu.go, 内容如下
+```go
+package api
+
+import "go-admin/app/lantian/router"
+
+func init() {
+	//注册路由 fixme 其他应用的路由，在本目录新建文件放在init方法
+	AppRouters = append(AppRouters, router.InitRouter)
+}
+
+```
+此时路由注册完成，可以调用对应的接口
