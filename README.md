@@ -16,6 +16,7 @@ npm install
 # develop
 npm run dev
 ```
+learning git 
 
 open http://localhost:8080
 
