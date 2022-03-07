@@ -14,6 +14,7 @@ server {
   location / {
       index index.html index.htm;
       root /home/go/src/go-admin/dist;
+      try_files $uri $uri/ /index.html;
      }
   # 配置后台go服务api接口服务 代理到8877端口
   location ~ ^/goadminapi/ {
