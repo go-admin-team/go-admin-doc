@@ -52,7 +52,7 @@ goland 会在底部运行窗口中，将运行结果打印。
 新建`main.go`文件。
 ![](https://gitee.com/mydearzwj/image/raw/master/img/vscode-step2.png)
 
-把 hello wordl 代码写入文件中。
+把 hello world 代码写入文件中。
 ![](https://gitee.com/mydearzwj/image/raw/master/img/vscode-step3.png)
 
 选择`运行`，`终端`激活 vscode 的终端窗口。
