@@ -96,7 +96,7 @@ settings:
     # 数据库日志开关 dev模式，将自动开启
     enableddb: false
   jwt:
-    # token 密钥，生产环境时及的修改
+    # token 密钥，生产环境时记得修改
     secret: go-admin
     # token 过期时间 单位：秒
     timeout: 3600
@@ -143,11 +143,11 @@ settings:
 | 配置项        | 说明                                     | 示例             |
 | ------------- | ---------------------------------------- | ---------------- |
 | host          | 服务器 ip 默认使用 0.0.0.0               | 默认使用 0.0.0.0 |
-| mode          | dev 开发环境 test 测试环境 prod 线上环境 | dev              |
+| mode          | dev 开发环境 test 测试环境 prod 线上环境  | dev              |
 | name          | 服务名称                                 | go-admin-app     |
 | port          | 服务端口号                               | 默认：8000       |
 | readtimeout   | 读超时，失效                             | 当前版本失效     |
-| writertimeout | 写超时 ，失效                            | 当前版本失效     |
+| writertimeout | 写超时，失效                             | 当前版本失效     |
 | enabledp      | 数据权限功能开关                         | false            |
 
 ### logger
@@ -167,7 +167,7 @@ settings:
 
 | 配置项  | 说明                           | 示例     |
 | ------- | ------------------------------ | -------- |
-| secret  | token 密钥，生产环境时及的修改 | go-admin |
+| secret  | token 密钥，生产环境时记得修改 | go-admin |
 | timeout | token 过期时间 单位：秒        | 3600     |
 
 ### database
