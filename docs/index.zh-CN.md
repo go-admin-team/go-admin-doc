@@ -4,7 +4,7 @@ hero:
   desc: 专注于中后台项目开发脚手架
   actions:
     - text: 快速上手
-      link: /getting-started
+      link: /guide/ksks
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/881dc458-f20b-407b-947a-95104b5ec82b/k79dm8ih_w144_h144.png
     title: 开箱即用
@@ -22,4 +22,4 @@ footer: Open-source MIT Licensed | Copyright © 2020-present<br />Powered by [du
 
 请访问 [GitHub](https://github.com/go-admin-team/go-admin) 或加入讨论群：
 
-<img src="http://rcbrecjlk.hd-bkt.clouddn.com/img/wx.png" width="60" />
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/wx.png" width="60" />
