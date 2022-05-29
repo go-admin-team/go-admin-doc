@@ -22,8 +22,14 @@
   },
   "devDependencies": {
     "dumi": "^1.0.13",
+    "dumi-theme-default": "^1.1.21",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
     "yorkie": "^2.0.0"
+  },
+  "dependencies": {
+    "@qixian.cs/github-contributors-list": "^1.0.6",
+    "babel-plugin-import": "^1.13.5",
+    "umi": "^3.5.24"
   }
 }
