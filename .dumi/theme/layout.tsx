@@ -11,18 +11,22 @@ function getModuleData(props) {
         .filter((item) => item)
         .slice(0, 2)
         .join('/');
-  const excludedSuffix = isZhCN(props.location.pathname) ? '.md' : '.zh-CN.md';
+  const excludedSuffix = !isZhCN(props.location.pathname) ? '.md' : '.zh-CN.md';
 
   const fileName =
     String(props.location.pathname).replace('/zh-CN', '') + excludedSuffix;
 
+  // if (props.location.pathname=="/guide"){
+  //   return "/docs/guide/index.md";
+  // }
+
   console.log(moduleName, excludedSuffix, fileName);
 
-  return fileName;
+  return '/docs' + fileName;
 }
 
 function isZhCN(pathname: string) {
-  return /-cn\/?$/.test(pathname);
+  return /-CN\/?$/.test(pathname);
 }
 
 export default ({ children, ...props }) => (
@@ -33,6 +37,7 @@ export default ({ children, ...props }) => (
         repo="go-admin-doc"
         owner="go-admin-team"
         fileName={getModuleData(props)}
+        style={{ marginTop: '40px' }}
       />
     </>
   </Layout>

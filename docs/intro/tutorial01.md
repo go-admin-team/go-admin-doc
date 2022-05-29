@@ -1,3 +1,9 @@
+---
+nav:
+  title: 开发
+  order: 2
+---
+
 # 编写 go-admin 应用,第 1 步
 
 让我们通过示例来学习。
@@ -81,40 +87,107 @@ settings:
 
 让我们看一下 go-admin 的目录结构：
 
-```bash
-.
-├── Dockerfile
-├── LICENSE.md
-├── Makefile
-├── README.en.md
-├── README.md
-├── _config.yml
-├── app # 应用文件夹
-│   ├── admin # admin应用
-│   │   ├── apis # api
-│   │   ├── models # 模型
-│   │   ├── router # 路由
-│   │   └── service # 业务逻辑
-│   └── jobs #自动化作业
-│       ├── apis # api
-│       ├── models # 模型
-│       ├── router # 路由
-│       └── service # 业务逻辑
-├── cmd # 命令
-├── common #公共类
-├── config # 系统配置
-├── docs # 文档
-├── go.mod
-├── go.sum
-├── logger # 日志包
-├── main.go
-├── package-lock.json
-├── static # 静态文件
-├── temp # 临时文件
-├── template # 模版文件
-├── test # 测试
-└── tools # 工具
-```
+<Tree>
+  <ul>
+    <li>
+Dockerfile
+ </li>
+            <li>
+LICENSE.md
+ </li>
+            <li>
+Makefile
+ </li>
+            <li>
+README.en.md
+ </li>
+            <li>
+README.md
+ </li>
+            <li>
+_config.yml
+ </li>
+            <li>
+app # 应用文件夹
+<ul>
+    <li>
+admin # admin应用
+    <ul>
+        <li>
+apis # api
+        </li>
+        <li>
+models # 模型
+        </li>
+        <li>
+router # 路由
+        </li>
+        <li>
+service # 业务逻辑
+        </li>
+        </ul>   
+        <li> 
+jobs #自动化作业
+    <ul>
+    </li>
+        </ul> 
+    <li>
+apis # api
+ </li>
+            <li>
+models # 模型
+ </li>
+            <li>
+router # 路由
+ </li>
+            <li>
+service # 业务逻辑
+ </li>
+        </ul>    </li>
+           <li>
+cmd # 命令
+ </li>
+            <li>
+common #公共类
+ </li>
+            <li>
+config # 系统配置
+ </li>
+            <li>
+docs # 文档
+ </li>
+            <li>
+go.mod
+ </li>
+            <li>
+go.sum
+ </li>
+            <li>
+logger # 日志包
+ </li>
+            <li>
+main.go
+ </li>
+            <li>
+package-lock.json
+ </li>
+            <li>
+static # 静态文件
+ </li>
+            <li>
+temp # 临时文件
+ </li>
+            <li>
+template # 模版文件
+ </li>
+            <li>
+test # 测试
+ </li>
+            <li>
+tools # 工具
+ </li>
+      </ul>       
+</Tree>
 
 这些目录和文件的用处是：
 
