@@ -16,9 +16,9 @@ function getModuleData(props) {
   const fileName =
     String(props.location.pathname).replace('/zh-CN', '') + excludedSuffix;
 
-  // if (props.location.pathname=="/guide"){
-  //   return "/docs/guide/index.md";
-  // }
+  if (moduleName.indexOf('guide') != -1) {
+    return '/docs/guide/index.md';
+  }
 
   console.log(moduleName, excludedSuffix, fileName);
 
