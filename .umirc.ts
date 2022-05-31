@@ -33,5 +33,6 @@ export default defineConfig({
       },
     ],
   ],
+  scripts: ['https://hm.baidu.com/hm.js?f98a2f382011d17906899de9f676b294'],
   // more config: https://d.umijs.org/config
 });
