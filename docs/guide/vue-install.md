@@ -4,10 +4,12 @@ order: 80
 toc: menu
 ---
 
-::: tip
+<Alert type="warning">
 本节内容为 Node.js 开发环境及 IDE 配置教程，仅针对前端新选手，老司机请绕行。
+
+</Alert>
+
 [老司机绕行](/guide/ksks.html)
-:::
 
 ## node.js & npm 安装
 
@@ -55,6 +57,9 @@ $  npm -v
 
 看到以上信息说明当前 npm 已经安装成功了`6.14.13`；
 
-:::tip
-如果您在安装过程中遇到了其他问题，也可以通过[反馈](https://github.com/go-admin-team/go-admin/issues)的方式一起解决您的问题，同时我们很期待您的建议。
-:::
+<Alert type="warning">
+从哪里获得帮助：
+
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+
+</Alert>

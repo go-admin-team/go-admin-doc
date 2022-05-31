@@ -2,6 +2,12 @@
 nav:
   title: 开发
   order: 2
+title: go-admin应用1
+order: 10
+toc: menu
+group:
+  title: 基础开发
+  order: 0
 ---
 
 # 编写 go-admin 应用,第 1 步
@@ -77,13 +83,15 @@ settings:
 
 - logpath 日志文件路径，这里配置相对程序路径
 
-:::tip 建议
+<Alert type="warning"> 建议
 你得避免使用 go 或 go-admin 的内部保留字来命名你的项目模块以等名称。避免产生组件冲突。
-:::
 
-:::tip 我的代码该放在哪？
+</Alert>
+
+<Alert type="warning"> 我的代码该放在哪？
 如果是曾经是原生 PHP、JAVA、.Net 程序员，都会有项目标准的目录结构，当然 go-admin 也是相同的，也有自己的目录结构，这样利于项目更规范，协作更高效。
-:::
+
+</Alert>
 
 让我们看一下 go-admin 的目录结构：
 
@@ -223,9 +231,11 @@ tools # 工具
 
 现在，服务器正在运行，浏览器访问 http://127.0.0.1:8000/。你将会看到 `go-admin` 文档，服务器已经运行了。
 
-:::tip 更换端口
+<Alert type="warning"> 更换端口
 默认情况下，服务器设置为监听本机内部 IP 的 8000 端口。
 如果你想更换服务器的监听端口，请使用命令行参数。举个例子，下面的命令会使服务器监听 8080 端口：
+
+</Alert>
 
 我们需要打开配置文件 `config/settings.yml`
 
@@ -242,8 +252,6 @@ application:
 ```
 
 修改之后需要重启服务。
-
-:::
 
 ---
 
@@ -347,11 +355,12 @@ go build
 
 这是你在接口中定义的。
 
-:::tip 404 page not found
-
+<Alert type="warning"> 
+404 page not found
+<br />
 如果你在这里得到了一个错误页面，检查一下你是不是正访问着 http://localhost:8000/api/v1/articleList 而不应该是 http://localhost:8000/。
 
-:::
+</Alert>
 
 router 注册类型，我们比较常用的就是 `GET`、`POST`、`PUT`、`DELETE`等
 
@@ -363,12 +372,16 @@ path 是一个匹配 URL 的准则（有点正则表达式的意思），当 go-
 
 这些准则不会匹配 GET 和 POST 参数或域名。例如，URL 在处理请求 http://www.zhangwj.com/articleList 时，它会尝试匹配 articleList 。处理请求 http://www.zhangwj.com/articleList?page=3 时，也只会尝试匹配 blog/list。
 
-:::tip 注意
-path 也支持带参数的写法，例如 `r.GET("/articleList/:id",apis.GetArticleList)`, 这个时候会按照这 `/articleList/:id` 进行匹配 `:id` 可以是字符串，可以是数字等任意字符，当然也是可以限制的，这里我们不再展开。
-:::
+<Alert type="error"> 
+  path 也支持带参数的写法，例如 <code>r.GET("/articleList/:id",apis.GetArticleList)</code>, 这个时候会按照这 <code>/articleList/:id</code> 进行匹配 <code>:id</code> 可以是字符串，可以是数字等任意字符，当然也是可以限制的，这里我们不再展开。
+
+</Alert>
 
 当你了解了基本的请求和响应流程后，请阅读 教程的第 2 部分 开始使用数据库.
 
-:::tip 从哪里获得帮助：
+<Alert type="warning">
+从哪里获得帮助：
+
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
-:::
+
+</Alert>

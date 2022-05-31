@@ -6,12 +6,14 @@ toc: menu
 
 <Alert type="warning">
 首先，进行一个简单的说明，go-admin分为前端项目和后端项目，仓库也是分开的，快速启动我们也分为两个阶段；
+
 </Alert>
 
 ## 环境准备<Badge>go-admin</Badge>
 
 <Alert type="info">
 请注意 Go version >= 1.15，并且 GO111MODULE=on (Go MOdule 模式)；
+
 </Alert>
 
 [如需配置 go 环境变量请进入](/guide/env)
@@ -49,6 +51,7 @@ database:
 <Alert type="error">
 Mysql 版本 8.0+ ，在此版本下最优；
 其他低版本的会出现`Error 1071: Specified key was too long; max key length is 1000 bytes`等这类问题；请根据本地数据库版本进行对应修改；
+
 </Alert>
 
 ## 数据初始化<Badge>go-admin</Badge>
@@ -68,6 +71,7 @@ $ go-admin.exe migrate -c config\settings.dev.yml
 可以通过 -c 参数实现本地多环境配置文件隔离 例如 开发环境命名为：settings.dev.yml
 <br />
 注意：1.2.0 之前版本需要将`migrate` 替换成 `init` 命令进行项目数据库结构和数据初始化。
+
 </Alert>
 
 ## 启动服务<Badge>go-admin</Badge>
@@ -99,6 +103,7 @@ go，下一步启动前端项目！
 
 <Alert type="warning">
 这里接下来是第二两个阶段了；
+
 </Alert>
 
 ## 验证环境<Badge>go-admin-ui</Badge>
@@ -159,6 +164,7 @@ $ cnpm install
 
 <Alert type="info">
 这里还原包是需要一些时间的请耐心等待一下...
+
 </Alert>
 
 看到类似下面输出内容说明已经安装好了
@@ -195,6 +201,7 @@ $ npm run dev
 
 <Alert type="info">
 此时项目已经启动了，但是有一点请注意：检查 go-admin 是否也启动了。否则页面会提示错误的哦。
+
 </Alert>
 
 ## 构建及部署
@@ -216,3 +223,10 @@ $ npm run build:prod
 测试环境验证，将 `./dist` 文件上传到测试环境中进行验证。
 
 部署，将测试后的 `./dist` 文件上传到最终环境或者生产环境。
+
+<Alert type="warning">
+从哪里获得帮助：
+
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+
+</Alert>
