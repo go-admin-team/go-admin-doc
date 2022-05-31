@@ -141,3 +141,10 @@ func GetArticleList(c *gin.Context) {
 格式：`{module}/{name}/业务名称`
 
 示例：`admin/sysUser/list`
+
+<Alert type="warning">
+从哪里获得帮助：
+
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+
+</Alert>

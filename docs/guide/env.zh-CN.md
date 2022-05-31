@@ -9,9 +9,10 @@ nav:
 
 ## 环境变量
 
-::: warning
+<Alert type="warning">
 本章我们主要说明如何配置 Go Modules 开启；如果已经配置完成，请直接忽略本章内容。
-:::
+
+</Alert>
 
 ## windows 中如何配置
 

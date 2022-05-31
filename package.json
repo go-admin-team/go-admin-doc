@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@qixian.cs/github-contributors-list": "^1.0.6",
+    "antd": "^4.20.7",
     "babel-plugin-import": "^1.13.5",
     "umi": "^3.5.24"
   }

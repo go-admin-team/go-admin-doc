@@ -6,9 +6,10 @@ toc: menu
 
 # 环境变量
 
-::: warning
+<Alert>
 本章我们主要说明如何配置 Go Modules 开启；如果已经配置完成，请直接忽略本章内容。
-:::
+
+</Alert>
 
 ## windows 中如何配置
 
@@ -56,3 +57,10 @@ $ go env -w GO111MODULE=on
 $ go env -w GOPROXY=https://goproxy.cn,direct
 $ go env -w GO111MODULE=on
 ```
+
+<Alert type="warning">
+从哪里获得帮助：
+
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+
+</Alert>

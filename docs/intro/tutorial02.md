@@ -1,10 +1,25 @@
-# 编写 go-admin 应用,第 2 步
+---
+nav:
+  title: 开发
+  order: 2
+title: go-admin应用2
+order: 20
+toc: menu
+group:
+  title: 基础开发
+  order: 0
+---
+
+## 编写 go-admin 应用,第 2 步
 
 这部分教程从 教程第 1 步 结尾的地方继续讲起。我们将建立数据库，创建您的第一个模型。
 
-:::tip 从哪里获得帮助：
+<Alert>
+从哪里获得帮助：
+
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
-:::
+
+</Alert>
 
 ## 数据库配置
 
@@ -25,8 +40,9 @@
 
 修改数据库配置信息；
 代码生成配置；
-1、 gen > dbname 此配置可以根据数据库名称来获取该数据库下所有 table，进行代码生成；
-2、 gen > frontpath 代码生成是使用前端代码存放位置，需要指定到 src 文件夹，相对路径;代码要求 go-admin 和 go-admin-ui 必须在同一级目录下
+
+1. gen > dbname 此配置可以根据数据库名称来获取该数据库下所有 table，进行代码生成；
+2. gen > frontpath 代码生成是使用前端代码存放位置，需要指定到 src 文件夹，相对路径;代码要求 go-admin 和 go-admin-ui 必须在同一级目录下
 
 当前我们先通过 sql 脚本的方式来创建数据库表信息。[表结构定义需要查看](/guide/db.html)
 
@@ -67,9 +83,10 @@ CREATE TABLE `article` (
 
 现在我们打开系统工具，进入 `代码生成` ，下边的画面请点击`导入`
 
-:::tip
+<Alert >
 这里的导入是要将我们刚刚创建的表导入到系统中，这样我们就可以根据表来生成代码了。
-:::
+
+</Alert>
 
 ![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport1v1.0.0.png)
 
@@ -157,6 +174,9 @@ OK！，内容到这里已经介绍了开始第一个 go-admin 应用的全部�
 
 如果需要了解更进一步的 go-admin 相关内容，请前往[进阶](/guide/advanced/api.html) 继续查看！
 
-:::tip 从哪里获得帮助：
+<Alert type="warning">
+从哪里获得帮助：
+
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
-:::
+
+</Alert>

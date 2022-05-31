@@ -61,7 +61,7 @@ nav:
 3. pro 体验地址： [https://preview.go-admin.dev](https://preview.go-admin.dev)
 4. 账号密码：admin/123456
 
-## Contribution
+## 建议反馈
 
 本文档项目地址 [go-admin-doc](https://doc.go-admin.dev) 基于 [dumi](https://d.umijs.org/)开发。
 
@@ -84,4 +84,9 @@ nav:
   </tr>
 </table>
 
-欢迎大家进去微信或 qq 群交流沟通，同时也希望大家[提交建议](https://github.com/go-admin-team/go-admin/issues/new)
+<Alert type="warning">
+从哪里获得帮助：
+
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+
+</Alert>

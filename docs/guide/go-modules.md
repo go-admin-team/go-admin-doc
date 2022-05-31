@@ -27,9 +27,7 @@ Go 1.16 针对 go Modules 变更
 
 ## 初始化 go.mod
 
-::: tip
-首先需要配置一下[环境变量](/guide/env.html)
-:::
+> 首先需要配置一下[环境变量](/guide/env.html)
 
 执行一下命令，初始化 go.mod 文件
 
@@ -49,3 +47,10 @@ go.mod 文件，内容如下：
 其中，`HelloWorld`为当前项目的名称，可以随意设置。
 
 就这样简单便完成了项目的 module 初始化。
+
+<Alert type="warning">
+从哪里获得帮助：
+
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+
+</Alert>

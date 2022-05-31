@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from 'dumi-theme-default/es/layout';
 import AvatarList from '@qixian.cs/github-contributors-list';
+import { Avatar, Tooltip } from 'antd';
 
 function getModuleData(props) {
   const { pathname } = props.location;
@@ -15,10 +16,13 @@ function getModuleData(props) {
 
   const fileName =
     String(props.location.pathname).replace('/zh-CN', '') + excludedSuffix;
-
-  // if (moduleName.indexOf('guide') != -1) {
-  //   return '/docs/guide/index.md';
-  // }
+  console.log(props.location.pathname);
+  if (props.location.pathname == '/guide') {
+    return '/docs/guide/index.md';
+  }
+  if (props.location.pathname == '/zh-CN/guide') {
+    return '/docs/guide/index.zh-CN.md';
+  }
 
   console.log(moduleName, excludedSuffix, fileName);
 
@@ -38,6 +42,21 @@ export default ({ children, ...props }) => (
         owner="go-admin-team"
         fileName={getModuleData(props)}
         style={{ marginTop: '40px' }}
+        renderItem={(item, loading) =>
+          loading ? (
+            <Avatar style={{ opacity: 0.3 }} />
+          ) : (
+            <Tooltip title={`${item.username}`} key={item.username}>
+              <a
+                href={`https://github.com/${item.username}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Avatar src={item.url}>{item.username}</Avatar>
+              </a>
+            </Tooltip>
+          )
+        }
       />
     </>
   </Layout>
