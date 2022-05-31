@@ -56,6 +56,24 @@ cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
 
 :::
 
+
+### 创建数据库
+
+在开发环境下，建议使用docker来创建数据库：
+```
+docker run --name mysql -p3306:3306 -d -e MARIADB_ROOT_PASSWORD=123456 mariadb:latest
+```
+然后可以使用账号root/密码123456来访问本地的数据库:
+```
+mysql -h 127.0.0.1 -p123456 -e 'create database dbname default charset utf8'
+```
+
+:::tip
+创建的数据库默认字符集需要是utf8。
+:::
+
+
+
 ### 配置数据源
 
 首先找到配置文件，`config/settings.yml`， 同时也可创建开发环境配置，只需将默认配置文件 `config/settings.yml` 复制到 `config/settings.dev.yml` 即可，或者直接使用默认配置文件，直接修改`config/settings.yml`即可。
