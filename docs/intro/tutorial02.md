@@ -70,14 +70,14 @@ CREATE TABLE `article` (
 
 启动`go-admin` ，进入系统
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/dashboradv1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/dashboradv1.0.0.png" width="700xp" />
 
 打开以上程序画面，程序左侧有两个菜单，
 
 1. 系统管理
 2. 系统工具
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/genv1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/genv1.0.0.png" width="300xp" />
 
 ### 表结构导入
 
@@ -88,27 +88,27 @@ CREATE TABLE `article` (
 
 </Alert>
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport1v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport1v1.0.0.png" width="700xp" />
 
 选择刚才创建的 `article` 并点击 `确认` 按钮，将表结构导入系统。
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport2v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport2v1.0.0.png" width="700xp" />
 
 ### 编辑模板字段
 
 确定后，表结构进存储到了代码生成工具里，此时我们需要对导入数据进行编辑。
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport3v1.1.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport3v1.1.0.png" width="700xp" />
 
 编辑红框里边的选项，之后点击保存。
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport4v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport4v1.0.0.png" width="700xp" />
 
 ### 预览代码
 
 可以在预览处看到工具生成的代码。
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport5v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport5v1.0.0.png" width="700xp" />
 
 ### 生成代码
 
@@ -138,15 +138,15 @@ $ go-admin server -c config/settings.dev.yml -a false
 
 > 首先进入角色管理，打开角色列表。
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/setrole1v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/setrole1v1.0.0.png" width="700xp" />
 
 > 选择超级管理员，点击修改，勾选我们刚才添加的菜单以及 api 接口，保存。
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/setrole2v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/setrole2v1.0.0.png" width="400xp" />
 
 > 刷新页面，刚刚授权的菜单就出来了。
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/menu1v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/menu1v1.0.0.png" width="200xp" />
 
 ### 操作内容管理
 
@@ -154,19 +154,19 @@ $ go-admin server -c config/settings.dev.yml -a false
 
 > 列表
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/article1v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/article1v1.0.0.png" width="700xp" />
 
 > 新增
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/article2v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/article2v1.0.0.png" width="700xp" />
 
 > 修改
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/article3v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/article3v1.0.0.png" width="700xp" />
 
 > 删除
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/article4v1.0.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/article4v1.0.0.png" width="700xp" />
 
 ### 结束语
 
