@@ -12,6 +12,12 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/go-admin-team/go-admin-doc.git",
+    "branch": "master",
+    "platform": "github"
+  },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
       "prettier --write"

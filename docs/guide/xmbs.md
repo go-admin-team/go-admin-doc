@@ -304,7 +304,7 @@ https://www.go-admin.dev
       <img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/bs2.gif" alt="" width="100%">
 </a>
 
-特别感谢 海马同学 的支持，对文档的维护起到了至关重要的角色
+特别感谢 海马同学 的支持
 
 <Alert type="warning">
 从哪里获得帮助：
