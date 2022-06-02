@@ -24,6 +24,13 @@ function getModuleData(props) {
     return '/docs/guide/index.zh-CN.md';
   }
 
+  if (props.location.pathname == '/configure') {
+    return '/docs/configure/index.md';
+  }
+  if (props.location.pathname == '/zh-CN/configure') {
+    return '/docs/configure/index.zh-CN.md';
+  }
+
   console.log(moduleName, excludedSuffix, fileName);
 
   return '/docs' + fileName;
