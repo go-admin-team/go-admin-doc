@@ -111,6 +111,31 @@ func registerSyPostRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddlew
 }
 ```
 
+## 无需鉴权
+
+当然，如果接口可以匿名访问时，两个中间件`authMiddleware`，`AuthCheckRole` 都不使用即可；
+
+例如：
+
+```go
+func init() {
+	routerCheckRole = append(routerCheckRole, registerSyPostRouter)
+}
+
+// 需认证的路由代码
+func registerSyPostRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
+	api := apis.SysPost{}
+	r := v1.Group("/post")
+	{
+		r.GET("", api.GetPage)
+		r.GET("/:id", api.Get)
+		r.POST("", api.Insert)
+		r.PUT("/:id", api.Update)
+		r.DELETE("", api.Delete)
+	}
+}
+```
+
 <Alert type="warning">
 从哪里获得帮助：
 
