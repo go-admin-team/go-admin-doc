@@ -211,7 +211,7 @@ func (e SysPost) Update(c *gin.Context) {
 }
 ```
 
-## Detele
+## Delete
 
 数据删除接口
 
