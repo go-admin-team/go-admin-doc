@@ -54,6 +54,24 @@ Mysql 版本 8.0+ ，在此版本下最优；
 
 </Alert>
 
+## 创建数据库
+
+在开发环境下，建议使用docker来创建数据库：
+```
+docker run --name mysql -p3306:3306 -d -e MARIADB_ROOT_PASSWORD=123456 mariadb:latest
+```
+然后可以使用账号root/密码123456来访问本地的数据库:
+```
+mysql -h 127.0.0.1 -p123456 -e 'create database dbname default charset utf8'
+```
+
+<Alert type="info">
+创建的数据库默认字符集需要是utf8。
+
+</Alert>
+
+
+
 ## 数据初始化<Badge>go-admin</Badge>
 
 项目中支持使用命令方式初始化基本数据结构和基础数据。 可以方便的使用 `migrate` 命令进行项目数据库结构和数据初始化。如下操作：
