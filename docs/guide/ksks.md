@@ -100,10 +100,10 @@ Mysql 版本 8.0+ ，在此版本下最优；
 ```bash
 # 初始化
 # macOS or linux 下使用
-$ ./go-admin migrate -c=config/settings.dev.yml
+$ ./go-admin migrate -c config/settings.dev.yml
 
 # ⚠️注意:windows 下使用
-$ go-admin.exe migrate -c=config/settings.dev.yml
+$ go-admin.exe migrate -c config/settings.dev.yml
 ```
 
 :::tip
@@ -138,10 +138,10 @@ $ ./go-admin.exe
 ```bash
 # 启动服务
 # macOS or linux 下使用
-$ ./go-admin server -c=config/settings.dev.yml
+$ ./go-admin server -c config/settings.dev.yml
 
 # ⚠️注意:windows 下使用
-$ ./go-admin.exe server -c=config/settings.dev.yml
+$ ./go-admin.exe server -c config/settings.dev.yml
 ```
 
 如果看到一下数据内容，请检查一下数据库配置；
