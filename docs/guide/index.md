@@ -73,7 +73,7 @@ nav:
 
 <table>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/wx.png" width="180px"></td>
+    <td><img src="http://doc-image.zhangwj.com/img/wx.png" width="180px"></td>
     <td><img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/qq.png" width="200px"></td>
     <td><img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/qq2.png" width="200px"></td>
   </tr>

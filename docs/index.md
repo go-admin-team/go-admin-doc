@@ -22,4 +22,4 @@ footer: Open-source MIT Licensed | Copyright © 2020-present<br />Powered by [du
 
 请访问 [GitHub](https://github.com/go-admin-team/go-admin) 或加入讨论群：
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/wx.png" width="120" />
+<img src="http://doc-image.zhangwj.com/img/wx.png" width="120" />
