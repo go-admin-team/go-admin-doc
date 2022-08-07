@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "go-admin doc",
+  "name": "go-admin-doc",
   "scripts": {
     "start": "dumi dev",
     "build": "dumi build",
