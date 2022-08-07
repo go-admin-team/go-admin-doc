@@ -35,7 +35,7 @@ jobs:
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PORT: ${{ secrets.REMOTE_PORT }}
         SOURCE: ./dist
-        TARGET: /data/www/dist/doc
+        TARGET: /www/temp/doc
     - name: mv
       uses: appleboy/ssh-action@master
       with:
@@ -45,5 +45,5 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             rm -rf /www/doc/*
-            cp -r -f /data/www/dist/doc/dist/* /www/doc
-            rm -rf /data/www/dist/doc/*
+            cp -r -f /www/temp/doc/dist/* /www/doc
+            rm -rf /www/temp/doc/*
