@@ -4,30 +4,55 @@ order: 50
 toc: menu
 ---
 
-## nginx 配置
+视频地址：
+
+
+
+go-admin下载与启动：
+
+[下载与启动](https://www.bilibili.com/video/BV1wT4y1L7Yc?spm_id_from=333.999.0.0)
+
+
+
+
+部署后台服务：
+
+方式一：[Shell脚本打包 go 服务](https://www.bilibili.com/video/BV1PT411P7Zx?p=2)
+
+方式二：[Docker打包 go 服务](https://www.bilibili.com/video/BV1PT411P7Zx?p=1)
+
+
+
+# 一、nginx 配置
+
+**流程**
+
+- 首先确保项目前后端在本地可以都可以正常跑起来,如果不会可以去看一下作者的视频教程
+- 配置域名(go-admin.haimait.com)代理到80端口，前端vue打包的文件dist目录上传到对应的目录
+- 配置域名(go-admin.haimait.com/goadminapi)代理到后端服务的8000端口，并上传后台文件启动服务
 
 配置服务器上的配置
 
-新建/etc/nginx/conf.d/test.haimait.com.conf
+新建/etc/nginx/conf.d/go-admin.haimait.com.conf
 
 ```bash
 server {
   listen 80;
-  server_name test.haimait.com;
+  server_name go-admin.haimait.com;
   # 配置前端静态文件目录
   location / {
       index index.html index.htm;
       root /home/go/src/go-admin/dist;
       try_files $uri $uri/ /index.html;
      }
-  # 配置后台go服务api接口服务 代理到8877端口
+  # 配置后台go服务api接口服务 代理到8000端口
   location ~ ^/goadminapi/ {
       proxy_set_header   Host             $http_host;
       proxy_set_header   X-Real-IP        $remote_addr;
       proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
       proxy_set_header   X-Forwarded-Proto  $scheme;
       rewrite ^/goadminapi/(.*)$ /$1 break;
-      proxy_pass  http://127.0.0.1:8877;
+      proxy_pass  http://127.0.0.1:8000;
       }
 }
 ```
@@ -37,9 +62,11 @@ server {
 `nginx -s reload` //重启nginx服务
 ```
 
-## 打包 go 服务
+# 二、API接口打包配置
 
-#### 修改配置文件
+## 1. 方式一：Shell脚本打包 go 服务
+
+#### 1.1 修改配置文件
 
 修改`go-admin/config/settings.yml`
 
@@ -63,15 +90,11 @@ settings:
   logger:
     # 日志存放路径
     path: temp/logs
-    # 控制台日志
-    stdout: true
-    # 日志等级
-    level: all
-    # 业务日志开关
-    enabledbus: true
-    # 请求日志开关
-    enabledreq: false
-    # 数据库日志开关 dev模式，将自动开启
+    # 日志输出，file：文件，default：命令行，其他：命令行
+    stdout: '' #控制台日志，启用后，不输出到文件
+    # 日志等级, trace, debug, info, warn, error, fatal
+    level: trace
+    # 数据库日志开关
     enableddb: false
   jwt:
     # token 密钥，【特别注意：生产环境时及的修改】
@@ -79,22 +102,25 @@ settings:
     # token 过期时间 单位：秒
     timeout: 3600
   database:
-    # 数据库类型 mysql，sqlite3， postgres
+    # 数据库类型 mysql, sqlite3, postgres, sqlserver
+    # sqlserver: sqlserver://用户名:密码@地址?database=数据库名
     driver: mysql
     # 数据库连接字符串 mysql 缺省信息 charset=utf8&parseTime=True&loc=Local&timeout=1000ms
-    source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
+    source: root:123456@tcp(127.0.0.1:3306)/go_admin_dev?charset=utf8mb4&parseTime=True&loc=Local&timeout=1000ms
   gen:
     # 代码生成读取的数据库名称
-    dbname: dbname
+    dbname: go_admin_dev
     # 代码生成是使用前端代码存放位置，需要指定到src文件夹，相对路径
     frontpath: ../go-admin-ui/src
 ```
 
-#### 修改默认端口的代码文件
+#### 1.2 编写脚本文件
 
-#### 编写自动打包上传的 shell 脚本文件
+编写自动打包上传的 shell 脚本文件
 
-##### 新建打包脚本 `go-admin/build-go-admin.sh`
+##### 1.2.1 新建打包脚本
+
+新建打包脚本 `go-admin/build-go-admin.sh`
 
 **注意**
 如果是 mac 和 windows 自己百度 go 交叉编译的方法或者参考下面的地址
@@ -122,7 +148,9 @@ echo "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go"
 expect ./scpToServer.sh $i $j
 ```
 
-##### 新建上传脚本 `/go-admin/scpToServer.sh`
+##### 1.2.2 新建上传脚本
+
+新建上传脚本 `/go-admin/scpToServer.sh`
 
 ```bash
 #!/usr/bin/expect -f
@@ -142,14 +170,14 @@ expect {
 interact
 ```
 
-#### 打包并上传
+##### 1.2.3 打包并上传
 
-​
+
 命令行里运行
 
 ```bash
 cd go-admin
-haima@haima-PC:/media/haima/34E401CC64DD0E28/site/go/src/haimait/learn/go-admin/dome01/go-admin$ ./build-go-admin.sh
+haima@haima-PC:/site/go/src/haimait/learn/go-admin/dome01/go-admin$ ./build-go-admin.sh
 spawn scp go-admin root@182.92.234.111:/home/go/src/go-admin
 root@182.92.234.111's password:
 go-admin                                                                                                                                                100%   43MB 635.7KB/s   01:09
@@ -164,13 +192,17 @@ go-admin                                                                        
 -rwxr-xr-x 1 root root 44920528 7月   7 06:53 go-admin
 ```
 
-<a href="https://raw.githubusercontent.com/wenjianzhang/image/master/img/bs1.gif" target="_blank">
-      <img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/bs1.gif" alt="" width="100%">
+<a href="https://qiniu.haimait.top/%20blog/1441611-20200709083637333-1658657627.gif" target="_blank">
+      <img src="https://qiniu.haimait.top/%20blog/1441611-20200709083637333-1658657627.gif" alt="" width="100%">
 </a>
 
-#### 编写后台启动 go 服务脚本
+#### 1.3 编写启动脚本
 
-##### 在服务器上新建 go-admin/restart.sh 文件
+编写后台启动 go 服务脚本
+
+##### 1.3.1 新建角本文件
+
+在服务器上新建 go-admin/restart.sh 文件
 
 ```bash
 #!/bin/bash
@@ -181,7 +213,9 @@ nohup ./go-admin server -c=config/settings.yml >> access.log 2>&1 & #后台启�
 ps -aux | grep go-admin #查看运行用的进程
 ```
 
-##### 上传 config 配置到服务器上
+##### 1.3.2 上传配置文件
+
+上传 config 配置到服务器上
 
 ```bash
 [root@iZ2ze505h9bgsbp83ct28pZ go-admin]# tree
@@ -197,11 +231,7 @@ ps -aux | grep go-admin #查看运行用的进程
 └── restart.sh
 ```
 
-##### 启动服务
-
-`./restart`
-
-##### 后台启动服务
+##### 1.3.3 启动服务
 
 ```bash
 [root@iZ2ze505h9bgsbp83ct28pZ go-admin]# ./restart.sh
@@ -211,9 +241,9 @@ go-admin: 未找到进程
 root      4033  0.0  0.0  12324  1080 pts/0    R+   07:39   0:00 grep go-admin
 ```
 
-#### 查看启动的服务
+#### 1.4 查看启动的服务
 
-下面可以看到 go-admin 的 8877 服务已经运行
+下面可以看到 go-admin 的 8000 服务已经运行
 
 ```bash
 [root@iZ2ze505h9bgsbp83ct28pZ go-admin]# netstat -tpln
@@ -224,35 +254,65 @@ tcp        0      0 0.0.0.0:5355            0.0.0.0:*               LISTEN      
 tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      1733/nginx: master
 tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1041/sshd
 tcp6       0      0 :::3306                 :::*                    LISTEN      14732/mysqld
-tcp6       0      0 :::8811                 :::*                    LISTEN      27758/./mindoc
-tcp6       0      0 :::5355                 :::*                    LISTEN      921/systemd-resolve
 tcp6       0      0 :::8877                 :::*                    LISTEN      4031/./go-admin
 tcp6       0      0 :::80                   :::*                    LISTEN      1733/nginx: master
-tcp6       0      0 :::8887                 :::*                    LISTEN      16252/./power
 [root@iZ2ze505h9bgsbp83ct28pZ go-admin]#
 ```
 
-#### 更新 go 服务
+#### 1.5 更新 go 服务
 
-每次修改来代码后,想要更新到服务器上步骤.
+每次修改代码后,想要更新到服务器上步骤.
 
-##### 先删除服务器上的/home/go/src/go-admin/go-admin 二进制文件
+##### 1.5.1 删除服务器上二进制文件
 
-##### 重复 3.4 和 3.5 步骤即可
+先删除服务器上的/home/go/src/go-admin/go-admin 二进制文件
 
-### 打包前端文件并上传
+##### 1.5.2 重复 1.2.3 和 1.3.3 步骤即可
 
-### 修改配置文件
+## 2. 方式二：Docker打包 go 服务
+
+#### 2.1进入到项目根目录
+
+`cd /go-admin`
+
+#### 2.2 执行`make`命令
+
+```shell
+# 打包镜像
+make build-linux 
+
+# 重启服务
+make run
+
+# 停止服务
+make stop
+
+# 打包并启动服务
+make deploy
+
+```
+
+#### 2.3 实操视频
+
+请文档上面的视频
+
+# 二、前端vue文件打包配置
+
+## 1. 方式一：Shell脚本打包VUE服务
+
+### 1.1 修改配置文件
 
 修改生产环境请求接口的配置文件
 
 修改`go-admin/dome01/go-admin-ui/.env.production`文件里的
 
-`VUE_APP_BASE_API = 'http://test.haimait.com/goadminapi'`
+`VUE_APP_BASE_API = 'http://go-admin.haimait.com/goadminapi'`
 
-这里的域名地址和 1.2nginx 里配置的 go 后台 api 接口地址 保持一致
+这里的域名地址和 `nginx` 里配置的 `go` 后台 `api` 接口地址 保持一致
 
-### 编写自动打包上传的 shell 脚本文件
+### 1.2 编写打包脚本文件
+
+编写自动打包并上传文件到服务上的 shell 脚本文件
 
 ##### 新建`/go-admin-ui/npmbuild.sh`
 
@@ -285,25 +345,35 @@ expect {
 interact
 ```
 
-### 执行脚本文件
+### 1.3 执行脚本文件
 
 执行脚本文件,打包并上传到服务器
 
 `./npmbuild.sh`
 
-### 登陆后台页面
+### 1.4 登陆后台页面
 
 https://www.go-admin.dev
 
 已经成功部署到线上了
 
-### 更新前端代码到服务器
+### 1.5 更新前端代码到服务器
 
-重复【执行脚本文件】步骤,就会重新打包并覆盖到线上的 dist 目录文件了
+重复【执行打包脚本文件】步骤,就会重新打包并覆盖到线上的 dist 目录文件了
 
-<a href="https://raw.githubusercontent.com/wenjianzhang/image/master/img/bs2.gif" target="_blank">
-      <img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/bs2.gif" alt="" width="100%">
+<a href="https://qiniu.haimait.top/%20blog/1441611-20200709081702339-66407937.gif" target="_blank">
+      <img src="https://qiniu.haimait.top/%20blog/1441611-20200709081702339-66407937.gif" alt="" width="100%">
 </a>
+
+
+
+## 2. 方式二：Docker打包 前端 服务
+
+等待更新...
+
+
+
+
 
 特别感谢 海马同学 的支持
 
