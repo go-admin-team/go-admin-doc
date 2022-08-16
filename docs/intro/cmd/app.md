@@ -7,6 +7,14 @@ group:
   order: 20
 ---
 
+
+
+
+## 视频教程
+
+[【go-admin-pro】订阅版app指令（&适用于go-admin）](https://www.bilibili.com/video/BV1Wa411o7Zr?spm_id_from=333.999.0.0)
+
+
 ## 创建 app
 
 `go-admin` 为了使项目中的结构和思路更清晰，也方便大家对自己的项目做分类管理，特别提出了 app 的这个概念，下载项目后，尽量不要去更改 admin 项目中的代码，方便以后跟随版本的升级，只专注自己的业务就好，所以我们给出了一个`app`的指令。
