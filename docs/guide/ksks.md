@@ -54,6 +54,26 @@ Mysql 版本 8.0+ ，在此版本下最优；
 
 </Alert>
 
+报错原因：
+
+`mysql`在创建单列索引的时候对列的长度是有限制的`myisam`和`innodb`存储引擎下长度限制分别为`1000 bytes`和`767 bytes`。
+
+解决方法：
+
+```sh
+# 编辑配置文件
+vim /etc/my.cnf
+
+# 在[mysqld] 下面添加MySQL默认的引擎设置
+default-storage-engine=InnoDB
+
+# 重启服务
+service mysqld restart    
+```
+
+删除库中迁移出的表，再次执行迁移命令，即可成功
+
+
 ## 创建数据库
 
 在开发环境下，建议使用docker来创建数据库：
