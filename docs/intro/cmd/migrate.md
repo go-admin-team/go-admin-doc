@@ -7,6 +7,12 @@ group:
   order: 20
 ---
 
+## 视频教程
+
+[【go-admin-pro】如何优雅的数据迁移？migrate指令](https://www.bilibili.com/video/BV13Y4y1A7n2?spm_id_from=333.999.0.0)
+
+[【go-admin-pro】数据迁移migrate指令常见的问题说明](https://www.bilibili.com/video/BV1wS4y1x7g2?spm_id_from=333.999.0.0)
+
 ## 数据迁移
 
 在开发过程中经常会遇到数据库字段的变更和基础数据的变更，`go-admin` 也提供了对应的迁移工具；
