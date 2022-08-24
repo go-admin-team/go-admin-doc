@@ -15,7 +15,7 @@ features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/d1ee0c6f-5aed-4a45-a507-339a4bfe076c/k7bjsocq_w144_h144.png
     title: 代码生成
     desc: 在线配置表信息生成对应的代码，增删改查/排序/导出/权限控制等直接使用
-footer: Open-source MIT Licensed | Copyright © 2020-present<br />Powered by [dumi](https://d.umijs.org)
+footer: Open-source MIT Licensed | Copyright © 2020-present<br />Powered by [dumi](https://d.umijs.org) <a href="https://beian.miit.gov.cn/" >沪ICP备14028854号-2</a>
 ---
 
 ## 反馈与共建
