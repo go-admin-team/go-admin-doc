@@ -5,14 +5,14 @@ toc: menu
 ---
 
 <Alert type="warning">
-首先，进行一个简单的说明，go-admin分为前端项目和后端项目，仓库也是分开的，快速启动我们也分为两个阶段；
+因为`go-admin`是一个前后端分离的项目，所以需要分为下载[前端项目go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目go-admin](https://github.com/go-admin-team/go-admin)，下面分为两个阶段分别说明[前端项目go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目go-admin](https://github.com/go-admin-team/go-admin)的快速启动；
 
 </Alert>
 
 ## 环境准备<Badge>go-admin</Badge>
 
 <Alert type="info">
-请注意 Go version >= 1.15，并且 GO111MODULE=on (Go MOdule 模式)；
+请注意 Go version >= 1.18，并且 GO111MODULE=on (Go MOdule 模式)；
 
 </Alert>
 
@@ -99,10 +99,10 @@ mysql -h 127.0.0.1 -p123456 -e 'create database dbname default charset utf8'
 ```bash
 # 初始化
 # macOS or linux 下使用
-$ ./go-admin migrate -c config/settings.dev.yml
+$ go run main.go migrate -c config/settings.dev.yml
 
 # windows 下使用
-$ go-admin.exe migrate -c config\settings.dev.yml
+$ go run main.go  migrate -c config\settings.dev.yml
 ```
 
 <Alert type="info">
@@ -119,10 +119,10 @@ $ go-admin.exe migrate -c config\settings.dev.yml
 ```bash
 # 启动服务
 # macOS or linux 下使用
-$ ./go-admin server -c config/settings.dev.yml
+$ go run main.go  server -c config/settings.dev.yml
 
 # windows 下使用
-$ .\go-admin.exe server -c config\settings.dev.yml
+$ go run main.go  server -c config\settings.dev.yml
 ```
 
 如果看到一下数据内容，请检查一下数据库配置；
@@ -158,7 +158,7 @@ $ npm -v
 
 [如需安装 node 或者 npm 进入](/guide/vue-install)
 
-然后，退出`go-admin`项目目录，我们建议`go-admin`和`go-admin-ui`两个项目默认放在同一级目录下。
+然后，退出`go-admin`项目目录，我们建议`go-admin`项目文件根目录和`go-admin-ui`项目文件根目录，放在同一级目录下。
 
 ```bash
 $ ls
