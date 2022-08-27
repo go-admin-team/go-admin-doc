@@ -5,9 +5,11 @@ toc: menu
 ---
 
 <Alert type="warning">
-因为`go-admin`是一个前后端分离的项目，所以需要分为下载[前端项目go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目go-admin](https://github.com/go-admin-team/go-admin)，下面分为两个阶段分别说明[前端项目go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目go-admin](https://github.com/go-admin-team/go-admin)的快速启动；
-
+  注意
 </Alert>
+`go-admin`是一个前后端分离的项目，所以需要分为下载[前端项目go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目go-admin](https://github.com/go-admin-team/go-admin)，下面分为两个阶段分别说明[前端项目go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目go-admin](https://github.com/go-admin-team/go-admin)的快速启动；
+
+
 
 ## 环境准备<Badge>go-admin</Badge>
 
