@@ -4,12 +4,7 @@ order: 20
 toc: menu
 ---
 
-<Alert type="warning">
-  注意
-</Alert>
-`go-admin`是一个前后端分离的项目，所以需要分为下载[前端项目go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目go-admin](https://github.com/go-admin-team/go-admin)，下面分为两个阶段分别说明[前端项目go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目go-admin](https://github.com/go-admin-team/go-admin)的快速启动；
-
-
+`go-admin`是一个前后端分离的项目，所以需要分别下载 [前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui) 和 [后端项目 go-admin](https://github.com/go-admin-team/go-admin) ，下面分为两个阶段分别说明[前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目 go-admin](https://github.com/go-admin-team/go-admin)的快速启动；
 
 ## 环境准备<Badge>go-admin</Badge>
 
@@ -70,19 +65,21 @@ vim /etc/my.cnf
 default-storage-engine=InnoDB
 
 # 重启服务
-service mysqld restart    
+service mysqld restart
 ```
 
 删除库中迁移出的表，再次执行迁移命令，即可成功
 
-
 ## 创建数据库
 
-在开发环境下，建议使用docker来创建数据库：
+在开发环境下，建议使用 docker 来创建数据库：
+
 ```
 docker run --name mysql -p3306:3306 -d -e MARIADB_ROOT_PASSWORD=123456 mariadb:latest
 ```
-然后可以使用账号root/密码123456来访问本地的数据库:
+
+然后可以使用账号 root/密码 123456 来访问本地的数据库:
+
 ```
 mysql -h 127.0.0.1 -p123456 -e 'create database dbname default charset utf8'
 ```
@@ -91,8 +88,6 @@ mysql -h 127.0.0.1 -p123456 -e 'create database dbname default charset utf8'
 创建的数据库默认字符集需要是utf8。
 
 </Alert>
-
-
 
 ## 数据初始化<Badge>go-admin</Badge>
 
