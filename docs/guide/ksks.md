@@ -9,7 +9,7 @@ toc: menu
 ## 环境准备<Badge>go-admin</Badge>
 
 <Alert type="info">
-请注意 Go version >= 1.18，并且 GO111MODULE=on (Go MOdule 模式)；
+请注意 Go version >= 1.18，并且 GO111MODULE=on (Go Module 模式)；
 
 </Alert>
 
