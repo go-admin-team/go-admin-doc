@@ -44,6 +44,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            rm -rf /www/doc/*
-            cp -r -f /www/temp/doc/dist/* /www/doc
-            rm -rf /www/temp/doc/*
+            sudo rm -rf /www/doc/*
+            sudo cp -r -f /www/temp/doc/dist/* /www/doc
+            sudo rm -rf /www/temp/doc/*
