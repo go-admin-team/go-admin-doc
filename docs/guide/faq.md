@@ -188,6 +188,41 @@ windows 环境变量配置时，`bin`目录的路径中间不要出现空格；
 
 例如：`C:/go_go/bin` ✔️；
 
+## Deprecation Warning: Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+```sh
+Deprecation Warning: Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($--tooltip-arrow-size, 2) or calc($--tooltip-arrow-size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+   ╷
+89 │     margin-bottom: #{$--tooltip-arrow-size / 2};
+   │                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    node_modules/element-ui/packages/theme-chalk/src/popper.scss 89:22         @content
+    node_modules/element-ui/packages/theme-chalk/src/mixins/mixins.scss 74:5   b()
+    node_modules/element-ui/packages/theme-chalk/src/popper.scss 4:1           @import
+    node_modules/element-ui/packages/theme-chalk/src/select-dropdown.scss 3:9  @import
+    node_modules/element-ui/packages/theme-chalk/src/select.scss 4:9           @import
+    node_modules/element-ui/packages/theme-chalk/src/pagination.scss 4:9       @import
+    node_modules/element-ui/packages/theme-chalk/src/index.scss 2:9            @import
+    src/styles/element-variables.scss 25:9                                     root stylesheet
+
+Warning: 33 repetitive deprecation warnings omitted.
+```
+
+> 解决方案
+
+```sh
+$ npm install -g sass-migrator
+$ sass-migrator division **/*.scss
+```
+
+引用自官方 https://sass-lang.com/documentation/breaking-changes/slash-div#automatic-migration
+ß
+
 <Alert type="warning">
 从哪里获得帮助：
 
