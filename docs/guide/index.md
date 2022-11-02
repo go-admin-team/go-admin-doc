@@ -9,7 +9,7 @@ nav:
 
 ## 介绍
 
-[go-admin](https://github.com/go-admin-team/go-admin) 是一个中后台应用框架，基于（gin, gorm, Casbin, Vue, Element UI）实现。go-admin 分为两个项目[go-admin](https://github.com/go-admin-team/go-admin) 和 [go-admin-ui](https://github.com/go-admin-team/go-admin-ui)，从名称上不难看出 go-admin 是后端服务，go-admin-ui 是 view 端服务。go-admin 主要提供一套标准化结构，让开发程序是对整个后端更加清晰彻底，也逐渐形成了独有的一套流程。
+[go-admin](https://github.com/go-admin-team/go-admin) 是一个中后台应用框架，基于（gin, gorm, Casbin, Vue, Element UI, Arco Design, Ant Design）实现。go-admin 分为两个项目[go-admin](https://github.com/go-admin-team/go-admin) 和 [go-admin-ui](https://github.com/go-admin-team/go-admin-ui)，从名称上不难看出 go-admin 是后端服务，go-admin-ui 是 view 端服务。go-admin 主要提供一套标准化结构，让开发程序是对整个后端更加清晰彻底，也逐渐形成了独有的一套流程。
 
 [go-admin](https://github.com/go-admin-team/go-admin)的目的是为了让开发者更方便快捷的梳理需求，专注业务，减少重复代码的编写，节省时间，提升人效，缩短项目周期，提升软件的开发效率以及质量，以早日实现不用加班的目的而努力！
 
@@ -55,7 +55,10 @@ nav:
 
 ## 体验环境
 
-1. 体验地址： [https://www.go-admin.dev](https://www.go-admin.dev)
+1. Element UI VUE体验地址： [https://vue2.go-admin.dev](https://vue2.go-admin.dev)
+2. 账号密码：admin/123456
+
+1. Arco Design VUE3体验地址：https://vue3.go-admin.dev
 2. 账号密码：admin/123456
 
 3. pro 体验地址： [https://preview.go-admin.dev](https://preview.go-admin.dev)
