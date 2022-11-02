@@ -61,7 +61,7 @@ nav:
 1. Arco Design VUE3体验地址：https://vue3.go-admin.dev
 2. 账号密码：admin/123456
 
-3. pro 体验地址： [https://preview.go-admin.dev](https://preview.go-admin.dev)
+3. pro 体验地址： [https://antd.go-admin.pro](https://antd.go-admin.pro)
 4. 账号密码：admin/123456
 
 ## 贡献者
