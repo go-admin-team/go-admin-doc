@@ -1,7 +1,7 @@
 ---
-title: 环境部署
+title: 部署环境
 order: 50
-toc: menu
+toc: content
 ---
 
 ## nginx 配置
@@ -307,9 +307,9 @@ https://www.go-admin.dev
 
 特别感谢 海马同学 的支持
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

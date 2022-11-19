@@ -24,7 +24,7 @@ export default defineConfig({
     ],
   },
   sitemap: {
-    hostname: 'https://doc.go-admin.dev',
+    hostname: 'https://www.go-admin.pro',
   },
   extraBabelPlugins: [
     [

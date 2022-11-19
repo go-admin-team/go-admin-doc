@@ -1,10 +1,9 @@
 ---
-title: 配置文件
-order: 30
-toc: menu
+nav: 开发
 group:
-  title: 高级使用
-  order: 10
+  title: 高级
+  order: 2
+title: 配置文件
 ---
 
 ## 创建不同环境的配置文件
@@ -67,9 +66,9 @@ import (
     fmt.Println("extConfig.ExtConfig.Demo.Name", extConfig.ExtConfig.Demo.Name)
 ```
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

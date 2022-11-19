@@ -1,42 +1,37 @@
 {
-  "private": true,
   "name": "go-admin-doc",
+  "version": "0.0.1",
+  "description": "go-admin-doc",
+  "license": "MIT",
   "scripts": {
-    "start": "dumi dev",
     "build": "dumi build",
-    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
+    "dev": "dumi dev",
+    "prepare": "husky install && dumi setup",
+    "start": "npm run dev"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "typings": "dist/index.d.ts",
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/go-admin-team/go-admin-doc.git",
-    "branch": "master",
-    "platform": "github"
-  },
-  "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
-      "prettier --write"
-    ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ]
   },
-  "devDependencies": {
-    "dumi": "^1.0.13",
-    "dumi-theme-default": "^1.1.21",
-    "lint-staged": "^10.0.7",
-    "prettier": "^2.2.1",
-    "yorkie": "^2.0.0"
+  "lint-staged": {
+    "*.{md,json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ]
   },
   "dependencies": {
     "@qixian.cs/github-contributors-list": "^1.0.6",
-    "antd": "^4.20.7",
-    "babel-plugin-import": "^1.13.5",
-    "umi": "^3.5.24"
-  }
+    "antd": "^5.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "dumi": "^2.0.0-rc.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "authors": [
+    "zwj777@live.com"
+  ]
 }

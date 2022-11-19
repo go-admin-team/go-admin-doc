@@ -1,7 +1,7 @@
 ---
 nav:
-  title: 配置
-  order: 3
+  title: 高阶
+  order: 4
 title: 业务分库
 order: 10
 toc: menu

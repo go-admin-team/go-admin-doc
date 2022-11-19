@@ -1,13 +1,10 @@
 ---
-nav:
-  title: 开发
-  order: 2
-title: go-admin应用1
-order: 10
-toc: menu
+nav: 开发
 group:
-  title: 基础开发
+  title: 基础
   order: 0
+title: 第 1 步
+order: 0
 ---
 
 # 编写 go-admin 应用,第 1 步
@@ -83,62 +80,56 @@ settings:
 
 - logpath 日志文件路径，这里配置相对程序路径
 
-<Alert type="warning"> 建议
+<!-- :::warning 建议 -->
+
 你得避免使用 go 或 go-admin 的内部保留字来命名你的项目模块以等名称。避免产生组件冲突。
 
-</Alert>
+:::
 
-<Alert type="warning"> 我的代码该放在哪？
+<!-- :::warning  -->
+
+我的代码该放在哪？
 如果是曾经是原生 PHP、JAVA、.Net 程序员，都会有项目标准的目录结构，当然 go-admin 也是相同的，也有自己的目录结构，这样利于项目更规范，协作更高效。
 
-</Alert>
+:::
 
 让我们看一下 go-admin 的目录结构：
 
-<Tree>
-  <ul>
-    <li> Dockerfile </li>
-    <li> LICENSE.md </li>
-    <li> Makefile </li>
-    <li> README.en.md </li>
-    <li> README.md </li>
-    <li> _config.yml </li>
-    <li> app # 应用文件夹
-    <ul>
-      <li> admin # admin应用
-      <ul>
-        <li> apis # api </li>
-        <li> models # 模型 </li>
-        <li> router # 路由 </li>
-        <li> service # 业务逻辑 </li>
-      </ul> 
-      </li>  
-      <li> jobs #自动化作业
-      <ul>
-        <li> apis # api </li>
-        <li> models # 模型 </li>
-        <li> router # 路由 </li>
-        <li> service # 业务逻辑</li>
-      </ul>
-      </li>
-    </ul>
-    </li>
-    <li>cmd # 命令 </li>
-    <li>common #公共类 </li>
-    <li>config # 系统配置 </li>
-    <li>docs # 文档 </li>
-    <li>go.mod </li>
-    <li>go.sum </li>
-    <li>logger # 日志包 </li>
-    <li> main.go </li>
-    <li> package-lock.json </li>
-    <li> static # 静态文件 </li>
-    <li> temp # 临时文件 </li>
-    <li> template # 模版文件 </li>
-    <li> test # 测试 </li>
-    <li> tools # 工具 </li>
-  </ul>       
-</Tree>
+```bash
+.
+├── Dockerfile </li>
+├── LICENSE.md </li>
+├── Makefile </li>
+├── README.en.md </li>
+├── README.md </li>
+├── _config.yml </li>
+├── app # 应用文件夹
+│   ├── admin # admin应用
+│   │   ├── apis # api </li>
+│   │   ├── models # 模型 </li>
+│   │   ├── router # 路由 </li>
+│   │   └── service # 业务逻辑 </li>
+│   └── jobs #自动化作业
+│       ├── apis # api </li>
+│       ├── models # 模型 </li>
+│       ├── router # 路由 </li>
+│       └──  service # 业务逻辑</li>
+├── cmd # 命令 </li>
+├── common #公共类 </li>
+├── config # 系统配置 </li>
+├── docs # 文档 </li>
+├── go.mod </li>
+├── go.sum </li>
+├── logger # 日志包 </li>
+├── main.go </li>
+├── package-lock.json </li>
+├── static # 静态文件 </li>
+├── temp # 临时文件 </li>
+├── template # 模版文件 </li>
+├── test # 测试 </li>
+└── tools # 工具 </li>
+
+```
 
 这些目录和文件的用处是：
 
@@ -170,15 +161,16 @@ settings:
 
 输出内容为下图，恭喜你！你已经成功了！
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/serversuccessv1.1.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/serversuccessv1.1.0.png" alt="服务器启动成功" width="400px" />
 
-现在，服务器正在运行，浏览器访问 http://127.0.0.1:8000/。你将会看到 `go-admin` 文档，服务器已经运行了。
+现在，服务器正在运行，浏览器访问 <http://127.0.0.1:8000/>。你将会看到 `go-admin` 文档，服务器已经运行了。
 
-<Alert type="warning"> 更换端口
+:::warning
+更换端口
 默认情况下，服务器设置为监听本机内部 IP 的 8000 端口。
 如果你想更换服务器的监听端口，请使用命令行参数。举个例子，下面的命令会使服务器监听 8080 端口：
 
-</Alert>
+:::
 
 我们需要打开配置文件 `config/settings.yml`
 
@@ -216,23 +208,23 @@ application:
 package apis
 
 import (
-	"github.com/gin-gonic/gin"
-	"go-admin/common/apis"
+ "github.com/gin-gonic/gin"
+ "go-admin/common/apis"
 )
 
 type Article struct {
-	apis.Api
+ apis.Api
 }
 
 // GetArticleList 获取文章列表
 func (e Article)GetArticleList(c *gin.Context) {
-	err := e.MakeContext(c).
-		Errors
-	if err != nil {
-		e.Logger.Error(err)
-		return
-	}
-	e.OK("hello world ！","success")
+ err := e.MakeContext(c).
+  Errors
+ if err != nil {
+  e.Logger.Error(err)
+  return
+ }
+ e.OK("hello world ！","success")
 }
 ```
 
@@ -257,23 +249,23 @@ go-admin
 package router
 
 import (
-	"go-admin/app/admin/apis"
+ "go-admin/app/admin/apis"
 
-	"github.com/gin-gonic/gin"
-	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
+ "github.com/gin-gonic/gin"
+ jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
 )
 
 func init() {
-	routerCheckRole = append(routerCheckRole, registerArticleRouter)
+ routerCheckRole = append(routerCheckRole, registerArticleRouter)
 }
 
 // 需认证的路由代码
 func registerArticleRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
-	api:= apis.Article{}
-	r := v1.Group("")
-	{
-		r.GET("/articleList", api.GetArticleList)
-	}
+ api:= apis.Article{}
+ r := v1.Group("")
+ {
+  r.GET("/articleList", api.GetArticleList)
+ }
 }
 ```
 
@@ -285,7 +277,7 @@ go build
 ./go-admin server -c=config/settings.dev.yml
 ```
 
-用你的浏览器访问 http://localhost:8000/api/v1/articleList，你应该能够看见
+用你的浏览器访问 <http://localhost:8000/api/v1/articleList>，你应该能够看见
 
 ```json
 {
@@ -298,12 +290,12 @@ go build
 
 这是你在接口中定义的。
 
-<Alert type="warning"> 
+:::warning
 404 page not found
 <br />
 如果你在这里得到了一个错误页面，检查一下你是不是正访问着 http://localhost:8000/api/v1/articleList 而不应该是 http://localhost:8000/。
 
-</Alert>
+:::
 
 router 注册类型，我们比较常用的就是 `GET`、`POST`、`PUT`、`DELETE`等
 
@@ -313,18 +305,19 @@ router 注册类型，我们比较常用的就是 `GET`、`POST`、`PUT`、`DELE
 
 path 是一个匹配 URL 的准则（有点正则表达式的意思），当 go-admin 响应一个请求时，它会从注册的 url 第一项开始，按照顺序一次匹配，直到找到匹配项。
 
-这些准则不会匹配 GET 和 POST 参数或域名。例如，URL 在处理请求 http://www.zhangwj.com/articleList 时，它会尝试匹配 articleList 。处理请求 http://www.zhangwj.com/articleList?page=3 时，也只会尝试匹配 blog/list。
+这些准则不会匹配 GET 和 POST 参数或域名。例如，URL 在处理请求 <http://www.zhangwj.com/articleList> 时，它会尝试匹配 articleList 。处理请求 <http://www.zhangwj.com/articleList?page=3> 时，也只会尝试匹配 blog/list。
 
-<Alert type="error"> 
-  path 也支持带参数的写法，例如 <code>r.GET("/articleList/:id",apis.GetArticleList)</code>, 这个时候会按照这 <code>/articleList/:id</code> 进行匹配 <code>:id</code> 可以是字符串，可以是数字等任意字符，当然也是可以限制的，这里我们不再展开。
+<!-- :::error -->
 
-</Alert>
+path 也支持带参数的写法，例如 <code>r.GET("/articleList/:id",apis.GetArticleList)</code>, 这个时候会按照这 <code>/articleList/:id</code> 进行匹配 <code>:id</code> 可以是字符串，可以是数字等任意字符，当然也是可以限制的，这里我们不再展开。
+
+:::
 
 当你了解了基本的请求和响应流程后，请阅读 教程的第 2 部分 开始使用数据库.
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

@@ -1,10 +1,10 @@
 ---
-title: api
-order: 60
-toc: menu
+nav: 开发
 group:
-  title: 高级使用
-  order: 10
+  title: 高级
+  order: 2
+title: api
+order: 1
 ---
 
 # api
@@ -45,10 +45,11 @@ type SysFileDir struct {
 
 ---
 
-<Alert > 接口具体业务
+:::warning
+接口具体业务
 以下代码是就是具体对应的接口函数了，这如果是增删改查函数使用代码生成工具已经可以在 0 代码的情况下创建业务功能。
 
-</Alert>
+:::
 
 ## GetList
 
@@ -247,9 +248,9 @@ func (e SysPost) Delete(c *gin.Context) {
 }
 ```
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

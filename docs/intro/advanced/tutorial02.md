@@ -1,25 +1,22 @@
 ---
-nav:
-  title: 开发
-  order: 2
-title: go-admin应用2
-order: 20
-toc: menu
+nav: 开发
 group:
-  title: 基础开发
+  title: 基础
   order: 0
+title: 第 2 步
+order: 1
 ---
 
 ## 编写 go-admin 应用,第 2 步
 
 这部分教程从 教程第 1 步 结尾的地方继续讲起。我们将建立数据库，创建您的第一个模型。
 
-<Alert>
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::
 
 ## 数据库配置
 
@@ -83,10 +80,10 @@ CREATE TABLE `article` (
 
 现在我们打开系统工具，进入 `代码生成` ，下边的画面请点击`导入`
 
-<Alert >
+:::success
 这里的导入是要将我们刚刚创建的表导入到系统中，这样我们就可以根据表来生成代码了。
 
-</Alert>
+:::
 
 <img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/genimport1v1.0.0.png" width="700xp" />
 
@@ -174,9 +171,9 @@ OK！，内容到这里已经介绍了开始第一个 go-admin 应用的全部�
 
 如果需要了解更进一步的 go-admin 相关内容，请前往[进阶](/guide/advanced/api.html) 继续查看！
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

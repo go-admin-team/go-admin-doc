@@ -1,12 +1,12 @@
 ---
 title: 常见问题
 order: 90
-toc: menu
+toc: content
 ---
 
 ## CGO 的问题
 
-<Alert type="error">
+:::error
 windows 下 CGO 的问题
 请注意 您如果是 windows 环境您或许可能会遇到 `CGO` 的问题
 
@@ -26,7 +26,7 @@ cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
 
 [如何解决 cgo: exec /missing-cc: exec: "/missing-cc": file does not exist](/guide/other/faq.html#_5-cgo-exec-missing-cc-exec-missing-cc-file-does-not-exist)
 
-</Alert>
+:::
 
 ## Error: requires at least one arg
 
@@ -36,7 +36,7 @@ cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
 
 下图是输出内容：
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/runv1.1.0noarg.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/runv1.1.0noarg.png" width="400px" />
 
 输出内容告诉我们：Error: requires at least one arg ，至少有一个参数；
 
@@ -78,10 +78,10 @@ sudo xcode-select --install
 
 如果之前安装过，请使用一下命令重置
 
-<Alert type="success">
+:::success
 原因是 Mac 升级后，缺了 xcode 的 CLI 工具, 只要执行下面的命令来安装就可以了。
 
-</Alert>
+:::
 
 ```bash
 sudo xcode-select --reset
@@ -127,11 +127,11 @@ $ ./go-admin
 
 > 问题详情
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/noauthapi.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/noauthapi.png" width="400px" />
 
 > 解决方案
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/noauthapi_log.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/noauthapi_log.png" width="400px" />
 
 可以根据这个日志，酌情进行配置
 
@@ -161,7 +161,7 @@ cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
 
 https://sourceforge.net/projects/mingw-w64/files/mingw-w64/
 
-<Alert type="info">
+:::info
 ⚠️ 使用注意
 
 当前是`MinGW-W64 GCC-8.1.0`版本，如果版本不匹配，可以根据对应的操作系统进行下载配置；
@@ -174,23 +174,23 @@ https://sourceforge.net/projects/mingw-w64/files/mingw-w64/
 
 [x86_64-win32-seh](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z)
 
-</Alert>
+:::
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/minigw.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/minigw.png" width="400px" />
 
 直接解压以后 , 把 bin 目录配置到 系统环境变量中的 PATH 变量中即可
 
-<Alert type="info">
+:::info
 windows 环境变量配置时，`bin`目录的路径中间不要出现空格；
 
-</Alert>
+:::
 例如：`C:/go go/bin` 这样的路径是不能被正常使用的；
 
 例如：`C:/go_go/bin` ✔️；
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

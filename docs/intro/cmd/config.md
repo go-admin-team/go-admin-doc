@@ -1,10 +1,10 @@
 ---
+nav:
+  title: 指令
+  order: 3
 title: config
 order: 20
-toc: menu
-group:
-  title: 指令
-  order: 20
+toc: content
 ---
 
 ## 配置信息

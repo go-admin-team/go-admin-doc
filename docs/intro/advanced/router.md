@@ -1,10 +1,9 @@
 ---
-title: router
-order: 70
-toc: menu
+nav: 开发
 group:
-  title: 高级使用
-  order: 10
+  title: 高级
+  order: 2
+title: router
 ---
 
 ## package & import
@@ -27,11 +26,12 @@ import (
 | init                     | 系统 init 函数                            |
 | registerSysFileDirRouter | 路由注册，go-admin 路由注册内置的通用函数 |
 
-<Alert > go-admin 路由注册函数命名规范
+:::warning
+go-admin 路由注册函数命名规范
 格式：register{业务名称}Router
 
 ！！！如果在非代码生成模式下需要按照此格式进行命名定义。
-</Alert >
+:::
 
 ```go
 func init() {
@@ -136,9 +136,9 @@ func registerSyPostRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddlew
 }
 ```
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

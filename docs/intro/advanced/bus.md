@@ -1,21 +1,21 @@
 ---
-title: 常规模式
-order: 20
-toc: menu
+nav: 开发
 group:
-  title: 高级使用
-  order: 10
+  title: 高级
+  order: 2
+title: 常规模式
 ---
 
 # 常规模式
 
-<Alert > 说明
+:::warning
+说明
 `go-admin`服务是存在两种处理模式的;
 
 简单的 crud 可以直接使用 `actions模式`【已移除】；
 
 复杂的业务可以使用 `常规模式`；
-</Alert >
+:::
 
 首先说明一下结构：
 这里只是针对`app`文件夹说明；
@@ -49,9 +49,9 @@ service.dto：是 project 的 api 对应的数据接收以及解析模型
 
 以上几个模块可以分别对应查看。
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::
