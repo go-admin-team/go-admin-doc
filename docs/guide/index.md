@@ -1,7 +1,6 @@
 ---
 title: 介绍
 order: 10
-toc: menu
 nav:
   title: 指南
   order: 1
@@ -55,17 +54,18 @@ nav:
 
 ## 体验环境
 
-1. Element UI VUE体验地址： [https://vue2.go-admin.dev](https://vue2.go-admin.dev)
+1. Element UI VUE 体验地址： [https://vue2.go-admin.dev](https://vue2.go-admin.dev)
 2. 账号密码：admin/123456
 
-1. Arco Design VUE3体验地址：https://vue3.go-admin.dev
-2. 账号密码：admin/123456
-
-3. pro 体验地址： [https://antd.go-admin.pro](https://antd.go-admin.pro)
+3. Arco Design VUE3 体验地址：https://vue3.go-admin.dev
 4. 账号密码：admin/123456
+
+5. pro 体验地址： [https://antd.go-admin.pro](https://antd.go-admin.pro)
+6. 账号密码：admin/123456
 
 ## 贡献者
 
+<div>
 <span style="margin: 0 5px;" ><a href="https://github.com/wenjianzhang" ><img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/3890175?v=4&h=60&w=60&fit=cover&mask=circle&maxage=7d" /></a></span>
 <span style="margin: 0 5px;" ><a href="https://github.com/G-Akiraka" ><img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/45746659?s=64&v=4&w=60&fit=cover&mask=circle&maxage=7d" /></a></span>
 <span style="margin: 0 5px;" ><a href="https://github.com/lwnmengjing" ><img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/12806223?s=64&v=4&w=60&fit=cover&mask=circle&maxage=7d" /></a></span>
@@ -134,9 +134,9 @@ nav:
   </tr>
 </table>
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

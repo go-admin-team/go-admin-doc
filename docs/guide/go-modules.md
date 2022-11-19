@@ -1,7 +1,7 @@
 ---
 title: Go Modules
 order: 80
-toc: menu
+toc: content
 ---
 
 # Go Modules
@@ -38,19 +38,17 @@ go: to add module requirements and sums:
         go mod tidy
 ```
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/gomod-step1.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/gomod-step1.png" width="400px" />
 
 go.mod 文件，内容如下：
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/gomod-step2.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/gomod-step2.png" width="400px" />
 
 其中，`HelloWorld`为当前项目的名称，可以随意设置。
 
 就这样简单便完成了项目的 module 初始化。
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
-
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
-
-</Alert>
+:::

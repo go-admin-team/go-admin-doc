@@ -1,10 +1,9 @@
 ---
-title: dto
-order: 20
-toc: menu
+nav: 开发
 group:
-  title: 高级使用
-  order: 10
+  title: 高级
+  order: 2
+title: dto
 ---
 
 首先介绍以下 dto 在 go-admin 中的作用。dto 是一个数据接收模块，每一个请求进来，携带的数据需要在 dto 中进行处理验证；
@@ -219,9 +218,9 @@ func (s *SysPostDeleteReq) GetId() interface{} {
 }
 ```
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

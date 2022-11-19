@@ -1,35 +1,30 @@
 ---
-title: 环境部署
+title: 部署环境
 order: 50
-toc: menu
+toc: content
 ---
 
 ## 一 、视频地址：
 
-[【go-admin】如何启动go-admin](https://www.bilibili.com/video/BV1z5411x7JG?spm_id_from=333.337.search-card.all.click)
+[【go-admin】如何启动 go-admin](https://www.bilibili.com/video/BV1z5411x7JG?spm_id_from=333.337.search-card.all.click)
 
-[【go-admin】多命令启动方式讲解以及IDE配置](https://www.bilibili.com/video/BV1Fg4y1q7ph?spm_id_from=333.337.search-card.all.click)
+[【go-admin】多命令启动方式讲解以及 IDE 配置](https://www.bilibili.com/video/BV1Fg4y1q7ph?spm_id_from=333.337.search-card.all.click)
 
-[【go-admin】go-admin的下载与启动](https://www.bilibili.com/video/BV1wT4y1L7Yc?spm_id_from=333.999.0.0)
-
-
-
+[【go-admin】go-admin 的下载与启动](https://www.bilibili.com/video/BV1wT4y1L7Yc?spm_id_from=333.999.0.0)
 
 部署后台服务：
 
-方式一：[Shell脚本打包 go 服务](https://www.bilibili.com/video/BV1PT411P7Zx?p=2)
+方式一：[Shell 脚本打包 go 服务](https://www.bilibili.com/video/BV1PT411P7Zx?p=2)
 
-方式二：[Docker打包 go 服务](https://www.bilibili.com/video/BV1PT411P7Zx?p=1)
-
-
+方式二：[Docker 打包 go 服务](https://www.bilibili.com/video/BV1PT411P7Zx?p=1)
 
 ## 二、nginx 配置
 
 **流程**
 
 - 首先确保项目前后端在本地可以都可以正常跑起来,如果不会可以去看一下作者的视频教程
-- 配置域名(go-admin.haimait.com)代理到80端口，前端vue打包的文件dist目录上传到对应的目录
-- 配置域名(go-admin.haimait.com/goadminapi)代理到后端服务的8000端口，并上传后台文件启动服务
+- 配置域名(go-admin.haimait.com)代理到 80 端口，前端 vue 打包的文件 dist 目录上传到对应的目录
+- 配置域名(go-admin.haimait.com/goadminapi)代理到后端服务的 8000 端口，并上传后台文件启动服务
 
 配置服务器上的配置
 
@@ -62,9 +57,9 @@ server {
 `nginx -s reload` //重启nginx服务
 ```
 
-## 三、API接口打包配置
+## 三、API 接口打包配置
 
-### 3.1 方式一：Shell脚本打包 go 服务
+### 3.1 方式一：Shell 脚本打包 go 服务
 
 #### 3.1.1 修改配置文件
 
@@ -268,9 +263,9 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
 
 ##### b. 重复 3.1.2 和 3.1.5 步骤即可
 
-### 3.2 方式二：Docker打包 go 服务
+### 3.2 方式二：Docker 打包 go 服务
 
-#### 3.2.1进入到项目根目录
+#### 3.2.1 进入到项目根目录
 
 `cd /go-admin`
 
@@ -278,7 +273,7 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
 
 ```shell
 # 打包镜像
-make build-linux 
+make build-linux
 
 # 重启服务
 make run
@@ -295,9 +290,9 @@ make deploy
 
 请文档上面的视频
 
-## 四、前端vue文件打包配置
+## 四、前端 vue 文件打包配置
 
-### 4.1 方式一：Shell脚本打包VUE服务
+### 4.1 方式一：Shell 脚本打包 VUE 服务
 
 #### 4.1.1 修改配置文件
 
@@ -368,21 +363,15 @@ https://www.go-admin.dev
       <img src="https://qiniu.haimait.top/%20blog/1441611-20200709081702339-66407937.gif" alt="" width="100%">
 </a>
 
-
-
-### 4.2 方式二：Docker打包 前端 服务
+### 4.2 方式二：Docker 打包 前端 服务
 
 等待更新...
 
-
-
-
-
 特别感谢 海马同学 的支持
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::

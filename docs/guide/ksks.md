@@ -1,17 +1,16 @@
 ---
 title: 快速开始
 order: 20
-toc: menu
+toc: content
 ---
 
 `go-admin`是一个前后端分离的项目，所以需要分别下载 [前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui) 和 [后端项目 go-admin](https://github.com/go-admin-team/go-admin) ，下面分为两个阶段分别说明[前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目 go-admin](https://github.com/go-admin-team/go-admin)的快速启动；
 
 ## 环境准备<Badge>go-admin</Badge>
 
-<Alert type="info">
+:::info
 请注意 Go version >= 1.18，并且 GO111MODULE=on (Go Module 模式)；
-
-</Alert>
+:::
 
 [如需配置 go 环境变量请进入](/guide/env)
 
@@ -35,7 +34,7 @@ $ go build
 1. 首先找到配置文件，`config/settings.yml`， 复制一份，并修改文件名为`config/settings.dev.yml` 即可。
 1. 或者直接使用默认配置文件，直接修改`config/settings.yml`即可。
 
-<img class="no-margin" src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/configv1.1.0.png"  height="500px" style="margin:0 auto;">
+<img class="no-margin" src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/configv1.1.0.png"  height="400px" style="margin:0 auto;">
 
 ```yml
 database:
@@ -45,11 +44,11 @@ database:
   source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
 ```
 
-<Alert type="error">
+:::warning
 Mysql 版本 8.0+ ，在此版本下最优；
 其他低版本的会出现`Error 1071: Specified key was too long; max key length is 1000 bytes`等这类问题；请根据本地数据库版本进行对应修改；
 
-</Alert>
+:::
 
 报错原因：
 
@@ -84,10 +83,10 @@ docker run --name mysql -p3306:3306 -d -e MARIADB_ROOT_PASSWORD=123456 mariadb:l
 mysql -h 127.0.0.1 -p123456 -e 'create database dbname default charset utf8'
 ```
 
-<Alert type="info">
-创建的数据库默认字符集需要是utf8。
+:::info
+创建的数据库默认字符集需要是 utf8。
 
-</Alert>
+:::
 
 ## 数据初始化<Badge>go-admin</Badge>
 
@@ -102,12 +101,10 @@ $ go run main.go migrate -c config/settings.dev.yml
 $ go run main.go  migrate -c config\settings.dev.yml
 ```
 
-<Alert type="info">
+:::info
 可以通过 -c 参数实现本地多环境配置文件隔离 例如 开发环境命名为：settings.dev.yml
-<br />
 注意：1.2.0 之前版本需要将`migrate` 替换成 `init` 命令进行项目数据库结构和数据初始化。
-
-</Alert>
+:::
 
 ## 启动服务<Badge>go-admin</Badge>
 
@@ -132,14 +129,14 @@ $ go run main.go  server -c config\settings.dev.yml
 
 输出内容为下图，恭喜你！你已经成功了！
 
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/serversuccessv1.1.0.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/serversuccessv1.1.0.png"  height="400px" style="margin:0 auto;">
 
 go，下一步启动前端项目！
 
-<Alert type="warning">
+:::warning
 这里接下来是第二两个阶段了；
 
-</Alert>
+:::
 
 ## 验证环境<Badge>go-admin-ui</Badge>
 
@@ -195,12 +192,16 @@ $ npm install  # npm install --registry=https://registry.npm.taobao.org   # 国�
 
 # 或者使用
 $ cnpm install
+
+# 上述两种安装报错或者node16+使用yarn进行安装
+$ yarn
+
 ```
 
-<Alert type="info">
+:::info
 这里还原包是需要一些时间的请耐心等待一下...
 
-</Alert>
+:::
 
 看到类似下面输出内容说明已经安装好了
 
@@ -234,10 +235,10 @@ $ npm run dev
   To create a production build, run npm run build.
 ```
 
-<Alert type="info">
+:::info
 此时项目已经启动了，但是有一点请注意：检查 go-admin 是否也启动了。否则页面会提示错误的哦。
 
-</Alert>
+:::
 
 ## 构建及部署
 
@@ -259,9 +260,7 @@ $ npm run build:prod
 
 部署，将测试后的 `./dist` 文件上传到最终环境或者生产环境。
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
-
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
-
-</Alert>
+:::

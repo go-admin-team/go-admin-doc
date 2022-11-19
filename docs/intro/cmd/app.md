@@ -1,27 +1,23 @@
 ---
+nav:
+  title: 指令
+  order: 3
 title: app
 order: 20
-toc: menu
-group:
-  title: 指令
-  order: 20
+toc: content
 ---
-
-
-
 
 ## 视频教程
 
-[【go-admin-pro】订阅版app指令（&适用于go-admin）](https://www.bilibili.com/video/BV1Wa411o7Zr?spm_id_from=333.999.0.0)
-
+[【go-admin-pro】订阅版 app 指令（&适用于 go-admin）](https://www.bilibili.com/video/BV1Wa411o7Zr?spm_id_from=333.999.0.0)
 
 ## 创建 app
 
 `go-admin` 为了使项目中的结构和思路更清晰，也方便大家对自己的项目做分类管理，特别提出了 app 的这个概念，下载项目后，尽量不要去更改 admin 项目中的代码，方便以后跟随版本的升级，只专注自己的业务就好，所以我们给出了一个`app`的指令。
 
-<Alert type="warning"> 指令更改
+:::warning 指令更改
 从 2.1.\*开始`createapp`指令变更为`app`，和订阅版保持一致。
-</Alert>
+:::
 
 我们可以使用`app`指令创建一个新的 app，下边创建一个`appname`在实际使用中大家需要根据自己的业务名称修改替换。
 

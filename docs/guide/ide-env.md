@@ -1,5 +1,5 @@
 ---
-title: IDE 环境配置
+title: IDE 配置
 order: 100
 toc: menu
 ---
@@ -13,36 +13,36 @@ toc: menu
 ### 启动 IDE
 
 首先，打开`goland`。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step1.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step1.png" width="400px" />
 
 ### 创建项目
 
 创建一个`helloworld`项目。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step3.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step3.png" width="400px" />
 
 指定项目创建的位置。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step2.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step2.png" width="400px" />
 
 创建`main.go`文件。鼠标`右键`选中`新建`，然后`Go 文件`。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step4.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step4.png" width="400px" />
 
 选择`空文件`。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step5.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step5.png" width="400px" />
 
 修改`package`名称为`main`。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step6.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step6.png" width="400px" />
 
 写一段简单的代码，输出一个`Hello World！`
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step7.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step7.png" width="400px" />
 
 点击`运行`
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step8.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step8.png" width="400px" />
 
 选择`go build main.go`
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step9.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step9.png" width="400px" />
 
 goland 会在底部运行窗口中，将运行结果打印。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step10.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/goland-step10.png" width="400px" />
 
 恭喜你，第一个`Go`语言的程序就成功 run 起来了！
 
@@ -51,25 +51,25 @@ goland 会在底部运行窗口中，将运行结果打印。
 ### 运行 VS Code
 
 先创建一个工作目录，然后打开目录；
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step1.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step1.png" width="400px" />
 
 新建`main.go`文件。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step2.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step2.png" width="400px" />
 
 把 hello wordl 代码写入文件中。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step3.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step3.png" width="400px" />
 
 选择`运行`，`终端`激活 vscode 的终端窗口。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step4.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step4.png" width="400px" />
 
 在终端里边键入`go build main.go`，执行成功会编译一个可运行二进制包，直接使用`./main`运行即可；如果是 windows 略有差异，windows 下编译的包需要使用`main.exe`执行。
-![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step5.png)
+<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/vscode-step5.png" width="400px" />
 
 成功！
 
-<Alert type="warning">
+:::warning
 从哪里获得帮助：
 
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-</Alert>
+:::
