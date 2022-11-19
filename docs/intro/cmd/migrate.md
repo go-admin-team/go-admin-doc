@@ -287,12 +287,12 @@ import (
 
 2. 执行迁移
 
-   <Alert type="warning">
-           <b>温馨提醒，请认真阅读</b><br />
-           数据库操作建议做好检查确认脚本，另外确认完成 <code>cmd/migrate/migration/version</code> 目录中只有新建的文件没有被执行过(已迁移过的文件，不会再次迁移)，因为执行迁移指令的过程中，系统会检查没有执行过的迁移脚本（sys_migration表中version字段里值和 <code>cmd/migrate/migration/version</code> 目录中的文件对比），将未执行的脚本全部执行；**迁移前做好数据备份**
-   </Alert>
+:::warning
+<b>温馨提醒，请认真阅读</b>
+数据库操作建议做好检查确认脚本，另外确认完成 <code>cmd/migrate/migration/version</code> 目录中只有新建的文件没有被执行过(已迁移过的文件，不会再次迁移)，因为执行迁移指令的过程中，系统会检查没有执行过的迁移脚本（sys_migration 表中 version 字段里值和 <code>cmd/migrate/migration/version</code> 目录中的文件对比），将未执行的脚本全部执行；**迁移前做好数据备份**
+:::
 
-3. 执行迁移
+1. 执行迁移
 
    ```shell
     # 方式一：不编译运行（推荐）
