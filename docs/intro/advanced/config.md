@@ -4,6 +4,7 @@ group:
   title: 高级
   order: 2
 title: 配置文件
+toc: content
 ---
 
 ## 创建不同环境的配置文件

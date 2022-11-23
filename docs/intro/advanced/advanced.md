@@ -6,6 +6,7 @@ group:
   title: 高级
   order: 2
 title: actions
+toc: content
 ---
 
 ## actions 模式

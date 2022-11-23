@@ -4,6 +4,7 @@ group:
   title: 高级
   order: 2
 title: dto
+toc: content
 ---
 
 首先介绍以下 dto 在 go-admin 中的作用。dto 是一个数据接收模块，每一个请求进来，携带的数据需要在 dto 中进行处理验证；

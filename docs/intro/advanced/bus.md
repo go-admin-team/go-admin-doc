@@ -4,6 +4,7 @@ group:
   title: 高级
   order: 2
 title: 常规模式
+toc: content
 ---
 
 # 常规模式

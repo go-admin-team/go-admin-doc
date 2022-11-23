@@ -1,10 +1,10 @@
 ---
-title: core
-order: 90
-toc: menu
 group:
   title: 高级使用
   order: 10
+title: core
+order: 90
+toc: content
 ---
 
 ## Runtime
