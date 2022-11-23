@@ -5,6 +5,7 @@ group:
   order: 0
 title: 第 1 步
 order: 0
+toc: content
 ---
 
 # 编写 go-admin 应用,第 1 步
