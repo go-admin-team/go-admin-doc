@@ -64,6 +64,7 @@ func (m *SysPostPageReq) GetNeedSearch() interface{} {
 | type                   | 描述          | query 示例            |
 | :--------------------- | :------------ | :-------------------- |
 | exact/iexact           | 等于          | status=1              |
+| glt    | 不等于           | postName<>1            |
 | contains/icontanins    | 包含          | name=n                |
 | gt/gte                 | 大于/大于等于 | age=18                |
 | lt/lte                 | 小于/小于等于 | age=18                |
