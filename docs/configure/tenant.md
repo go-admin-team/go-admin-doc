@@ -73,5 +73,24 @@ toc: menu
 这样设计的目的是为了方便开发者，开发者只需要关注业务逻辑，不需要关注数据库的切换，`go-admin` 会自动根据域名切换数据库。
 
 
+### 常见问题
+
+配置文件已经配置但是还是访问默认数据库；
+
+解决方案：参考一下配置：
+```conf
+location /api {
+  proxy_pass http://web:8080/api;
+  proxy_set_header Accept $http_host;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header HTTP_X_FORWARDED_FOR $remote_addr;
+}
+```
+
+
+
+
   
 

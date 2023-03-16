@@ -60,8 +60,8 @@ settings:
   database:
     # 数据库类型 mysql，sqlite3， postgres
     driver: mysql
-    # 数据库连接字符串 mysql 缺省信息 charset=utf8&parseTime=True&loc=Local&timeout=1000ms
-    source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
+    # 数据库连接字符串 mysql 缺省信息 charset=utf8&parseTime=True&loc=Local&timeout=5000ms
+    source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=5000ms
   gen:
     # 代码生成读取的数据库名称
     dbname: dbname
