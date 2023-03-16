@@ -6,6 +6,7 @@ export default defineConfig({
     rtl: true,
     mode: 'doc',
     autoAlias: true,
+    prefersColor: { default: 'auto' },
     logo:
       'https://raw.githubusercontent.com/wenjianzhang/image/master/img/go-admin.png',
     footer: `Open-source MIT Licensed | Copyright © 2020-present
