@@ -4,7 +4,7 @@ nav:
   order: 2
 group:
   title: 规范
-  order: 2
+  order: 5
 title: 数据库规范
 toc: content
 ---
