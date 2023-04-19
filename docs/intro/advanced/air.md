@@ -1,4 +1,13 @@
 ---
+group:
+  title: 高级使用
+  order: 10
+title: Air 热加载
+order: 400
+toc: content
+---
+## Air 热加载
+
 Air 是一个开发环境下的 Go Web 应用程序自动重新加载工具。当你对你的项目进行更改并保存时，它会自动重新构建和重新加载应用程序。Air 支持 Windows、macOS 和 Linux。
 
 以下是 Air 的配置及使用说明：
@@ -6,7 +15,10 @@ Air 是一个开发环境下的 Go Web 应用程序自动重新加载工具。�
 ### 安装 Air
 
 使用以下命令来安装 Air：
-`go get -u github.com/cosmtrek/air`
+
+```
+go get -u github.com/cosmtrek/air
+```
 
 ### 可能遇到的问题
 
@@ -40,7 +52,6 @@ env = []
 args = []
 ```
 
-
 ### 配置文件说明
 
 * `root`: 根目录，默认为当前目录
@@ -72,7 +83,3 @@ air -c .air.toml
 ✔ http server started on 127.0.0.1:8080
 
 现在，当你对应用程序的代码进行更改并保存时，Air 会自动重新构建和重新加载应用程序，你可以在浏览器中刷新页面以查看更改。
----
-
-## Air 热加载
-
