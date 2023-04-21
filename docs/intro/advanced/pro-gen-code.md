@@ -2,7 +2,7 @@
 group:
   title: 高级使用
   order: 10
-title: 代码工具使用
+title: 代码工具
 order: 500
 toc: content
 ---
