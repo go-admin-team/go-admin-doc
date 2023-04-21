@@ -1,6 +1,6 @@
 ---
 title: server
-order: 20
+order: 50
 toc: content
 nav:
   title: 指令

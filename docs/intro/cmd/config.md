@@ -3,7 +3,7 @@ nav:
   title: 指令
   order: 3
 title: config
-order: 20
+order: 30
 toc: content
 ---
 

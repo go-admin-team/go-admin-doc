@@ -3,7 +3,7 @@ nav:
   title: 指令
   order: 3
 title: migrate
-order: 10
+order: 40
 toc: content
 ---
 

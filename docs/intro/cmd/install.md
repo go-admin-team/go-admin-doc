@@ -3,23 +3,35 @@ nav:
   title: 指令
   order: 3
 title: install
-order: 50
+order: 10
 toc: content
 ---
 
 
-## 系统安装
+:::warning
+注意：本指令仅适用于`go-admin-pro`项目
+:::
 
-`go-admin` 减轻开发工作者的劳动，尽量给大家争取更多的摸鱼时间，更多的解放大家的双手，将项目初始化的动作一气呵成做成了一个可视化安装引导系统，下载项目以后还原包，然后直接使用系统安装引导程序，系统将自动进行安装以及配置。
+<br>
+
+## 项目初始化
+
+`go-admin-pro` 为了更好的用户体验减少用户的配置，提供了`install`指令，用于初始化项目，生成配置文件，生成数据库表。
 
 
 ```sh
 $ go run main.go install
 ```
 
-此时时许静静的等待一下，系统会自动打开安装界面。
+这样可以启动项目的可视化引导安装页面，按照提示进行操作即可。
 
-### 开始
+页面示例：
+
+![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/install01.png)
+![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/install02.png)
+![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/install03.png)
+![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/install04.png)
+![](https://raw.githubusercontent.com/wenjianzhang/image/master/img/install05.png)
 
 
-![](https://github.com/wenjianzhang/image/blob/master/img/install01.png?raw=true)
+到这里就完成配置了。
