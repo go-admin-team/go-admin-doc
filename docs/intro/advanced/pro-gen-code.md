@@ -57,24 +57,23 @@ toc: content
 
 **重点说下下拉框：如果是通过字典的方式维护下拉的内容，希望页面动态显示字典内容的还需要在配置模块设置下如下图**
 
+![下拉设置](https://raw.githubusercontent.com/wenjianzhang/image/master/img/pro-gen-code-dropdownlist.png)
+
+
+
+​		系统会根据这个key自动在页面调用字典接口,下图是字典设置
+
+![字典设置](https://raw.githubusercontent.com/wenjianzhang/image/master/img/pro-gen-code-dictconfig.png)
+
 ##### 配置
 
-![配置](https://raw.githubusercontent.com/wenjianzhang/image/master/img/pro-gen-code-config.png)
 
-1. 需要在配置中设置对应的字典key,  设置你在字典里面添加的字段的key, 系统会根据这个key自动在页面调用字典接口,下图是字典设置
+1. 需要做表关联显示关联表的字段信息  假设业务场景：我有2张表，一张是商品表products 另外一张表是skus表，我想在skus表上显示商品表里的商品名称  转化成 sql 就是： select  a.pro_id, b.name from skus as a join products as b on a.pro_id = b.code          其中 a.pro_id  跟 b.code 是关联条件 我们想显示 products.name在skus表  就如下图设置
 
-![image-20230420174518046](https://raw.githubusercontent.com/wenjianzhang/image/master/img/pro-gen-code-config.png)
+![配置](https://raw.githubusercontent.com/wenjianzhang/image/master/img/pro-gen-code-config-1.png)
 
 
-2. 需要做表关联显示关联表的字段信息 比如：select a.name,b.code form a join b on a.id = b.key   在id 里面维护如下信息
-
-  	外链表：b；
-  	
-  	记录字段：key;
-  	
-  	显示字段：b.code;
-
-3. 如果是跨app的 需要注意导入的 import { b } from "../b/service"; 修改b跟a的相对路径
+2. 如果是跨app的 需要注意导入的 import { b } from "../b/service"; 修改b跟a的相对路径
 
 
 
@@ -100,8 +99,33 @@ toc: content
 
 点击对应表的操作栏目中的   ***...*** 选择代理生成即可； 
 
-代理生成 ，代码预览， Access预览， Routes预览，多语言预览  PRO 版本都是要用到的，点击看下分别的作用；
+##### 代理生成(重点)
 
+​	 	我们启动agent之后，配置好了对应的表设计之后点击代理生成即可直接把代码生成到项目当中；
+
+##### 代码下载
+
+​	 	如果需要下载文件可以考虑，现在都是在线自动生成基本使用不上了；
+
+##### 代码预览(重点)
+
+​	 	我们生成代码之前可以预览看看我们代码生成的结果，如果发现错误可以及时调整，后期如果增加字段但是又不想重新生成代码避免业务代码被覆盖，可以通过代码预览 拿出程序员必杀技复制粘贴 把修改内容贴到对应代码文件也是比较方便的；
+
+##### Sql 预览
+
+  		可以使用预览出现的sql，可以直接复制sql到数据库执行；
+
+##### Access预览(重点)
+
+ 		 针对前端项目权限使用的，在项目后期权限管理是很有必要的建议比点，会往src/access.ts追加, 找到文件拿出必杀技即可
+
+##### Routes预览(重点)
+
+​		  前端antd项目路由跟系统里面的菜单是2个不同的概念，这也是必须要设置的往configs/routes.ts追加，大家要根据实际自己的业务场景可能要做调整，因为很多情况下我们的多个表在少数的应用当中，routes 里面需要做下同应用的routes合并；
+
+##### 多语言预览(重点)
+
+​		  项目目前是支持中英文的，需要往src/locales/zh-CN/menu.ts 和 src/locales/zh-CN/pages.ts 追加内容，如果发现有自动生成不能识别的 开启浏览器调试模式在console 里面看下错误提醒，自行修改下即可；
 
 
 #### 自定义表单（开发中）
