@@ -9,7 +9,7 @@ toc: content
 
 :::
 
-[老司机绕行](/guide/ksks.html)
+[老司机绕行](/guide/ksks)
 
 ## node.js & npm 安装
 
