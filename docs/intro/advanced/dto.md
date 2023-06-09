@@ -70,7 +70,7 @@ func (m *SysPostPageReq) GetNeedSearch() interface{} {
 | lt/lte                 | 小于/小于等于 | age=18                |
 | startswith/istartswith | 以…起始       | content=hell          |
 | endswith/iendswith     | 以…结束       | content=world         |
-| in                     | in 查询       | status[]=0&status[]=1 |
+| in                     | in 查询       | status=0&status=1 |
 | isnull                 | isnull 查询   | startTime=1           |
 | order                  | 排序          | sort=asc/sort=desc    |
 | join                   | 链接          | -                     |
