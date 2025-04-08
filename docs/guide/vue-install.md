@@ -1,5 +1,5 @@
 ---
-title: Vue 环境
+title: Node 环境
 order: 80
 toc: content
 ---
@@ -9,7 +9,7 @@ toc: content
 
 :::
 
-[老司机绕行](/guide/ksks.html)
+[老司机绕行](/guide/ksks)
 
 ## node.js & npm 安装
 
