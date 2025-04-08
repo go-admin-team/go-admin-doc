@@ -35,5 +35,5 @@ features:
 请访问 [GitHub](https://github.com/go-admin-team/go-admin) 或加入讨论群：
 
 <div>
-  <img data-type="dingtalk"  src="https://doc-image.zhangwj.com/img/wx.png" width="300" />
+  <img data-type="dingtalk"  src="http://doc-image.zhangwj.com/img/wx.png" width="300" />
 </div>

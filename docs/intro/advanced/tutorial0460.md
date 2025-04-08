@@ -7,27 +7,25 @@ order: 6
 toc: content
 ---
 
-
-
 ## 操作内容管理
 
 这个时候我们的内容管理已经添加完成了，里边已经具备了增删改查功能。
 
 > 列表
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/article1v1.0.0.png" width="700xp" />
+<img src="http://doc-image.zhangwj.com/img/article1v1.0.0.png" width="700xp" />
 
 > 新增
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/article2v1.0.0.png" width="700xp" />
+<img src="http://doc-image.zhangwj.com/img/article2v1.0.0.png" width="700xp" />
 
 > 修改
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/article3v1.0.0.png" width="700xp" />
+<img src="http://doc-image.zhangwj.com/img/article3v1.0.0.png" width="700xp" />
 
 > 删除
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/article4v1.0.0.png" width="700xp" />
+<img src="http://doc-image.zhangwj.com/img/article4v1.0.0.png" width="700xp" />
 
 ## 结束语
 

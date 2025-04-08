@@ -36,7 +36,7 @@ cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
 
 下图是输出内容：
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/runv1.1.0noarg.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/runv1.1.0noarg.png" width="400px" />
 
 输出内容告诉我们：Error: requires at least one arg ，至少有一个参数；
 
@@ -127,11 +127,11 @@ $ ./go-admin
 
 > 问题详情
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/noauthapi.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/noauthapi.png" width="400px" />
 
 > 解决方案
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/noauthapi_log.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/noauthapi_log.png" width="400px" />
 
 可以根据这个日志，酌情进行配置
 
@@ -176,7 +176,7 @@ https://sourceforge.net/projects/mingw-w64/files/mingw-w64/
 
 :::
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/minigw.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/minigw.png" width="400px" />
 
 直接解压以后 , 把 bin 目录配置到 系统环境变量中的 PATH 变量中即可
 

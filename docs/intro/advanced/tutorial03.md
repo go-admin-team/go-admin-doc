@@ -18,7 +18,7 @@ go run main.go server -c=config/settings.dev.yml
 
 输出内容为下图，恭喜你！你已经成功了！
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/serversuccessv1.1.0.png" alt="服务器启动成功" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/serversuccessv1.1.0.png" alt="服务器启动成功" width="400px" />
 
 现在，服务器正在运行，浏览器访问 <http://127.0.0.1:8000/>。你将会看到 `go-admin` 文档，服务器已经运行了。
 
@@ -44,7 +44,6 @@ application:
 ```
 
 修改之后需要重启服务。
-
 
 :::warning
 从哪里获得帮助：

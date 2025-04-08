@@ -7,8 +7,7 @@ export default defineConfig({
     mode: 'doc',
     autoAlias: true,
     prefersColor: { default: 'auto' },
-    logo:
-      'https://raw.githubusercontent.com/wenjianzhang/image/master/img/go-admin.png',
+    logo: 'http://doc-image.zhangwj.com/img/go-admin.png',
     footer: `Open-source MIT Licensed | Copyright © 2020-present
     <br />
     Powered by go-admin-team`,
@@ -40,6 +39,5 @@ export default defineConfig({
     scripts: ['https://hm.baidu.com/hm.js?f98a2f382011d17906899de9f676b294'],
     // more config: https://d.umijs.org/config
     ssr: process.env.NODE_ENV === 'development' ? false : {},
-  }
+  },
 });
-

@@ -38,11 +38,11 @@ go: to add module requirements and sums:
         go mod tidy
 ```
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/gomod-step1.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/gomod-step1.png" width="400px" />
 
 go.mod 文件，内容如下：
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/gomod-step2.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/gomod-step2.png" width="400px" />
 
 其中，`HelloWorld`为当前项目的名称，可以随意设置。
 

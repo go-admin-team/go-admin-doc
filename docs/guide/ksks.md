@@ -34,7 +34,7 @@ $ go build
 1. 首先找到配置文件，`config/settings.yml`， 复制一份，并修改文件名为`config/settings.dev.yml` 即可。
 1. 或者直接使用默认配置文件，直接修改`config/settings.yml`即可。
 
-<img class="no-margin" src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/configv1.1.0.png"  height="400px" style="margin:0 auto;">
+<img class="no-margin" src="http://doc-image.zhangwj.com/img/configv1.1.0.png"  height="400px" style="margin:0 auto;">
 
 ```yml
 database:
@@ -129,7 +129,7 @@ $ go run main.go  server -c config\settings.dev.yml
 
 输出内容为下图，恭喜你！你已经成功了！
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/serversuccessv1.1.0.png"  height="400px" style="margin:0 auto;">
+<img src="http://doc-image.zhangwj.com/img/serversuccessv1.1.0.png"  height="400px" style="margin:0 auto;">
 
 go，下一步启动前端项目！
 

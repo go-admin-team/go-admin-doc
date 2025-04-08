@@ -17,7 +17,7 @@ toc: content
 
 官方下载地址 [https://golang.org/dl/](https://golang.org/dl/) ，可以选择适合自己操作系统的版本，默认下载最新版本：
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/godown.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/godown.png" width="400px" />
 
 ### 2. 安装
 
@@ -28,17 +28,17 @@ toc: content
 
 :::
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/go-install.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/go-install.png" width="400px" />
 
 双击下载好的安装包，按照以下流程进行操作；
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/go-install-step1.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/go-install-step1.png" width="400px" />
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/go-install-step2.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/go-install-step2.png" width="400px" />
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/go-install-step3.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/go-install-step3.png" width="400px" />
 
-<img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/go-install-step4.png" width="400px" />
+<img src="http://doc-image.zhangwj.com/img/go-install-step4.png" width="400px" />
 
 到这一步就说明`Golang`已经安装好了！
 
@@ -48,10 +48,10 @@ toc: content
 
 ```sh
 $ go version
-go version go1.16.4 darwin/amd64
+go version go1.24.2 darwin/amd64
 ```
 
-看到以上信息说明当前工作环境已经安装成功了`go1.16.4 darwin/amd64`，当前笔者因为是 MacOS 所以提示的是`darwin`。这个信息会根据操作系统当前安装的版本提示。`windows`和`linux` 会有所不同；
+看到以上信息说明当前工作环境已经安装成功了`go1.24.2 darwin/amd64`，当前笔者因为是 MacOS 所以提示的是`darwin`。这个信息会根据操作系统当前安装的版本提示。`windows`和`linux` 会有所不同；
 
 :::warning
 从哪里获得帮助：

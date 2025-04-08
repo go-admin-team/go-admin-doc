@@ -113,8 +113,6 @@ nav:
 <span style="margin: 0 5px;" ><a href="https://github.com/LineHank
 " ><img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/24223668?v=4&w=60&fit=cover&mask=circle&maxage=7d" /></a></span>
 
-
-
 ## 建议反馈
 
 本文档项目地址 [go-admin-doc](https://doc.go-admin.dev) 基于 [dumi](https://d.umijs.org/)开发。
@@ -131,13 +129,13 @@ nav:
       <img src="http://doc-image.zhangwj.com/img/wx.png" width="180px">
     </td>
     <td style="width: 185px;">
-      <img src="https://doc-image.zhangwj.com/img/qrcode_for_gh_b798dc7db30c_258.jpg" width="180px">
+      <img src="http://doc-image.zhangwj.com/img/qrcode_for_gh_b798dc7db30c_258.jpg" width="180px">
     </td>
     <td style="width: 185px;">
-      <img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/qq.png" width="180px">
+      <img src="http://doc-image.zhangwj.com/img/qq.png" width="180px">
     </td>
     <td style="width: 185px;">
-      <img src="https://raw.githubusercontent.com/wenjianzhang/image/master/img/qq2.png" width="180px">
+      <img src="http://doc-image.zhangwj.com/img/qq2.png" width="180px">
     </td>
     <td>
     <a href="https://space.bilibili.com/565616721">wenjianzhang</a>
