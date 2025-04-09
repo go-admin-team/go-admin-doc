@@ -25,10 +25,10 @@ $ go run main.go install
 
 页面示例：
 
-![](http://doc-image.zhangwj.com/img/install01.png)
-![](http://doc-image.zhangwj.com/img/install02.png)
-![](http://doc-image.zhangwj.com/img/install03.png)
-![](http://doc-image.zhangwj.com/img/install04.png)
-![](http://doc-image.zhangwj.com/img/install05.png)
+![](https://doc-image.zhangwj.com/img/install01.png)
+![](https://doc-image.zhangwj.com/img/install02.png)
+![](https://doc-image.zhangwj.com/img/install03.png)
+![](https://doc-image.zhangwj.com/img/install04.png)
+![](https://doc-image.zhangwj.com/img/install05.png)
 
 到这里就完成配置了。
