@@ -7,7 +7,7 @@ export default defineConfig({
     mode: 'doc',
     autoAlias: true,
     prefersColor: { default: 'auto' },
-    logo: 'http://doc-image.zhangwj.com/img/go-admin.png',
+    logo: 'https://doc-image.zhangwj.com/img/go-admin.png',
     footer: `Open-source MIT Licensed | Copyright © 2020-present
     <br />
     Powered by go-admin-team`,
