@@ -15,30 +15,30 @@ toc: content
 
 右键`我的电脑`，选择`属性`;
 
-<img src="http://doc-image.zhangwj.com/img/wodediannaoshuxing.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/wodediannaoshuxing.png" width="400px" />
 
 点击`高级系统设置`；
 
-<img src="http://doc-image.zhangwj.com/img/xitongshuxing.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/xitongshuxing.png" width="400px" />
 
 点击`环境变量`；
 
-<img src="http://doc-image.zhangwj.com/img/huanjingbianliang1.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/huanjingbianliang1.png" width="400px" />
 
 点击`新建`；
 填写 变量名 `GO111MODULE`, 变量值 `on`；
 
-<img src="http://doc-image.zhangwj.com/img/huanjingbianliang2.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/huanjingbianliang2.png" width="400px" />
 
 点击`确定`;
 点击`新建`；
 填写 变量名 `GOPROXY`, 变量值 `https://goproxy.cn`；
 
-<img src="http://doc-image.zhangwj.com/img/huanjingbianliang3.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/huanjingbianliang3.png" width="400px" />
 
 点击`确定`;
 
-<img src="http://doc-image.zhangwj.com/img/huanjingbianliang4.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/huanjingbianliang4.png" width="400px" />
 
 点击`确定`;
 
