@@ -3,7 +3,7 @@ import { defineConfig } from 'dumi';
 export default defineConfig({
   title: 'go-admin',
   mode: 'site',
-  logo: 'http://doc-image.zhangwj.com/img/go-admin.png',
+  logo: 'https://doc-image.zhangwj.com/img/go-admin.png',
   navs: {
     'en-US': [
       null,
