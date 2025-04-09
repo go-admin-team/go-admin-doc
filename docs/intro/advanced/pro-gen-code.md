@@ -13,14 +13,14 @@ toc: content
 
 1. 建议启动脚本跟项目在同一个目录,脚本文件需要联系博主获取；
 
-![agent](http://doc-image.zhangwj.com/img/pro-gen-code-agent.png)
+![agent](https://doc-image.zhangwj.com/img/pro-gen-code-agent.png)
 
 2.  根据电脑环境选择其中一个即可；
 3.  chmod +x go-admin-agent-darwin-amd64
 4.  ./go-admin-agent-darwin-amd64 -p 9999 -a xxx-xxx-xxxx-xxx 授权码在 https://vip.go-admin.pro/user/login 代码生成平台个人中心查询如下图
-5.  ![个人中心](http://doc-image.zhangwj.com/img/pro-gen-code-usercenter.png)
+5.  ![个人中心](https://doc-image.zhangwj.com/img/pro-gen-code-usercenter.png)
 
-6.  ![agent_success](http://doc-image.zhangwj.com/img/pro-gen-code-agent_success.png)
+6.  ![agent_success](https://doc-image.zhangwj.com/img/pro-gen-code-agent_success.png)
 
 7.  恭喜你启动成功;
 
@@ -40,25 +40,25 @@ toc: content
 
 **重点说下默认定义的字段：created_at, updated_at, deleted_at 这里选择string不需要刻意选择time.time;**
 
-![数据库属性](http://doc-image.zhangwj.com/img/pro-gen-code-dbconfig.png)
+![数据库属性](https://doc-image.zhangwj.com/img/pro-gen-code-dbconfig.png)
 
 ##### 页面属性
 
-![页面属性](http://doc-image.zhangwj.com/img/pro-gen-code-pageconfig.png)
+![页面属性](https://doc-image.zhangwj.com/img/pro-gen-code-pageconfig.png)
 
 **重点说下下拉框：如果是通过字典的方式维护下拉的内容，希望页面动态显示字典内容的还需要在配置模块设置下如下图**
 
-![下拉设置](http://doc-image.zhangwj.com/img/pro-gen-code-dropdownlist.png)
+![下拉设置](https://doc-image.zhangwj.com/img/pro-gen-code-dropdownlist.png)
 
 ​ 系统会根据这个key自动在页面调用字典接口,下图是字典设置
 
-![字典设置](http://doc-image.zhangwj.com/img/pro-gen-code-dictconfig.png)
+![字典设置](https://doc-image.zhangwj.com/img/pro-gen-code-dictconfig.png)
 
 ##### 配置
 
 1. 需要做表关联显示关联表的字段信息 假设业务场景：我有2张表，一张是商品表products 另外一张表是skus表，我想在skus表上显示商品表里的商品名称 转化成 sql 就是： select a.pro_id, b.name from skus as a join products as b on a.pro_id = b.code 其中 a.pro_id 跟 b.code 是关联条件 我们想显示 products.name在skus表 就如下图设置
 
-![配置](http://doc-image.zhangwj.com/img/pro-gen-code-config-1.png)
+![配置](https://doc-image.zhangwj.com/img/pro-gen-code-config-1.png)
 
 2. 如果是跨app的 需要注意导入的 import { b } from "../b/service"; 修改b跟a的相对路径
 
@@ -68,7 +68,7 @@ toc: content
 
 ##### 生成信息
 
-![生成信息](http://doc-image.zhangwj.com/img/pro-gen-code-info.png)
+![生成信息](https://doc-image.zhangwj.com/img/pro-gen-code-info.png)
 
 1.  代理工具跟项目的相对路径，因为上文是同目录 ./ 即可；
 
@@ -76,7 +76,7 @@ toc: content
 
 #### 生成代码
 
-![工具](http://doc-image.zhangwj.com/img/pro-gen-code-tools.png)
+![工具](https://doc-image.zhangwj.com/img/pro-gen-code-tools.png)
 
 点击对应表的操作栏目中的 **_..._** 选择代理生成即可；
 
@@ -120,4 +120,4 @@ toc: content
 
 4.支持预览看效果
 
-![表单](http://doc-image.zhangwj.com/img/pro-gen-code-form.png)
+![表单](https://doc-image.zhangwj.com/img/pro-gen-code-form.png)
