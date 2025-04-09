@@ -17,7 +17,7 @@ toc: content
 
 官方下载地址 [https://golang.org/dl/](https://golang.org/dl/) ，可以选择适合自己操作系统的版本，默认下载最新版本：
 
-<img src="http://doc-image.zhangwj.com/img/godown.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/godown.png" width="400px" />
 
 ### 2. 安装
 
@@ -28,17 +28,17 @@ toc: content
 
 :::
 
-<img src="http://doc-image.zhangwj.com/img/go-install.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/go-install.png" width="400px" />
 
 双击下载好的安装包，按照以下流程进行操作；
 
-<img src="http://doc-image.zhangwj.com/img/go-install-step1.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/go-install-step1.png" width="400px" />
 
-<img src="http://doc-image.zhangwj.com/img/go-install-step2.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/go-install-step2.png" width="400px" />
 
-<img src="http://doc-image.zhangwj.com/img/go-install-step3.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/go-install-step3.png" width="400px" />
 
-<img src="http://doc-image.zhangwj.com/img/go-install-step4.png" width="400px" />
+<img src="https://doc-image.zhangwj.com/img/go-install-step4.png" width="400px" />
 
 到这一步就说明`Golang`已经安装好了！
 
