@@ -17,21 +17,21 @@ toc: content
 
 官方下载地址 [https://nodejs.org/zh-cn/download/](https://nodejs.org/zh-cn/download/) ，可以选择适合自己操作系统的版本，建议选择长期支持版下载对应的版本：
 
-<img src="http://doc-image.zhangwj.com/img/nodejs-down.png" alt="nodejs-down"  width="400px"/>
+<img src="https://doc-image.zhangwj.com/img/nodejs-down.png" alt="nodejs-down"  width="400px"/>
 
 ### 安装
 
 双击下载好的安装包，按照以下流程进行操作；
 
-<img src="http://doc-image.zhangwj.com/img/nodejs-step1.png" alt="nodejs-step1"  width="400px"/>
+<img src="https://doc-image.zhangwj.com/img/nodejs-step1.png" alt="nodejs-step1"  width="400px"/>
 
-<img src="http://doc-image.zhangwj.com/img/nodejs-step2.png" alt="nodejs-step2"  width="400px"/>
+<img src="https://doc-image.zhangwj.com/img/nodejs-step2.png" alt="nodejs-step2"  width="400px"/>
 
-<img src="http://doc-image.zhangwj.com/img/nodejs-step3.png" alt="nodejs-step3"  width="400px"/>
+<img src="https://doc-image.zhangwj.com/img/nodejs-step3.png" alt="nodejs-step3"  width="400px"/>
 
-<img src="http://doc-image.zhangwj.com/img/nodejs-step4.png" alt="nodejs-step4"  width="400px"/>
+<img src="https://doc-image.zhangwj.com/img/nodejs-step4.png" alt="nodejs-step4"  width="400px"/>
 
-<img src="http://doc-image.zhangwj.com/img/nodejs-step5.png" alt="nodejs-step5"  width="400px"/>
+<img src="https://doc-image.zhangwj.com/img/nodejs-step5.png" alt="nodejs-step5"  width="400px"/>
 
 上图可以看出`Node.js`的`v14.17.0`版本，已经安装到了`/usr/local/bin/node`下,`npm`的`v6.14.13`版本，已经安装到了`/usr/local/bin/npm`下,
 
