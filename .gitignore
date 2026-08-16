@@ -2,3 +2,7 @@ node_modules
 .dumi/tmp
 .dumi/tmp-production
 .DS_Store
+
+# 构建产物。server/ 为开启 ssr 后 dumi 产出的预渲染包
+dist
+server
