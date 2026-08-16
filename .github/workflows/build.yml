@@ -4,46 +4,65 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      # 组织策略要求所有 action 锁定到完整 commit SHA，浮动版本号会在
+      # Set up job 阶段直接失败
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-    - name: Install npm dependencies
-      run: npm install
-    - name: Run build
-      run: npm run build
-    - name: Get Path
-      run: pwd
-    - name: Zip
-      run: zip -q -r dist.zip ./dist
-    - name: Ls
-      run: ls
-    - name: 'Copy'
-      uses: appleboy/scp-action@v0.1.4
-      env:
-        HOST: ${{ secrets.REMOTE_HOST }}
-        USERNAME: ${{ secrets.REMOTE_USER }}
-        KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        PORT: ${{ secrets.REMOTE_PORT }}
-        SOURCE: ./dist
-        TARGET: /www/temp/www
-    - name: mv
-      uses: appleboy/ssh-action@master
-      with:
+      # 必须在 setup-node 之前，否则 cache: 'pnpm' 找不到 pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+
+      - name: Use Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.x
+          cache: 'pnpm'
+
+      # 仓库中是 pnpm-lock.yaml（lockfileVersion 9），此前用 npm install
+      # 会忽略该锁文件
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      # 产物完整性校验。部署脚本会先清空站点根目录再拷贝，若此处产物为空或
+      # 缺失入口文件，线上会被清成空站
+      - name: Verify build output
+        run: |
+          test -f dist/index.html || { echo "dist/index.html 缺失"; exit 1; }
+          test -f dist/sitemap.xml || echo "::warning::未生成 sitemap.xml"
+          echo "index.html 大小：$(wc -c < dist/index.html) 字节"
+
+      # 以下两步仅在 master 收到 push 时执行。此前 on: [push] 不限分支，
+      # 推送任意分支都会覆盖生产站点
+      - name: Copy to server
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: appleboy/scp-action@ff85246acaad7bdce478db94a363cd2bf7c90345 # v1.0.0
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.REMOTE_PORT }}
+          source: ./dist
+          target: /www/temp/www
+
+      - name: Publish
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
+        with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
+            set -e
+            # 先确认上传内容完整，再清空站点目录 —— 否则一次残缺的上传会把
+            # 线上清成空站
+            test -f /www/temp/www/dist/index.html
             sudo rm -rf /www/www/*
             sudo cp -r -f /www/temp/www/dist/* /www/www
             sudo rm -rf /www/temp/www/*
