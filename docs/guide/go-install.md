@@ -48,10 +48,15 @@ toc: content
 
 ```sh
 $ go version
-go version go1.24.2 darwin/amd64
+go version go1.26.5 darwin/arm64
 ```
 
-看到以上信息说明当前工作环境已经安装成功了`go1.24.2 darwin/amd64`，当前笔者因为是 MacOS 所以提示的是`darwin`。这个信息会根据操作系统当前安装的版本提示。`windows`和`linux` 会有所不同；
+看到以上信息说明当前工作环境已经安装成功了`go1.26.5 darwin/arm64`，当前笔者因为是 MacOS 所以提示的是`darwin`。这个信息会根据操作系统当前安装的版本提示。`windows`和`linux` 会有所不同；
+
+:::warning
+**go-admin 要求 Go 1.26 及以上**，以仓库 `go.mod` 中的 `go` 指令为准。
+版本过低会在 `go build` 阶段直接报错。
+:::
 
 :::warning
 从哪里获得帮助：
