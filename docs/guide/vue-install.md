@@ -17,6 +17,11 @@ toc: content
 
 官方下载地址 [https://nodejs.org/zh-cn/download/](https://nodejs.org/zh-cn/download/) ，可以选择适合自己操作系统的版本，建议选择长期支持版下载对应的版本：
 
+:::warning
+**go-admin-ui 要求 Node 22 及以上**（见 `package.json` 的 `engines` 字段）。
+Node 14 / 16 / 18 / 20 均已结束维护，且构建工具 Vite 8 在这些版本上无法运行。
+:::
+
 <img src="https://doc-image.zhangwj.com/img/nodejs-down.png" alt="nodejs-down"  width="400px"/>
 
 ### 安装
@@ -43,19 +48,32 @@ toc: content
 
 ```sh
 $  node -v
-v14.17.0
+v22.14.0
 ```
 
-看到以上信息说明当前 node.js 工作环境已经安装成功了`v14.17.0`；
+看到版本号不低于 `v22` 即说明当前 node.js 工作环境可用。
 
-接下来，检查`npm`版本信息，
+## pnpm 安装
+
+go-admin-ui 使用 pnpm 管理依赖，仓库中提交的是 `pnpm-lock.yaml`。
+用 npm 或 yarn 安装会忽略该锁文件，装到的依赖版本可能与 CI 不一致。
 
 ```sh
-$  npm -v
-6.14.13
+# 方式一：通过 npm 安装
+$ npm install -g pnpm
+
+# 方式二：使用 Node 自带的 corepack（无需额外下载）
+$ corepack enable
 ```
 
-看到以上信息说明当前 npm 已经安装成功了`6.14.13`；
+验证：
+
+```sh
+$  pnpm -v
+9.15.1
+```
+
+版本不低于 `9` 即可。
 
 :::warning
 从哪里获得帮助：
