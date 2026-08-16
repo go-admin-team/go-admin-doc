@@ -32,7 +32,7 @@ export default defineConfig({
   ],
 
   analytics: {
-    baidu: 'f98a2f382011d17906899de9f676b294',
+    ga_v2: 'G-CGFXG08VBT',
   },
 
   hash: true,
