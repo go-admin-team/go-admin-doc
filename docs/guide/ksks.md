@@ -188,7 +188,7 @@ Resolving deltas: 100% (127/127), done.
 ```bash
 $ cd go-admin-ui/
 
-$ npm install  # npm install --registry=https://registry.npm.taobao.org   # 国内请使用
+$ npm install  # npm install --registry=https://registry.npmmirror.com   # 国内请使用
 
 # 或者使用
 $ cnpm install

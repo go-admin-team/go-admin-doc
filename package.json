@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "go-admin-doc",
   "license": "MIT",
+  "packageManager": "pnpm@9.15.1",
   "scripts": {
     "build": "dumi build",
     "dev": "dumi dev",
