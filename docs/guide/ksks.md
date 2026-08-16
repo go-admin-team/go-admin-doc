@@ -9,7 +9,7 @@ toc: content
 ## 环境准备<Badge>go-admin</Badge>
 
 :::info
-请注意 Go version >= 1.18，并且 GO111MODULE=on (Go Module 模式)；
+请注意 Go version >= 1.26（以仓库 `go.mod` 中的声明为准），并且 GO111MODULE=on (Go Module 模式)；
 :::
 
 [如需配置 go 环境变量请进入](/guide/env)
@@ -43,6 +43,22 @@ database:
   # 数据库连接字符串 mysql 缺省信息 charset=utf8&parseTime=True&loc=Local&timeout=1000ms
   source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
 ```
+
+:::warning
+**使用 sqlite3 时必须带构建标签**，否则启动即 panic：
+
+```bash
+$ go build -tags sqlite3
+# 或直接运行
+$ go run -tags sqlite3 . server -c config/settings.dev.yml
+```
+
+原因是 `common/database/open.go` 带有 `//go:build !sqlite3`，不加标签时编译进
+的是不含 sqlite3 驱动的版本，运行时在空函数上崩溃。**报错信息不会提到构建
+标签**，容易误判为环境问题。`Makefile` 中的 `build-sqlite` 目标即为此准备。
+
+mysql 与 postgres 无此问题。
+:::
 
 :::warning
 Mysql 版本 8.0+ ，在此版本下最优；
@@ -140,17 +156,26 @@ go，下一步启动前端项目！
 
 ## 验证环境<Badge>go-admin-ui</Badge>
 
-vue 项目支持的 node 和 npm 版本信息
+前端项目要求 Node 22 及以上、pnpm 9 及以上（以 `package.json` 中的 `engines`
+字段为准）：
 
 ```bash
 $ node -v
-v14.16.0
+v22.14.0
 
-$ npm -v
-6.14.11
+$ pnpm -v
+9.15.1
 ```
 
-[如需安装 node 或者 npm 进入](/guide/vue-install)
+:::warning
+项目使用 **pnpm** 管理依赖，仓库中提交的是 `pnpm-lock.yaml`。
+用 npm 或 yarn 安装会忽略该锁文件，可能装到与 CI 不一致的依赖版本。
+
+若尚未安装 pnpm：`npm install -g pnpm`，或使用 Node 自带的
+`corepack enable`。
+:::
+
+[如需安装 node 进入](/guide/vue-install)
 
 然后，退出`go-admin`项目目录，我们建议`go-admin`项目文件根目录和`go-admin-ui`项目文件根目录，放在同一级目录下。
 
@@ -188,14 +213,10 @@ Resolving deltas: 100% (127/127), done.
 ```bash
 $ cd go-admin-ui/
 
-$ npm install  # npm install --registry=https://registry.npmmirror.com   # 国内请使用
+$ pnpm install
 
-# 或者使用
-$ cnpm install
-
-# 上述两种安装报错或者node16+使用yarn进行安装
-$ yarn
-
+# 国内网络较慢时可指定镜像源
+$ pnpm install --registry=https://registry.npmmirror.com
 ```
 
 :::info
@@ -206,34 +227,33 @@ $ yarn
 看到类似下面输出内容说明已经安装好了
 
 ```bash
-Binary found at /Users/zhangwenjian/Code/go-test/go-admin-ui/node_modules/node-sass/vendor/darwin-x64-64/binding.node
-Testing binary
-Binary is fine
-added 2033 packages from 1953 contributors in 40.229s
+Packages: +1653
+Progress: resolved 1653, reused 1653, downloaded 0, added 1653, done
+
+Done in 21.4s
 ```
 
 ## view 启动<Badge>go-admin-ui</Badge>
 
-启动项目，使用`npm run dev`命令就好了。
+启动项目，使用`pnpm dev`命令就好了。
 
 ```bash
 # 启动页面
-$ npm run dev
+$ pnpm dev
 ```
 
 输出内容：
 
 ```bash
- DONE  Compiled successfully in 22188ms                                                                                                         12:47:40 AM
+  VITE v8.2.1  ready in 722 ms
 
-
-  App running at:
-  - Local:   http://localhost:9527/
-  - Network: http://192.168.3.12:9527/
-
-  Note that the development build is not optimized.
-  To create a production build, run npm run build.
+  ➜  Local:   http://localhost:9527/
+  ➜  Network: use --host to expose
 ```
+
+:::info
+需要局域网内其他设备访问时，执行 `pnpm dev --host`。
+:::
 
 :::info
 此时项目已经启动了，但是有一点请注意：检查 go-admin 是否也启动了。否则页面会提示错误的哦。
@@ -242,16 +262,14 @@ $ npm run dev
 
 ## 构建及部署
 
-构建开始，执行 `npm run build:prod`
+构建开始，执行 `pnpm build:prod`
 
 ```bash
 # 编译项目
-$ npm run build:prod
+$ pnpm build:prod
 
-  Images and other types of assets omitted.
-
- DONE  Build complete. The dist directory is ready to be deployed.
- INFO  Check out deployment instructions at https://cli.vuejs.org/guide/deployment.html
+vite v8.2.1 building for production...
+✓ built in 18.42s
 ```
 
 构建产物默认生成到 ./dist 下，然后通过 tree 命令查看，(windows 用户可忽略此步）
