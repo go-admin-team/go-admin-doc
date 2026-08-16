@@ -111,7 +111,7 @@ $ ./go-admin
     source: user:password@tcp(127.0.0.1:3306)/dbname?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
 ```
 
-## 使用 element-ui 的 el-tree 组件 setCheckedKeys
+## 使用 el-tree 组件 setCheckedKeys 报错
 
 > 问题详情
 
@@ -119,9 +119,24 @@ $ ./go-admin
 "TypeError: Cannot read property 'setCheckedKeys' of undefined"
 ```
 
+> 原因
+
+树的数据是异步取回的，赋值后组件尚未完成渲染，此时 `$refs` 上还拿不到实例。
+
 > 解决方案
 
-可参考项目中具体代码
+在 `$nextTick` 中调用，等 DOM 更新完成后再操作：
+
+```js
+roleMenuTreeselect(roleId).then(response => {
+  this.menuOptions = response.data.menus
+  this.$nextTick(() => {
+    this.$refs.menuTree.setCheckedKeys(checkedKeys)
+  })
+})
+```
+
+完整写法见 `src/views/admin/sys-role/index.vue`。
 
 ## 对不起，您没有改接口访问权限，请联系管理员
 
@@ -187,41 +202,6 @@ windows 环境变量配置时，`bin`目录的路径中间不要出现空格；
 例如：`C:/go go/bin` 这样的路径是不能被正常使用的；
 
 例如：`C:/go_go/bin` ✔️；
-
-## Deprecation Warning: Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
-
-```sh
-Deprecation Warning: Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
-
-Recommendation: math.div($--tooltip-arrow-size, 2) or calc($--tooltip-arrow-size / 2)
-
-More info and automated migrator: https://sass-lang.com/d/slash-div
-
-   ╷
-89 │     margin-bottom: #{$--tooltip-arrow-size / 2};
-   │                      ^^^^^^^^^^^^^^^^^^^^^^^^^
-   ╵
-    node_modules/element-ui/packages/theme-chalk/src/popper.scss 89:22         @content
-    node_modules/element-ui/packages/theme-chalk/src/mixins/mixins.scss 74:5   b()
-    node_modules/element-ui/packages/theme-chalk/src/popper.scss 4:1           @import
-    node_modules/element-ui/packages/theme-chalk/src/select-dropdown.scss 3:9  @import
-    node_modules/element-ui/packages/theme-chalk/src/select.scss 4:9           @import
-    node_modules/element-ui/packages/theme-chalk/src/pagination.scss 4:9       @import
-    node_modules/element-ui/packages/theme-chalk/src/index.scss 2:9            @import
-    src/styles/element-variables.scss 25:9                                     root stylesheet
-
-Warning: 33 repetitive deprecation warnings omitted.
-```
-
-> 解决方案
-
-```sh
-$ npm install -g sass-migrator
-$ sass-migrator division **/*.scss
-```
-
-引用自官方 https://sass-lang.com/documentation/breaking-changes/slash-div#automatic-migration
-ß
 
 :::warning
 从哪里获得帮助：
