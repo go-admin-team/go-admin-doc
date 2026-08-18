@@ -56,7 +56,7 @@ $ sss-admin.exe server
 ```sh
 # 系统在启动时自动检查路由中的api是否都记录在sys_api表中，如果缺少系统则会自动补充
 # -a 默认值 false 默认可以不传
-$ go-admin server -a true
+$ go-admin server -a
 ```
 
 ## 提醒

@@ -55,5 +55,5 @@ CREATE TABLE `article` (
 数据库表创建以后，启动项目
 
 ```bash
-go run main.go server -c config/settings.dev.yml
+go run main.go server -c config/settings.yml
 ```

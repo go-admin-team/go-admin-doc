@@ -62,7 +62,7 @@ npm run dev
 5.编译运行便可以看见相应的菜单，但是此时还不能配置角色拥有次菜单的权限，还需要生成相应的 API 接口定义写入数据
 
 ```shell
-./go-admin server -c config/settings.yml -a true
+./go-admin server -c config/settings.yml -a
 ```
 
 `-a` 的意思是指定 check api 接口，对于不存在的 api 接口会插入到数据库

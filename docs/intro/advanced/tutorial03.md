@@ -13,7 +13,7 @@ toc: content
 让我们来确认一下你的 go-admin 项目是真的配置成功了。请运行下面的命令：
 
 ```bash
-go run main.go server -c=config/settings.dev.yml
+go run main.go server -c=config/settings.yml
 ```
 
 输出内容为下图，恭喜你！你已经成功了！

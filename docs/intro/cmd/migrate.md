@@ -83,15 +83,15 @@ Flags:
 
 修改配置文件里数据库链接信息(`database`)
 
-`config/settings.dev.yml`
+`config/settings.yml`
 
 ## 常用命令示例
 
 ```shell
 go run main.go migrate -h # 帮助
-go run main.go migrate -g true -a true  -c config/settings.dev.yml # 生成 go-admin系统预置 迁移文件
-go run main.go migrate -g true -c config/settings.dev.yml  # 生成 自定义功能 迁移文件 自己开发新功能用这个功能
-go run main.go migrate -c config/settings.dev.yml # 执行迁移命令 迁移 未迁移过的 文件
+go run main.go migrate -g -a  -c config/settings.yml # 生成 go-admin系统预置 迁移文件
+go run main.go migrate -g -c config/settings.yml  # 生成 自定义功能 迁移文件 自己开发新功能用这个功能
+go run main.go migrate -c config/settings.yml # 执行迁移命令 迁移 未迁移过的 文件
 ```
 
 参数说明：
@@ -111,7 +111,7 @@ go run main.go migrate -c config/settings.dev.yml # 执行迁移命令 迁移 �
 首先执行，
 
 ```sh
-$ go run main.go migrate  -a true -g true
+$ go run main.go migrate  -a -g
 generate migration file
 ```
 
@@ -235,11 +235,11 @@ func (TbDemoTest1654233005297) TableName() string {
 ### 3.1 方式一：不编译运行（推荐）
 
 **注意：**
-不带 `-c config/settings.dev.yml` 默认使用 `-c config/settings.yml`配置文件
+不带 `-c` 参数时，默认使用 `config/settings.yml` 配置文件
 
 ```shell
  # 执行迁移
- $ go run main.go migrate -c config/settings.dev.yml
+ $ go run main.go migrate -c config/settings.yml
 ```
 
 ### 3.2 方式二：编译并运行迁移
@@ -247,8 +247,8 @@ func (TbDemoTest1654233005297) TableName() string {
 ```shell
  # 不推荐，每次修改迁移文件后，都需要 go build 重新编译，容易忘记编译，掉进坑里，嘿嘿。。。
  $ go build
- $ ./go-admin migrate -c config/settings.dev.yml      # mac /linux执行命令
- $ ./go-admin.exe migrate -c config/settings.dev.yml  # windows执行命令
+ $ ./go-admin migrate -c config/settings.yml      # mac /linux执行命令
+ $ ./go-admin.exe migrate -c config/settings.yml  # windows执行命令
 
  # 注意：sqlite 需要加 -tags=sqlite3.json1参数
  $ go run -tags=sqlite3,json1 main.go migrate
@@ -259,9 +259,13 @@ func (TbDemoTest1654233005297) TableName() string {
 
 `golangIDE` 还要可以进行 debug 断点调适迁移文件，（**推荐**）
 
-`migrate -c config/settings.dev.93.yml -g true -g true`
+在 IDE 的运行配置中，`Run kind` 选择 `Package` 或 `File`，并在 `Program arguments` 中填入迁移参数：
 
-![image](http://cdn.go-admin.pro/img/1441611-20221120154026381-1228564155.png)
+```
+migrate -c config/settings.yml -g
+```
+
+`Working directory` 需指向项目根目录，否则 `-c` 的相对路径会找不到配置文件。
 
 ---
 
@@ -276,10 +280,10 @@ func (TbDemoTest1654233005297) TableName() string {
 首先执行，
 
 ```shell
-$ go run main.go migrate -c config/settings.dev.yml
+$ go run main.go migrate -c config/settings.yml
 
 注意：sqlite 需要加 -tags=sqlite3.json1参数
-$ go run -tags=sqlite3,json1 main.go migrate -c config/settings.dev.yml
+$ go run -tags=sqlite3,json1 main.go migrate -c config/settings.yml
 ```
 
 完成后，我们打开`cmd/migrate/migration/version`目录，这时里边已经为您新添加了一个迁移文件`1660151543503_migrate`（一般会在最下边），我们打开看一下：
@@ -391,10 +395,10 @@ func (TbDemoTest1660151543503) TableName() string {
 3. 执行迁移
 
 ```shell
-$ go run main.go migrate -c config/settings.dev.yml
+$ go run main.go migrate -c config/settings.yml
 
 注意：sqlite 需要加 -tags=sqlite3.json1参数
-$ go run -tags=sqlite3,json1 main.go migrate -c config/settings.dev.yml
+$ go run -tags=sqlite3,json1 main.go migrate -c config/settings.yml
 ```
 
 执行成功后检查数据库的对应信息，查看`tb_demo_test`表，验证字段变化，和预期一样就迁移成功了。
@@ -414,7 +418,7 @@ Q:为什么表里已经数据了，还要做迁移文件，写入数据？
 首先执行，
 
 ```sh
-$ go run main.go migrate  -a true -g true
+$ go run main.go migrate  -a -g
 generate migration file
 ```
 
@@ -515,23 +519,24 @@ func ReadFileContentWithLine(filePath string) (data []string, err error) {
 ```
 
 3. 准备`sql`文件
-   使用`navicat`等工具从表中导出需要预置的数据
 
-导出表里所有数据
-![image](http://cdn.go-admin.pro/img/1441611-20221120170153057-1042150221.png)
+   从数据库中导出需要预置的数据，导出结果必须是 `INSERT` 语句而不是整表结构。
 
-想导出哪张表，就勾选哪张表，选择文件保存位置 ， 下一步
-![image](http://cdn.go-admin.pro/img/1441611-20221120170241522-859441028.png)
+   使用命令行导出（推荐，无需图形化工具）：
 
-![image](http://cdn.go-admin.pro/img/1441611-20221120170403988-1084470244.png)
+```sh
+# --no-create-info 只导出数据不导出建表语句
+# --complete-insert 生成带列名的 INSERT，字段顺序变化时不会错位
+$ mysqldump -h 127.0.0.1 -u root -p \
+    --no-create-info --complete-insert --skip-extended-insert \
+    dbname tb_demo > 1668407576412_insertSqlTbDemoTest.sql
+```
 
-![image](http://cdn.go-admin.pro/img/1441611-20221120170421879-551697126.png)
+   若使用 `Navicat`、`DBeaver` 等图形化工具，依次选择目标表 → 导出向导 → 选择 SQL 格式 →
+   勾选「仅导出数据」→ 选择保存位置 → 完成导出即可。
 
-开始导出
-![image](http://cdn.go-admin.pro/img/1441611-20221120170438954-837439792.png)
-
-放在 `cmd/migrate/migration/version/1668407576412_insertSqlTbDemoTest.sql` 目标下， 文件名改为和迁移文件名一致，方便管理
-以供上面迁移文件读取
+   导出的文件放在 `cmd/migrate/migration/version/` 目录下，文件名与对应的迁移文件保持一致，
+   方便管理，以供上面的迁移文件读取：
 
 ```sql
 INSERT INTO tb_demo (`id`, `name`, `created_at`, `updated_at`, `deleted_at`, `create_by`, `update_by`) VALUES (1, '张三', '2022-11-20 16:59:41.000', '2022-11-26 16:59:47.000', '2022-11-25 16:59:50.000', 1, 1);
@@ -541,10 +546,10 @@ INSERT INTO tb_demo (`id`, `name`, `created_at`, `updated_at`, `deleted_at`, `cr
 4. 执行迁移
 
 ```sh
-$ go run main.go migrate -c config/settings.dev.yml
+$ go run main.go migrate -c config/settings.yml
 
 注意：sqlite 需要加 -tags=sqlite3.json1参数
-$ go run -tags=sqlite3,json1 main.go migrate -c config/settings.dev.yml
+$ go run -tags=sqlite3,json1 main.go migrate -c config/settings.yml
 ```
 
 5. 扩展：
