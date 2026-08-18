@@ -1,10 +1,18 @@
 ---
-nav: 开发
-group:
-  title: 高级
+nav:
+  title: 开发
   order: 2
-title: 配置文件
+  second:
+    title: 进阶
+    order: 1
+group:
+  title: 分层开发
+  order: 5
+title: 多环境配置
 toc: content
+order: 6
+description: go-admin 多环境配置文件的创建与使用：按开发、测试、生产拆分配置，并通过 -c 参数指定。
+keywords: [go-admin 多环境配置, golang 配置文件管理, 开发测试生产 配置隔离]
 ---
 
 ## 创建不同环境的配置文件

@@ -1,7 +1,9 @@
 ---
 title: Node 环境
-order: 80
+order: 60
 toc: content
+description: go-admin-ui 前端开发环境搭建：安装 Node.js 与 pnpm，配置国内镜像源。go-admin-ui 要求 Node 22 及以上、pnpm 9 及以上。
+keywords: [node 安装教程, pnpm 安装, vue3 开发环境, node 版本要求]
 ---
 
 :::warning
@@ -38,7 +40,7 @@ Node 14 / 16 / 18 / 20 均已结束维护，且构建工具 Vite 8 在这些版�
 
 <img src="https://doc-image.zhangwj.com/img/nodejs-step5.png" alt="nodejs-step5"  width="400px"/>
 
-上图可以看出`Node.js`的`v14.17.0`版本，已经安装到了`/usr/local/bin/node`下,`npm`的`v6.14.13`版本，已经安装到了`/usr/local/bin/npm`下,
+安装完成后，`node` 与 `npm` 会被装到 `/usr/local/bin/` 下（上图截取自较早的安装包版本，界面与版本号可能与你下载到的不同，以实际安装流程为准）。
 
 到这一步就说明`Node.js` & `NPM`已经安装好了！
 

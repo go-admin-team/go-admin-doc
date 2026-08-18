@@ -1,11 +1,18 @@
 ---
-nav: 开发
+nav:
+  title: 开发
+  order: 2
+  second:
+    title: 进阶
+    order: 1
 group:
   title: 代码生成
-  order: 4
-title: 配置权限
+  order: 6
+title: 配置角色权限
 order: 5
 toc: content
+description: go-admin 为角色分配新生成模块的菜单与接口权限，基于 Casbin 的 RBAC 授权。
+keywords: [go-admin 角色权限, casbin rbac 配置, 后台权限分配]
 ---
 
 ## 配置角色权限

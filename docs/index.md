@@ -1,5 +1,5 @@
 ---
-title: dumi - 为组件研发而生的静态站点框架
+title: 基于 Gin + Vue 3 的中后台管理系统脚手架
 hero:
   title: go-admin
   description: 专注于中后台项目开发脚手架，助力开发者快速启动项目
@@ -28,6 +28,8 @@ features:
     emoji: ⚙️
     description: 根基数据库表配置信息生成对应的增删改查/排序/导出/权限控制等的代码快速完成90%的业务开发
 # footer: Open-source MIT Licensed | Copyright © 2022-present
+description: go-admin 是基于 Gin + Vue 3 + Element Plus 的开源前后端分离后台管理系统脚手架，内置 RBAC 权限、数据权限、JWT 认证、代码生成器与多租户支持，帮助快速搭建中后台项目。
+keywords: [golang 后台管理系统, gin vue admin, 开源后台管理框架, go 权限管理系统, 中后台脚手架]
 ---
 
 ## 反馈与共建

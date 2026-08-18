@@ -1,10 +1,15 @@
 ---
-title: server
+nav:
+  title: 开发
+  order: 2
+  second:
+    title: 指令
+    order: 2
+title: server 启动服务
 order: 50
 toc: content
-nav:
-  title: 指令
-  order: 3
+description: go-admin server 指令：启动 API 服务，含 -c 指定配置文件、-a 自动登记接口到 sys_api 表等参数说明。
+keywords: [go-admin server 启动, go-admin 启动参数, golang 服务启动命令]
 ---
 
 ## 视频教程
@@ -56,7 +61,7 @@ $ sss-admin.exe server
 ```sh
 # 系统在启动时自动检查路由中的api是否都记录在sys_api表中，如果缺少系统则会自动补充
 # -a 默认值 false 默认可以不传
-$ go-admin server -a true
+$ go-admin server -a
 ```
 
 ## 提醒

@@ -1,10 +1,18 @@
 ---
-nav: 开发
-group:
-  title: 高级
+nav:
+  title: 开发
   order: 2
-title: models
+  second:
+    title: 进阶
+    order: 1
+group:
+  title: 分层开发
+  order: 5
+title: Model 定义
 toc: content
+order: 4
+description: go-admin Model 定义：GORM 结构体、TableName 方法与公共字段的使用方式。
+keywords: [go-admin model, gorm 模型定义, golang 数据库结构体]
 ---
 
 models 主要是和 db 做交互使用的。

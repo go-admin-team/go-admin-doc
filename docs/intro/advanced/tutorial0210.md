@@ -1,11 +1,18 @@
 ---
-nav: 开发
+nav:
+  title: 开发
+  order: 2
+  second:
+    title: 进阶
+    order: 1
 group:
   title: 前端基础
-  order: 1
-title: 目录结构
+  order: 3
+title: 前端目录结构
 order: 1
 toc: content
+description: go-admin-ui 前端项目的目录结构说明：src 下各目录的职责与页面文件的组织方式。
+keywords: [go-admin-ui 目录结构, vue3 项目结构, vue 工程组织]
 ---
 
 让我们看一下 go-admin-ui 的目录结构：

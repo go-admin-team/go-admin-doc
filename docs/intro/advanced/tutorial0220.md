@@ -1,11 +1,18 @@
 ---
-nav: 开发
+nav:
+  title: 开发
+  order: 2
+  second:
+    title: 进阶
+    order: 1
 group:
   title: 前端基础
-  order: 0
-title: 配置文件
+  order: 3
+title: 前端配置文件
 order: 2
 toc: content
+description: go-admin-ui 前端配置说明：.env 环境变量文件与接口地址 VUE_APP_BASE_API 的配置方式。
+keywords: [go-admin-ui 配置, vue 环境变量, VUE_APP_BASE_API 配置]
 ---
 
 

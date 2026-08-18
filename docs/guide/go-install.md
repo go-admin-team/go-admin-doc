@@ -1,7 +1,9 @@
 ---
 title: Go 环境
-order: 70
+order: 30
 toc: content
+description: go-admin 的 Go 开发环境搭建教程：在 Windows、macOS、Linux 上安装 Go，配置 GOPATH 与国内代理，验证安装结果。go-admin 要求 Go 1.26 及以上。
+keywords: [go 环境安装, golang 安装教程, go 版本要求, goproxy 国内代理配置]
 ---
 
 ## 环境安装

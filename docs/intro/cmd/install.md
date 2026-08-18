@@ -1,10 +1,15 @@
 ---
 nav:
-  title: 指令
-  order: 3
-title: install
+  title: 开发
+  order: 2
+  second:
+    title: 指令
+    order: 2
+title: install 安装
 order: 10
 toc: content
+description: go-admin install 指令说明：初始化项目依赖与基础环境的安装步骤。
+keywords: [go-admin install, go-admin 安装命令, golang 项目初始化]
 ---
 
 :::warning

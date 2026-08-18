@@ -1,7 +1,9 @@
 ---
 title: 常见问题
-order: 90
+order: 100
 toc: content
+description: go-admin 常见问题与报错排查：Windows 下 CGO 编译问题、sqlite 依赖、数据库连接失败、前端依赖安装报错等，附具体解决步骤。
+keywords: [go-admin 报错, go-admin 常见问题, CGO 编译失败, golang 后台管理 排错]
 ---
 
 ## CGO 的问题
@@ -24,7 +26,7 @@ D:\Code\go-admin>go build
 cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
 ```
 
-[如何解决 cgo: exec /missing-cc: exec: "/missing-cc": file does not exist](/guide/other/faq.html#_5-cgo-exec-missing-cc-exec-missing-cc-file-does-not-exist)
+[如何解决 cgo: exec /missing-cc: exec: "/missing-cc": file does not exist](#githubcommattngo-sqlite3-cgo-exec-gcc-)
 
 :::
 

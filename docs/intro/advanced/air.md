@@ -1,10 +1,18 @@
 ---
+nav:
+  title: 开发
+  order: 2
+  second:
+    title: 进阶
+    order: 1
 group:
-  title: 高级使用
-  order: 10
+  title: 进阶能力
+  order: 7
 title: Air 热加载
-order: 400
+order: 3
 toc: content
+description: 在 go-admin 中使用 Air 实现代码热加载：安装、配置与常用参数说明，修改代码后自动重启服务。
+keywords: [go air 热加载, golang 热重启, air 配置, go 开发效率]
 ---
 ## Air 热加载
 

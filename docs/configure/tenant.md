@@ -5,6 +5,8 @@ nav:
 title: 多租户
 order: 10
 toc: menu
+description: go-admin 多租户配置教程：通过 databases 按域名区分数据库实例，配合 Nginx 转发实现一套代码服务多个租户，含配置示例与注意事项。
+keywords: [go-admin 多租户, golang 多租户实现, saas 多租户数据库, 按域名分库]
 ---
 
 ## 多租户
@@ -46,7 +48,7 @@ toc: menu
 server {
   server_name dev.xxx.com;
   location / {
-	 proxy_pass   http://172.16.3.3:9527;
+	 proxy_pass   http://127.0.0.1:9527;
   }
 }
 ```
@@ -70,17 +72,17 @@ server {
   databases:
     'dev.a.com':
       driver: mysql
-      source: root:xxx@tcp(172.16.3.3:3306)/goAdmin?charset=utf8&parseTime=True&loc=Local&timeout=2000ms
+      source: root:xxx@tcp(127.0.0.1:3306)/goAdmin?charset=utf8&parseTime=True&loc=Local&timeout=2000ms
     'dev.b.com':
       driver: mysql
-      source: root:xxx@tcp(172.16.3.3:3306)/goAdmin?charset=utf8&parseTime=True&loc=Local&timeout=2000ms
+      source: root:xxx@tcp(127.0.0.1:3306)/goAdmin?charset=utf8&parseTime=True&loc=Local&timeout=2000ms
 ```
 #### 2、设置nginx的conf文件
 ```nginx
 server{
   server_name dev.a.com;
   location /api/v1{
-	  proxy_pass http://172.16.3.3:8000;
+	  proxy_pass http://127.0.0.1:8000;
 	  proxy_set_header Accept $http_host;
 	  proxy_set_header Host $host;
 	  proxy_set_header X-Real-IP $remote_addr;
@@ -92,7 +94,7 @@ server{
 server{
   server_name dev.b.com;
   location /api/v1{
-	  proxy_pass http://172.16.3.3:8000;
+	  proxy_pass http://127.0.0.1:8000;
 	  proxy_set_header Accept $http_host;
 	  proxy_set_header Host $host;
 	  proxy_set_header X-Real-IP $remote_addr;

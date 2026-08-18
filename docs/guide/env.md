@@ -1,7 +1,9 @@
 ---
-title: 基础配置
-order: 40
+title: 环境变量
+order: 50
 toc: content
+description: 在 Windows、macOS 与 Linux 上配置 Go 环境变量：GOPATH、GOROOT、GO111MODULE 与国内代理 GOPROXY 的设置步骤。
+keywords: [go 环境变量配置, GOPATH 设置, windows 配置 go 环境变量, goproxy 设置]
 ---
 
 # 环境变量

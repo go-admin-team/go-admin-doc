@@ -1,21 +1,33 @@
 ---
-nav: 开发
-group:
-  title: 高级
+nav:
+  title: 开发
   order: 2
+  second:
+    title: 进阶
+    order: 1
+group:
+  title: 开发模式
+  order: 4
 title: 常规模式
 toc: content
+order: 2
+description: go-admin 的常规开发模式：当业务超出单表增删改查时，自行编写 Handler 与 Service 的处理方式。
+keywords: [go-admin 常规模式, gin handler 编写, golang 业务分层]
 ---
 
 # 常规模式
 
-:::warning
-说明
-`go-admin`服务是存在两种处理模式的;
+:::info
+go-admin 有两种开发模式，按业务复杂度选择：
 
-简单的 crud 可以直接使用 `actions模式`【已移除】；
+1. **[Actions 模式](/intro/advanced/advanced)** —— 单表增删改查优先使用。`common/actions` 提供的五个通用 Action
+   已覆盖参数绑定、数据权限过滤、操作人注入、分页与错误响应，一个模块只需
+   model、dto、router 三个文件，无需编写 apis 与 service。
+2. **常规模式**（本页） —— 当业务超出单表 CRUD（跨表事务、外部调用、复杂校验）时，
+   自行编写 Handler 与 Service。
 
-复杂的业务可以使用 `常规模式`；
+可编译的完整示例见仓库的 `app/demo/` 目录，与本文冲突时以该目录为准。
+
 :::
 
 首先说明一下结构：

@@ -2,6 +2,8 @@
 title: 快速开始
 order: 20
 toc: content
+description: 五分钟跑起 go-admin：下载前后端代码、配置 MySQL 数据源、执行 migrate 初始化数据库、启动后端与前端服务，包含常见启动报错的排查方法。
+keywords: [go-admin 安装教程, go-admin 快速开始, golang 后台管理系统搭建, gin vue 项目启动]
 ---
 
 `go-admin`是一个前后端分离的项目，所以需要分别下载 [前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui) 和 [后端项目 go-admin](https://github.com/go-admin-team/go-admin) ，下面分为两个阶段分别说明[前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目 go-admin](https://github.com/go-admin-team/go-admin)的快速启动；
@@ -31,8 +33,8 @@ $ go build
 
 ## 配置数据源<Badge>go-admin</Badge>
 
-1. 首先找到配置文件，`config/settings.yml`， 复制一份，并修改文件名为`config/settings.dev.yml` 即可。
-1. 或者直接使用默认配置文件，直接修改`config/settings.yml`即可。
+1. 直接使用仓库自带的配置文件，修改`config/settings.yml`中的数据源配置即可。
+1. 或者复制一份另行命名（例如`config/settings.dev.yml`），启动时通过 `-c` 参数指定，便于区分多套环境。
 
 <img class="no-margin" src="https://doc-image.zhangwj.com/img/configv1.1.0.png"  height="400px" style="margin:0 auto;">
 
@@ -50,7 +52,7 @@ database:
 ```bash
 $ go build -tags sqlite3
 # 或直接运行
-$ go run -tags sqlite3 . server -c config/settings.dev.yml
+$ go run -tags sqlite3 . server -c config/settings.yml
 ```
 
 原因是 `common/database/open.go` 带有 `//go:build !sqlite3`，不加标签时编译进
@@ -111,15 +113,14 @@ mysql -h 127.0.0.1 -p123456 -e 'create database dbname default charset utf8'
 ```bash
 # 初始化
 # macOS or linux 下使用
-$ go run main.go migrate -c config/settings.dev.yml
+$ go run main.go migrate -c config/settings.yml
 
 # windows 下使用
-$ go run main.go  migrate -c config\settings.dev.yml
+$ go run main.go  migrate -c config\settings.yml
 ```
 
 :::info
-可以通过 -c 参数实现本地多环境配置文件隔离 例如 开发环境命名为：settings.dev.yml
-注意：1.2.0 之前版本需要将`migrate` 替换成 `init` 命令进行项目数据库结构和数据初始化。
+仓库自带的配置文件是 `config/settings.yml`。如果需要本地多环境隔离，可以自行复制一份并通过 `-c` 参数指定，例如开发环境命名为 `config/settings.dev.yml`。
 :::
 
 ## 启动服务<Badge>go-admin</Badge>
@@ -129,10 +130,10 @@ $ go run main.go  migrate -c config\settings.dev.yml
 ```bash
 # 启动服务
 # macOS or linux 下使用
-$ go run main.go  server -c config/settings.dev.yml
+$ go run main.go  server -c config/settings.yml
 
 # windows 下使用
-$ go run main.go  server -c config\settings.dev.yml
+$ go run main.go  server -c config\settings.yml
 ```
 
 如果看到一下数据内容，请检查一下数据库配置；

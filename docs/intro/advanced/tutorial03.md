@@ -1,11 +1,18 @@
 ---
-nav: 开发
+nav:
+  title: 开发
+  order: 2
+  second:
+    title: 进阶
+    order: 1
 group:
   title: 服务端基础
-  order: 0
-title: 服务启动
+  order: 2
+title: 启动后端服务
 order: 3
 toc: content
+description: go-admin 后端服务启动步骤与启动成功的验证方法。
+keywords: [go-admin 启动, gin 服务启动, golang 后端运行]
 ---
 
 ## api的启动
@@ -13,7 +20,7 @@ toc: content
 让我们来确认一下你的 go-admin 项目是真的配置成功了。请运行下面的命令：
 
 ```bash
-go run main.go server -c=config/settings.dev.yml
+go run main.go server -c=config/settings.yml
 ```
 
 输出内容为下图，恭喜你！你已经成功了！

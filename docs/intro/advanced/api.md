@@ -1,11 +1,18 @@
 ---
-nav: 开发
-group:
-  title: 高级
+nav:
+  title: 开发
   order: 2
-title: api
+  second:
+    title: 进阶
+    order: 1
+group:
+  title: 分层开发
+  order: 5
+title: API 层
 order: 1
 toc: content
+description: go-admin API 层开发：结构体嵌入 api.Api、参数绑定与错误检查，以及分页列表、详情、增删改各接口的写法。
+keywords: [go-admin api 层, gin handler 写法, golang 接口开发, gin 参数绑定]
 ---
 
 # api
@@ -17,7 +24,7 @@ toc: content
 首先，需要是`package`名称和 `import` package 引用关系
 
 ```go
-package sys_file
+package apis
 
 import (
 	"fmt"

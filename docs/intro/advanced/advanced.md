@@ -2,22 +2,33 @@
 nav:
   title: 开发
   order: 2
+  second:
+    title: 进阶
+    order: 1
 group:
-  title: 高级
+  title: 开发模式
   order: 4
-title: actions
+title: Actions 模式
 toc: content
+order: 1
+description: go-admin 的 Actions 开发模式：使用 common/actions 提供的通用 Action 完成单表增删改查，一个模块只需 model、dto、router 三个文件。
+keywords: [go-admin actions, gin 通用 CRUD, golang 快速开发 增删改查]
 ---
 
 ## actions 模式
 
-:::warning
-说明
-`go-admin`服务是存在两种处理模式的;
+:::info
+go-admin 有两种开发模式，按业务复杂度选择：
+
+1. **Actions 模式**（本页） —— 单表增删改查优先使用。`common/actions` 提供的五个通用 Action
+   已覆盖参数绑定、数据权限过滤、操作人注入、分页与错误响应，一个模块只需
+   model、dto、router 三个文件，无需编写 apis 与 service。
+2. **[常规模式](/intro/advanced/bus)** —— 当业务超出单表 CRUD（跨表事务、外部调用、复杂校验）时，
+   自行编写 Handler 与 Service。
+
+可编译的完整示例见仓库的 `app/demo/` 目录，与本文冲突时以该目录为准。
 
 :::
-
-    2. 复杂的业务可以使用 `常规模式`；
 
 # 开发工具生成代码并配置角色授权操作
 
@@ -62,7 +73,7 @@ npm run dev
 5.编译运行便可以看见相应的菜单，但是此时还不能配置角色拥有次菜单的权限，还需要生成相应的 API 接口定义写入数据
 
 ```shell
-./go-admin server -c config/settings.yml -a true
+./go-admin server -c config/settings.yml -a
 ```
 
 `-a` 的意思是指定 check api 接口，对于不存在的 api 接口会插入到数据库
