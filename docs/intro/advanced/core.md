@@ -6,11 +6,13 @@ nav:
     title: 进阶
     order: 1
 group:
-  title: 高级使用
-  order: 10
-title: core
-order: 90
+  title: 进阶能力
+  order: 7
+title: Runtime 核心 API
+order: 1
 toc: content
+description: go-admin Runtime 提供的核心 API：系统配置读写、缓存适配器与队列适配器的获取方式。
+keywords: [go-admin runtime, go-admin 系统配置 api, golang 运行时容器]
 ---
 
 ## Runtime

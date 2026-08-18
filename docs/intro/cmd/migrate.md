@@ -5,7 +5,7 @@ nav:
   second:
     title: 指令
     order: 2
-title: migrate
+title: migrate 数据迁移
 order: 40
 toc: content
 description: go-admin migrate 指令详解：初始化数据库表结构与预置数据、生成迁移文件、编写自定义迁移与 SQL 数据迁移，含三种运行方式与参数说明。

@@ -7,10 +7,12 @@ nav:
     order: 1
 group:
   title: 服务端基础
-  order: 0
-title: 服务启动
+  order: 2
+title: 启动后端服务
 order: 3
 toc: content
+description: go-admin 后端服务启动步骤与启动成功的验证方法。
+keywords: [go-admin 启动, gin 服务启动, golang 后端运行]
 ---
 
 ## api的启动

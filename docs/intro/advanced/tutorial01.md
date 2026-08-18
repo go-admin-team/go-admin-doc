@@ -7,10 +7,12 @@ nav:
     order: 1
 group:
   title: 服务端基础
-  order: 0
-title: 目录结构
+  order: 2
+title: 后端目录结构
 order: 1
 toc: content
+description: go-admin 后端项目的目录结构说明：cmd、app、common、config 各目录的职责划分。
+keywords: [go-admin 目录结构, golang 项目结构, gin 项目分层]
 ---
 
 

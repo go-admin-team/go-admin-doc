@@ -5,9 +5,11 @@ nav:
   second:
     title: 指令
     order: 2
-title: server
+title: server 启动服务
 order: 50
 toc: content
+description: go-admin server 指令：启动 API 服务，含 -c 指定配置文件、-a 自动登记接口到 sys_api 表等参数说明。
+keywords: [go-admin server 启动, go-admin 启动参数, golang 服务启动命令]
 ---
 
 ## 视频教程

@@ -6,10 +6,13 @@ nav:
     title: 进阶
     order: 1
 group:
-  title: 高级
-  order: 2
-title: router
+  title: 分层开发
+  order: 5
+title: 路由注册
 toc: content
+order: 5
+description: go-admin 路由注册：需认证与免认证两类注册切片的区别、命名规范，以及登录鉴权与角色鉴权中间件的组合方式。
+keywords: [go-admin 路由注册, gin 路由分组, gin 中间件 鉴权, jwt 路由保护]
 ---
 
 ## package & import

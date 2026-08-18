@@ -1,7 +1,9 @@
 ---
 title: IDE 配置
-order: 100
+order: 70
 toc: menu
+description: go-admin 开发的 IDE 配置建议：GoLand 与 VSCode 的选择、安装与基础配置。
+keywords: [goland 配置, vscode go 开发, go 开发工具, go ide 推荐]
 ---
 
 目前`Go`的`IDE`有比较流行有`VSCode`和 JetBrains 公司的`Goland`。由于 JetBrains 也是 go-admin 脚手架的赞助商，因此我们优先推荐使用`Goland`来作为开发 IDE，下载及注册请参考网上教程（[百度](https://www.baidu.com) 或 [Google](https://www.google.com)）。

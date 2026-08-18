@@ -5,9 +5,11 @@ nav:
   second:
     title: 指令
     order: 2
-title: version
+title: version 查看版本
 order: 60
 toc: content
+description: go-admin version 指令：输出当前二进制的版本号，用于确认线上部署版本、反馈问题时附带版本信息。
+keywords: [go-admin 版本号, go-admin version, golang 查看版本]
 ---
 
 ## 查看版本

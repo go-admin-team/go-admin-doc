@@ -7,10 +7,12 @@ nav:
     order: 1
 group:
   title: 代码生成
-  order: 4
+  order: 6
 title: 菜单绑定接口
 order: 4
 toc: content
+description: go-admin 将生成的接口登记到接口管理并与菜单绑定，为角色授权做准备。
+keywords: [go-admin 接口管理, 菜单绑定接口, sys_api 登记]
 ---
 
 

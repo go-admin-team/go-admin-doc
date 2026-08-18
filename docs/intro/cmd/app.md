@@ -5,9 +5,11 @@ nav:
   second:
     title: 指令
     order: 2
-title: app
+title: app 创建模块
 order: 20
 toc: content
+description: go-admin app 指令：在 app 目录下创建新的业务模块并自动注册到启动项，实现业务代码与框架代码分离，便于跟随版本升级。
+keywords: [go-admin app 指令, go-admin 创建模块, golang 业务模块划分]
 ---
 
 ## 视频教程

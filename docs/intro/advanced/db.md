@@ -6,10 +6,13 @@ nav:
     title: 进阶
     order: 1
 group:
-  title: 规范
+  title: 分层开发
   order: 5
-title: 数据库规范
+title: 数据库表规范
 toc: content
+order: 7
+description: go-admin 数据库表设计规范：公共字段、字段命名、类型选择与备注要求，遵循后可直接用于代码生成。
+keywords: [数据库表设计规范, mysql 字段命名规范, go-admin 建表规范]
 ---
 
 # 数据库规范

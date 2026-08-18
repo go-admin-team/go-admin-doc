@@ -1,6 +1,6 @@
 ---
 title: Node 环境
-order: 80
+order: 60
 toc: content
 description: go-admin-ui 前端开发环境搭建：安装 Node.js 与 pnpm，配置国内镜像源。go-admin-ui 要求 Node 22 及以上、pnpm 9 及以上。
 keywords: [node 安装教程, pnpm 安装, vue3 开发环境, node 版本要求]

@@ -7,9 +7,12 @@ nav:
     order: 1
 group:
   title: 代码生成
-title: 代码生成
+  order: 6
+title: 生成业务代码
 order: 2
 toc: content
+description: go-admin 代码生成操作步骤：选择数据表、配置字段属性并生成前后端增删改查代码。
+keywords: [go-admin 代码生成, golang crud 生成, 前后端代码自动生成]
 ---
 
 ## 代码生成

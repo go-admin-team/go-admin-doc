@@ -7,9 +7,12 @@ nav:
     order: 1
 group:
   title: 代码生成
-title: 一键菜单
+  order: 6
+title: 一键生成菜单
 order: 3
 toc: content
+description: go-admin 代码生成后一键创建对应菜单，免去手工录入菜单信息。
+keywords: [go-admin 一键菜单, 后台菜单自动生成]
 ---
 
 

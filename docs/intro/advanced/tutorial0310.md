@@ -6,11 +6,13 @@ nav:
     title: 进阶
     order: 1
 group:
-  title: 示例
-  order: 3
-title: 简单示例
-order: 5
+  title: 开发模式
+  order: 4
+title: 第一个接口
+order: 3
 toc: content
+description: go-admin 编写第一个接口：路由注册规则、path 匹配方式与参数写法，含完整示例。
+keywords: [go-admin 第一个接口, gin 路由注册, go 新增 api 接口]
 ---
 
 

@@ -7,10 +7,12 @@ nav:
     order: 1
 group:
   title: 前端基础
-  order: 0
-title: 服务启动
+  order: 3
+title: 启动前端服务
 order: 3
 toc: content
+description: go-admin-ui 启动步骤：Node 与 pnpm 版本要求、依赖安装与开发服务器启动。
+keywords: [go-admin-ui 启动, vue3 项目启动, pnpm dev 启动]
 ---
 
 ## 前端的启动

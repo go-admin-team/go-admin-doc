@@ -7,10 +7,12 @@ nav:
     order: 1
 group:
   title: 服务端基础
-  order: 0
-title: 配置文件
+  order: 2
+title: 后端配置文件
 order: 2
 toc: content
+description: go-admin 后端配置文件说明：数据库连接串的组成与常见配置项的填写方式。
+keywords: [go-admin 配置文件, gin 数据库配置, mysql 连接串配置]
 ---
 
 

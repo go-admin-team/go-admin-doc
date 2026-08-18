@@ -6,10 +6,13 @@ nav:
     title: 进阶
     order: 1
 group:
-  title: 高级
-  order: 2
-title: service
+  title: 分层开发
+  order: 5
+title: Service 层
 toc: content
+order: 2
+description: go-admin Service 层开发：业务逻辑组织、数据库操作与错误处理，以及与 API 层的职责边界。
+keywords: [go-admin service 层, golang 业务逻辑分层, gorm 数据库操作]
 ---
 
 ## import

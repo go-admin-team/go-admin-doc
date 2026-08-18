@@ -6,10 +6,13 @@ nav:
     title: 进阶
     order: 1
 group:
-  title: 高级
-  order: 2
-title: dto
+  title: 分层开发
+  order: 5
+title: DTO 定义
 toc: content
+order: 3
+description: go-admin DTO 定义：列表查询、新增修改、按 ID 操作三类 DTO 的写法，以及搜索条件与校验标签的使用。
+keywords: [go-admin dto, golang 参数校验, gin 请求参数结构体, go 查询条件构造]
 ---
 
 首先介绍以下 dto 在 go-admin 中的作用。dto 是一个数据接收模块，每一个请求进来，携带的数据需要在 dto 中进行处理验证；

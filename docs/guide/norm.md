@@ -1,7 +1,9 @@
 ---
 title: 规范约束
-order: 110
+order: 80
 toc: content
+description: go-admin 代码规范：包与文件命名、import 分组顺序、函数命名格式、路由与接口命名约定，团队协作时统一风格的依据。
+keywords: [go 代码规范, golang 命名规范, go import 分组, 项目代码约定]
 ---
 
 <!-- ## 开发规范 -->
