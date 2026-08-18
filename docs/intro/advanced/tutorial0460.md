@@ -7,9 +7,12 @@ nav:
     order: 1
 group:
   title: 代码生成
-title: 功能验证
+  order: 6
+title: 验证功能
 order: 6
 toc: content
+description: go-admin 代码生成后的功能验证步骤，确认增删改查与权限控制均已生效。
+keywords: [go-admin 功能验证, 代码生成 测试]
 ---
 
 ## 操作内容管理
@@ -36,7 +39,7 @@ toc: content
 
 OK！，内容到这里已经介绍了开始第一个 go-admin 应用的全部过程，虽然图片居多，主要也是编码内容比较少，希望大家能够掌握，如在使用中遇到了什么问题都可以在 qq 群或者微信群中沟通交流！谢谢！
 
-如果需要了解更进一步的 go-admin 相关内容，请前往[进阶](/guide/advanced/api.html) 继续查看！
+如果需要了解更进一步的 go-admin 相关内容，请前往[进阶](/intro/advanced/api) 继续查看！
 
 :::warning
 从哪里获得帮助：

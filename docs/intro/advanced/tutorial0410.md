@@ -7,10 +7,12 @@ nav:
     order: 1
 group:
   title: 代码生成
-  order: 4
-title: 修改配置
+  order: 6
+title: 生成前配置
 order: 1
 toc: content
+description: go-admin 代码生成前的准备：建表规范、配置文件中 gen 项的数据库与前端路径设置。
+keywords: [go-admin 代码生成配置, gen 配置, 代码生成前准备]
 ---
 
 
@@ -37,7 +39,7 @@ toc: content
 1. gen > dbname 此配置可以根据数据库名称来获取该数据库下所有 table，进行代码生成；
 2. gen > frontpath 代码生成是使用前端代码存放位置，需要指定到 src 文件夹，相对路径;代码要求 go-admin 和 go-admin-ui 必须在同一级目录下
 
-当前我们先通过 sql 脚本的方式来创建数据库表信息。[表结构定义需要查看](/guide/db.html)
+当前我们先通过 sql 脚本的方式来创建数据库表信息。[表结构定义需要查看](/intro/advanced/db)
 
 ```sql
 CREATE TABLE `article` (

@@ -1,7 +1,9 @@
 ---
 title: Go Modules
-order: 80
+order: 40
 toc: content
+description: Go Modules 是 Go 官方的依赖管理方案，本文说明 GO111MODULE、GOPROXY 等关键设置的含义与 Go 各版本的行为变化。
+keywords: [go modules 是什么, GO111MODULE 设置, goproxy 配置, go 依赖管理]
 ---
 
 # Go Modules
@@ -27,7 +29,7 @@ Go 1.16 针对 go Modules 变更
 
 ## 初始化 go.mod
 
-> 首先需要配置一下[环境变量](/guide/env.html)
+> 首先需要配置一下[环境变量](/guide/env)
 
 执行一下命令，初始化 go.mod 文件
 
