@@ -2,6 +2,8 @@
 title: 部署环境
 order: 50
 toc: content
+description: go-admin 生产环境部署教程：交叉编译后端二进制、systemd 托管进程、Docker 与 docker-compose 部署、前端构建上传、Nginx 反向代理配置与上线检查清单。
+keywords: [go-admin 部署, golang 项目部署 nginx, go 后台管理系统上线, systemd 部署 go 服务, docker 部署 golang]
 ---
 
 ## 部署概览

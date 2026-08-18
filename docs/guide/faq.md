@@ -2,6 +2,8 @@
 title: 常见问题
 order: 90
 toc: content
+description: go-admin 常见问题与报错排查：Windows 下 CGO 编译问题、sqlite 依赖、数据库连接失败、前端依赖安装报错等，附具体解决步骤。
+keywords: [go-admin 报错, go-admin 常见问题, CGO 编译失败, golang 后台管理 排错]
 ---
 
 ## CGO 的问题

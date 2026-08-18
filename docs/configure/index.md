@@ -5,6 +5,8 @@ nav:
 title: 业务分库
 order: 10
 toc: menu
+description: go-admin 业务分库与读写分离配置：基于 GORM DBResolver 通过 registers 配置多数据源，按表路由到不同数据库连接。
+keywords: [gorm 读写分离, golang 业务分库, dbresolver 配置, go 多数据源]
 ---
 
 ## 业务分库

@@ -5,6 +5,8 @@ nav:
 title: 配置参考
 order: 5
 toc: menu
+description: go-admin 配置文件 settings.yml 完整参考：application、jwt、database、logger、cache、queue 等各配置块的字段说明、取值与生效范围，含生产环境必改项。
+keywords: [go-admin 配置文件, settings.yml 配置说明, golang 项目配置管理, go-admin jwt 配置, go-admin 数据库配置]
 ---
 
 ## 配置参考

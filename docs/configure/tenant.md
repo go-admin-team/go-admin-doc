@@ -5,6 +5,8 @@ nav:
 title: 多租户
 order: 10
 toc: menu
+description: go-admin 多租户配置教程：通过 databases 按域名区分数据库实例，配合 Nginx 转发实现一套代码服务多个租户，含配置示例与注意事项。
+keywords: [go-admin 多租户, golang 多租户实现, saas 多租户数据库, 按域名分库]
 ---
 
 ## 多租户

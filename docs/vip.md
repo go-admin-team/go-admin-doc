@@ -1,7 +1,10 @@
 ---
+title: 商业授权
 nav:
   title: 授权
   order: 5
+description: go-admin-pro 商业授权说明：开源版与个人版、小微团队版、企业版的权益对比、授权范围与购买方式。
+keywords: [go-admin pro, go-admin 商业授权, go-admin 收费版, 中台解决方案]
 ---
 
 

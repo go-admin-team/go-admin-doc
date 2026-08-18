@@ -4,6 +4,8 @@ order: 10
 nav:
   title: 指南
   order: 1
+description: go-admin 是基于 Gin、GORM、Casbin 与 Vue 3 的开源中后台框架，提供用户、角色、菜单、部门、字典、定时任务等开箱即用的模块，遵循 RESTful 规范。
+keywords: [go-admin 是什么, golang 中后台框架, gin gorm casbin, 开源权限管理系统]
 ---
 
 ## 介绍

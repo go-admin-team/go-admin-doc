@@ -2,6 +2,8 @@
 title: 快速开始
 order: 20
 toc: content
+description: 五分钟跑起 go-admin：下载前后端代码、配置 MySQL 数据源、执行 migrate 初始化数据库、启动后端与前端服务，包含常见启动报错的排查方法。
+keywords: [go-admin 安装教程, go-admin 快速开始, golang 后台管理系统搭建, gin vue 项目启动]
 ---
 
 `go-admin`是一个前后端分离的项目，所以需要分别下载 [前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui) 和 [后端项目 go-admin](https://github.com/go-admin-team/go-admin) ，下面分为两个阶段分别说明[前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目 go-admin](https://github.com/go-admin-team/go-admin)的快速启动；
