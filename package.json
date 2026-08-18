@@ -19,10 +19,6 @@
       "prettier --write --no-error-on-unmatched-pattern"
     ]
   },
-  "dependencies": {
-    "@qixian.cs/github-contributors-list": "^1.0.6",
-    "antd": "^5.24.6"
-  },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
