@@ -1,10 +1,13 @@
 ---
+nav:
+  title: 开发
+  order: 2
+  second:
+    title: 指令
+    order: 2
 title: server
 order: 50
 toc: content
-nav:
-  title: 指令
-  order: 3
 ---
 
 ## 视频教程

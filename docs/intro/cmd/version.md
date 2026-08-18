@@ -1,7 +1,10 @@
 ---
 nav:
-  title: 指令
-  order: 3
+  title: 开发
+  order: 2
+  second:
+    title: 指令
+    order: 2
 title: version
 order: 60
 toc: content

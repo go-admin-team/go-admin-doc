@@ -40,14 +40,22 @@ export default defineConfig({
     footer: `Open-source MIT Licensed | Copyright © 2020-present
     <br />
     Powered by go-admin-team`,
-    // dumi 2 为 nav（此前写作 navs，是 dumi 1 的键名，不生效）。
-    // 使用数组形式以便在所有语言下都显示
-    nav: [
-      { title: 'GitHub', link: 'https://github.com/go-admin-team/go-admin' },
-      {
-        title: 'Changelog',
-        link: 'https://github.com/go-admin-team/go-admin/releases',
-      },
-    ],
+    // dumi 2 uses `nav` (dumi 1's `navs` is ignored).
+    //
+    // A bare array REPLACES the nav dumi derives from each page's `nav`
+    // frontmatter, which dropped 指南 / 指令 / 开发 / 高阶 / 授权 / 帮助 from the
+    // header and left only these two links — the doc groups were reachable
+    // only by editing the URL. `mode: 'append'` keeps the generated items and
+    // adds these after them.
+    nav: {
+      mode: 'append',
+      value: [
+        { title: 'GitHub', link: 'https://github.com/go-admin-team/go-admin' },
+        {
+          title: 'Changelog',
+          link: 'https://github.com/go-admin-team/go-admin/releases',
+        },
+      ],
+    },
   },
 });

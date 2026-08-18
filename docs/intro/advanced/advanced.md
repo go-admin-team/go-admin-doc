@@ -2,6 +2,9 @@
 nav:
   title: 开发
   order: 2
+  second:
+    title: 进阶
+    order: 1
 group:
   title: 高级
   order: 4

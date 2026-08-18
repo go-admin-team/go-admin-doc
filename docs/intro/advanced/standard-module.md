@@ -1,11 +1,18 @@
 ---
-nav: 开发
+nav:
+  title: 开发
+  order: 2
+  second:
+    title: 进阶
+    order: 1
 group:
   title: 高级
   order: 2
 title: 标准模块开发
 order: 0
 toc: content
+description: go-admin 标准模块开发指南：使用 common/actions 通用 Action 实现单表 CRUD，一个模块只需 model、dto、router 三个文件，以 app/demo 为可编译参照。
+keywords: [go-admin 模块开发, go-admin CRUD, gin 快速开发 CRUD, golang 分层架构]
 ---
 
 # 标准模块开发<Badge>Beta</Badge>
