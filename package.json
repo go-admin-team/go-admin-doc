@@ -5,7 +5,7 @@
   "license": "MIT",
   "packageManager": "pnpm@9.15.1",
   "scripts": {
-    "build": "dumi build",
+    "build": "dumi build && node scripts/fix-html-lang.mjs",
     "dev": "dumi dev",
     "start": "npm run dev"
   },
