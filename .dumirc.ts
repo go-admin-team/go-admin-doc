@@ -7,7 +7,11 @@ import { defineConfig } from 'dumi';
 //   - 百度统计脚本未注入
 // themeConfig 只接受传递给主题的配置（name / logo / footer / nav 等）。
 export default defineConfig({
-  title: 'go-admin',
+  // No top-level `title`. umi writes it straight into the HTML template while
+  // the default theme injects a second <title> from each page's frontmatter
+  // via react-helmet. Two <title> tags end up in <head>, and crawlers read the
+  // first one, so every page was indexed as "go-admin". Page titles now come
+  // from frontmatter alone.
   favicons: ['https://doc-image.zhangwj.com/img/go-admin.png'],
 
   // 预渲染。开发模式关闭以保证热更新速度，构建时开启，
@@ -18,18 +22,9 @@ export default defineConfig({
     hostname: 'https://www.go-admin.pro',
   },
 
-  metas: [
-    {
-      name: 'description',
-      content:
-        'go-admin 是基于 Gin + Vue 3 + Element Plus 的前后端分离权限管理系统，内置 JWT 认证、Casbin 权限控制、多租户与数据权限、定时任务等能力。本站为官方使用文档。',
-    },
-    {
-      name: 'keywords',
-      content:
-        'go-admin,Gin,Golang,Vue3,Element Plus,权限管理系统,后台管理系统,RBAC,Casbin,JWT,快速开发框架',
-    },
-  ],
+  // Same duplication problem as `title`: a site-wide description here shadows
+  // the per-page one helmet injects. Description and keywords are declared in
+  // each page's frontmatter instead.
 
   analytics: {
     ga_v2: 'G-CGFXG08VBT',
