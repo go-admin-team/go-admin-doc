@@ -75,12 +75,13 @@ article_list.go
 
 ```go
 import (
-  "net/http"
+  "fmt"
 
   "github.com/gin-gonic/gin"
+  "github.com/go-admin-team/go-admin-core/sdk/api"
 
-  "go-admin/tools/app"
   "go-admin/app/admin/models"
+  "go-admin/app/admin/service"
 )
 ```
 

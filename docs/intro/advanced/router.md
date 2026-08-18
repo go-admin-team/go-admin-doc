@@ -15,7 +15,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
-	"go-admin/app/admin/apis/sys_file"
+	"go-admin/app/admin/apis"
 	"go-admin/common/middleware"
 )
 ```
@@ -25,7 +25,7 @@ import (
 | 接口名称                 | 说明                                      |
 | ------------------------ | ----------------------------------------- |
 | init                     | 系统 init 函数                            |
-| registerSysFileDirRouter | 路由注册，go-admin 路由注册内置的通用函数 |
+| registerSyPostRouter     | 路由注册，go-admin 路由注册内置的通用函数 |
 
 :::warning
 go-admin 路由注册函数命名规范
@@ -120,11 +120,11 @@ func registerSyPostRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddlew
 
 ```go
 func init() {
-	routerCheckRole = append(routerCheckRole, registerSyPostRouter)
+	routerNoCheckRole = append(routerNoCheckRole, registerSyPostRouter)
 }
 
-// 需认证的路由代码
-func registerSyPostRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) {
+// 无需认证的路由代码
+func registerSyPostRouter(v1 *gin.RouterGroup) {
 	api := apis.SysPost{}
 	r := v1.Group("/post")
 	{
@@ -136,6 +136,16 @@ func registerSyPostRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddlew
 	}
 }
 ```
+
+:::warning
+注意两个注册切片的区别（定义见 `app/admin/router/router.go`）：
+
+- `routerCheckRole`：需认证的路由，函数签名为 `func(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware)`
+- `routerNoCheckRole`：无需认证的路由，函数签名为 `func(v1 *gin.RouterGroup)`
+
+无需鉴权的路由必须注册到 `routerNoCheckRole`，否则仍会被并入需认证路由组的遍历中。
+
+:::
 
 :::warning
 从哪里获得帮助：
