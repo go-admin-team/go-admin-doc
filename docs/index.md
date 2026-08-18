@@ -1,5 +1,5 @@
 ---
-title: dumi - 为组件研发而生的静态站点框架
+title: go-admin - 基于 Gin + Vue 3 的中后台管理系统脚手架
 hero:
   title: go-admin
   description: 专注于中后台项目开发脚手架，助力开发者快速启动项目
