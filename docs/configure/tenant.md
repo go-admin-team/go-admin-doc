@@ -46,7 +46,7 @@ toc: menu
 server {
   server_name dev.xxx.com;
   location / {
-	 proxy_pass   http://172.16.3.3:9527;
+	 proxy_pass   http://127.0.0.1:9527;
   }
 }
 ```
@@ -70,17 +70,17 @@ server {
   databases:
     'dev.a.com':
       driver: mysql
-      source: root:xxx@tcp(172.16.3.3:3306)/goAdmin?charset=utf8&parseTime=True&loc=Local&timeout=2000ms
+      source: root:xxx@tcp(127.0.0.1:3306)/goAdmin?charset=utf8&parseTime=True&loc=Local&timeout=2000ms
     'dev.b.com':
       driver: mysql
-      source: root:xxx@tcp(172.16.3.3:3306)/goAdmin?charset=utf8&parseTime=True&loc=Local&timeout=2000ms
+      source: root:xxx@tcp(127.0.0.1:3306)/goAdmin?charset=utf8&parseTime=True&loc=Local&timeout=2000ms
 ```
 #### 2、设置nginx的conf文件
 ```nginx
 server{
   server_name dev.a.com;
   location /api/v1{
-	  proxy_pass http://172.16.3.3:8000;
+	  proxy_pass http://127.0.0.1:8000;
 	  proxy_set_header Accept $http_host;
 	  proxy_set_header Host $host;
 	  proxy_set_header X-Real-IP $remote_addr;
@@ -92,7 +92,7 @@ server{
 server{
   server_name dev.b.com;
   location /api/v1{
-	  proxy_pass http://172.16.3.3:8000;
+	  proxy_pass http://127.0.0.1:8000;
 	  proxy_set_header Accept $http_host;
 	  proxy_set_header Host $host;
 	  proxy_set_header X-Real-IP $remote_addr;

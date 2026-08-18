@@ -4,7 +4,7 @@ order: 100
 toc: menu
 ---
 
-目前`Go`的`IDE`有比较流行有`VSCode`和 JetBrains 公司的`Goland`。由于 JetBrains 也是 go-admin 脚手架的赞助商，因此我们优先推荐使用`Goland`来作为开发 IDE，下载及注册请参考网上教程（[百度](https://www.baidu.com) 或 [Google](https://www.goole.com)）。
+目前`Go`的`IDE`有比较流行有`VSCode`和 JetBrains 公司的`Goland`。由于 JetBrains 也是 go-admin 脚手架的赞助商，因此我们优先推荐使用`Goland`来作为开发 IDE，下载及注册请参考网上教程（[百度](https://www.baidu.com) 或 [Google](https://www.google.com)）。
 
 [JetBrains 的官网](https://www.jetbrains.com)
 

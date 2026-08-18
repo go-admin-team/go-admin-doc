@@ -93,7 +93,7 @@ func registerArticleRouter(v1 *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddle
 ```bash
 go build
 
-./go-admin server -c=config/settings.dev.yml
+./go-admin server -c=config/settings.yml
 ```
 
 用你的浏览器访问 <http://localhost:8000/api/v1/articleList>，你应该能够看见
@@ -124,7 +124,7 @@ router 注册类型，我们比较常用的就是 `GET`、`POST`、`PUT`、`DELE
 
 path 是一个匹配 URL 的准则（有点正则表达式的意思），当 go-admin 响应一个请求时，它会从注册的 url 第一项开始，按照顺序一次匹配，直到找到匹配项。
 
-这些准则不会匹配 GET 和 POST 参数或域名。例如，URL 在处理请求 <http://www.zhangwj.com/articleList> 时，它会尝试匹配 articleList 。处理请求 <http://www.zhangwj.com/articleList?page=3> 时，也只会尝试匹配 blog/list。
+这些准则不会匹配 GET 和 POST 参数或域名。例如，URL 在处理请求 <https://example.com/articleList> 时，它会尝试匹配 articleList 。处理请求 <https://example.com/articleList?page=3> 时，也只会尝试匹配 articleList。
 
 <!-- :::error -->
 
