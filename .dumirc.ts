@@ -22,6 +22,19 @@ export default defineConfig({
     hostname: 'https://www.go-admin.pro',
   },
 
+  // Locales for the first translation round. The first entry is the default and
+  // owns the root path, so existing zh-CN URLs are unchanged; the others are
+  // served under their base. A page without a `.{id}.md` sibling does not get a
+  // route in that locale, so keep `scripts/fix-html-lang.mjs` LOCALE_BASES in
+  // sync when adding one here.
+  locales: [
+    { id: 'zh-CN', name: '简体中文' },
+    { id: 'en-US', name: 'English', base: '/en-US' },
+    { id: 'ja-JP', name: '日本語', base: '/ja-JP' },
+    { id: 'zh-TW', name: '繁體中文', base: '/zh-TW' },
+  ],
+
+
   // Same duplication problem as `title`: a site-wide description here shadows
   // the per-page one helmet injects. Description and keywords are declared in
   // each page's frontmatter instead.
