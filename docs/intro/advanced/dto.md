@@ -14,9 +14,16 @@ order: 3
 description: go-admin DTO 定义：列表查询、新增修改、按 ID 操作三类 DTO 的写法，以及搜索条件与校验标签的使用。
 keywords: [go-admin dto, golang 参数校验, gin 请求参数结构体, go 查询条件构造]
 ---
+# DTO 定义
 
-首先介绍以下 dto 在 go-admin 中的作用。dto 是一个数据接收模块，每一个请求进来，携带的数据需要在 dto 中进行处理验证；
+DTO（Data Transfer Object）描述一次请求携带的数据：字段、校验规则，以及列表查询时的搜索条件。请求进入后先由 DTO 接收与校验，再进入后续处理。
 
+go-admin 中的 DTO 分三类：列表查询用 `Search`、新增修改用 `Control`、按 ID 操作用 `ById`。
+
+:::info
+**每个模块都需要这一层**，无论使用 [Actions 模式](/intro/advanced/advanced) 还是[常规模式](/intro/advanced/bus)。
+
+:::
 ## Import
 
 ```go

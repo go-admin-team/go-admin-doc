@@ -15,7 +15,17 @@ description: go-admin 路由注册：需认证与免认证两类注册切片的�
 keywords: [go-admin 路由注册, gin 路由分组, gin 中间件 鉴权, jwt 路由保护]
 ---
 
-## package & import
+# 路由注册
+
+路由把 URL 映射到处理函数，并决定这个接口需要哪些中间件——是否要求登录、是否做角色鉴权、是否注入数据权限。
+
+go-admin 的路由通过 `init()` 自注册，不需要在中心文件里手工登记。
+
+:::info
+**每个模块都需要这一层**，无论使用 [Actions 模式](/intro/advanced/advanced) 还是[常规模式](/intro/advanced/bus)。两种模式的路由写法不同：前者在路由中直接挂通用 Action，后者调用自己编写的 Handler。
+
+:::
+## package 与 import
 
 ```go
 package router
