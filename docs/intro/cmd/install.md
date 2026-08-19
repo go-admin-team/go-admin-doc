@@ -6,14 +6,17 @@ nav:
     title: 指令
     order: 2
 title: install 安装
-order: 10
+order: 100
 toc: content
-description: go-admin install 指令说明：初始化项目依赖与基础环境的安装步骤。
+description: go-admin-pro 的 install 指令：通过可视化引导页面完成项目初始化。该指令仅存在于订阅版，开源版不提供。
 keywords: [go-admin install, go-admin 安装命令, golang 项目初始化]
 ---
 
-:::warning
-注意：本指令仅适用于`go-admin-pro`项目
+:::error
+**本指令仅存在于 go-admin-pro（订阅版）。**
+
+开源版 go-admin 未注册 `install` 指令，执行会提示找不到命令。开源版的初始化流程见[快速开始](/guide/ksks)，数据库初始化使用 [migrate 指令](/intro/cmd/migrate)。
+
 :::
 
 <br>

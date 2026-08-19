@@ -10,9 +10,27 @@ keywords: [go-admin 是什么, golang 中后台框架, gin gorm casbin, 开源�
 
 ## 介绍
 
-[go-admin](https://github.com/go-admin-team/go-admin) 是一个中后台应用框架，后端基于 Gin、GORM、Casbin 实现，前端基于 Vue 3 + Element Plus（另有 Arco Design、Ant Design 版本可选）。go-admin 分为两个项目[go-admin](https://github.com/go-admin-team/go-admin) 和 [go-admin-ui](https://github.com/go-admin-team/go-admin-ui)，从名称上不难看出 go-admin 是后端服务，go-admin-ui 是 view 端服务。go-admin 主要提供一套标准化结构，让开发程序是对整个后端更加清晰彻底，也逐渐形成了独有的一套流程。
+[go-admin](https://github.com/go-admin-team/go-admin) 是一个中后台应用框架。后端基于 Gin、GORM、Casbin，前端基于 Vue 3 + Element Plus，另有 Arco Design 与 Ant Design 版本可选。
 
-[go-admin](https://github.com/go-admin-team/go-admin)的目的是为了让开发者更方便快捷的梳理需求，专注业务，减少重复代码的编写，节省时间，提升人效，缩短项目周期，提升软件的开发效率以及质量，以早日实现不用加班的目的而努力！
+项目由两个仓库组成：[go-admin](https://github.com/go-admin-team/go-admin) 是后端服务，[go-admin-ui](https://github.com/go-admin-team/go-admin-ui) 是前端。框架提供一套标准化的分层结构与开发流程，使项目在规模变大后仍然保持清晰。
+
+它要解决的是重复劳动。认证、权限、用户与部门管理这些每个后台系统都要重做一遍的部分已经内置，接手一个新项目时可以直接从业务写起。
+
+## 适用场景
+
+go-admin 面向的是**有明确权限模型的企业内部系统**——管理后台、运营平台、业务中台这类需要区分角色、限定数据范围的场景。
+
+以下情况适合使用：
+
+- 需要 RBAC 角色权限，并按组织架构划分数据可见范围；
+- 需要在同一套代码上服务多个租户；
+- 表结构相对规整，大量功能是标准的增删改查，希望由代码生成器产出；
+- 团队规模不大，希望省去搭建认证、权限、日志这类基础设施的时间。
+
+以下情况需要斟酌：
+
+- 面向 C 端的高并发服务——框架的重心在后台管理，不在高吞吐场景的优化；
+- 已有成熟的权限体系与账号中心，接入成本可能高于收益。
 
 ## 特性
 
@@ -36,7 +54,7 @@ keywords: [go-admin 是什么, golang 中后台框架, gin gorm casbin, 开源�
 
 - 表单构建工具
 
-- TODO: 单元测试
+- 单元测试（逐步补充中）
 
 ## 内置功能
 

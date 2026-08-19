@@ -14,6 +14,16 @@ order: 2
 description: go-admin Service 层开发：业务逻辑组织、数据库操作与错误处理，以及与 API 层的职责边界。
 keywords: [go-admin service 层, golang 业务逻辑分层, gorm 数据库操作]
 ---
+# Service 层
+
+Service 层承载业务逻辑，是唯一直接操作数据库的地方。它由 API 层调用，**不接触 `gin.Context`**——请求相关的信息由 API 层解析后传入。
+
+:::info
+**单表增删改查不需要这一层。** `common/actions` 提供的通用 Action 已经覆盖，一个模块只需 model、dto、router 三个文件，见[标准模块开发](/intro/advanced/standard-module)。
+
+本文适用于业务超出单表增删改查的场景——跨表事务、调用外部服务、复杂校验。
+
+:::
 
 ## import
 

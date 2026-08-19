@@ -6,11 +6,12 @@ description: go-admin 代码规范：包与文件命名、import 分组顺序、
 keywords: [go 代码规范, golang 命名规范, go import 分组, 项目代码约定]
 ---
 
-<!-- ## 开发规范 -->
+# 代码规范
+
+本文是 go-admin 的目录结构与命名约定。仓库根目录的 `AGENTS.md` 是同一套约定面向 AI 编码工具的版本，两者内容一致；实际编码时以可编译的 `app/demo/` 为准，见[标准模块开发](/intro/advanced/standard-module)。
 
 ### 目录及文件名
 
-以下部分标准将在 v1.4.0 及之后版本生效。
 
 ### app
 
@@ -22,7 +23,6 @@ keywords: [go 代码规范, golang 命名规范, go import 分组, 项目代码�
 
 ### apis
 
-[v1.4.0+]
 
 `apis` 目录下直接存放 api 文件，命名格式如下：
 
@@ -30,7 +30,6 @@ keywords: [go 代码规范, golang 命名规范, go import 分组, 项目代码�
 
 ### models
 
-[v1.4.0+]
 
 `models` 目录下直接存放数据库 orm 模型文件，命名格式如下：
 
@@ -109,7 +108,6 @@ func GetArticleList(c *gin.Context) {
 
 ### api
 
-[v1.4.0+]
 
 格式：`api/{version}/{module}/{name}`
 
@@ -117,7 +115,6 @@ func GetArticleList(c *gin.Context) {
 
 ### view
 
-[v1.4.0+]
 
 格式：`{module}/{name}`
 
@@ -139,7 +136,6 @@ func GetArticleList(c *gin.Context) {
 
 请使用小驼峰
 
-[v1.4.0+]
 
 格式：`{module}/{name}/业务名称`
 

@@ -6,7 +6,23 @@ description: 五分钟跑起 go-admin：下载前后端代码、配置 MySQL 数
 keywords: [go-admin 安装教程, go-admin 快速开始, golang 后台管理系统搭建, gin vue 项目启动]
 ---
 
-`go-admin`是一个前后端分离的项目，所以需要分别下载 [前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui) 和 [后端项目 go-admin](https://github.com/go-admin-team/go-admin) ，下面分为两个阶段分别说明[前端项目 go-admin-ui](https://github.com/go-admin-team/go-admin-ui)和[后端项目 go-admin](https://github.com/go-admin-team/go-admin)的快速启动；
+go-admin 前后端分离，需要分别启动两个项目：后端 [go-admin](https://github.com/go-admin-team/go-admin) 与前端 [go-admin-ui](https://github.com/go-admin-team/go-admin-ui)。本文按先后端、后前端的顺序说明。
+
+在开始之前，先了解整体流程：
+
+| 阶段 | 步骤 | 说明 |
+| --- | --- | --- |
+| 后端 | 环境准备 | Go 1.26 及以上，开启 Go Modules |
+| 后端 | 下载与编译 | clone 仓库并执行 `go build` |
+| 后端 | 配置数据源 | 修改 `config/settings.yml` 中的数据库连接 |
+| 后端 | 创建数据库 | 建一个空库，字符集 utf8mb4 |
+| 后端 | 初始化数据 | `migrate` 指令建表并写入初始数据 |
+| 后端 | 启动服务 | 默认监听 8000 端口 |
+| 前端 | 环境准备 | Node 22 及以上、pnpm 9 及以上 |
+| 前端 | 下载与安装 | clone 仓库并 `pnpm install` |
+| 前端 | 启动 | 默认监听 9527 端口 |
+
+顺利的话全程约 20 分钟，其中大部分时间花在下载依赖上。数据库需要提前准备好，MySQL 建议 8.0 及以上。
 
 ## 环境准备<Badge>go-admin</Badge>
 
@@ -278,6 +294,32 @@ vite v8.2.1 building for production...
 测试环境验证，将 `./dist` 文件上传到测试环境中进行验证。
 
 部署，将测试后的 `./dist` 文件上传到最终环境或者生产环境。
+
+完整的生产部署方式（systemd、Docker、Nginx 配置）见[部署环境](/guide/xmbs)。
+
+## 怎样算启动成功
+
+逐项确认，全部满足才算跑通：
+
+1. 后端控制台输出了启动信息，且没有 `mysql connect error` 之类的报错；
+2. 浏览器访问 <http://localhost:9527> 能看到登录页；
+3. 用 `admin` / `123456` 能登录进去；
+4. 左侧菜单能正常展开，随便点开一个页面（例如「用户管理」）能看到列表数据。
+
+第 4 步是关键。能看到登录页只说明前端起来了；**能看到列表数据才说明前后端联通、数据库初始化也成功了**。
+
+## 卡住了先查这几项
+
+| 现象 | 先查什么 |
+| --- | --- |
+| 后端启动即报 `mysql connect error` | 配置文件里的账号、密码、库名、端口；数据库是否已创建 |
+| 启动报 sqlite 相关的 panic | 用 sqlite 时必须带构建标签：`go run -tags sqlite3 .` |
+| 登录页能打开，但登录报网络错误 | 后端是否在运行；前端 `.env.development` 的接口地址是否指向后端 |
+| 登录成功但菜单为空 | `migrate` 是否执行成功，初始数据是否写入 |
+| 页面能打开但列表报权限错误 | 当前账号的角色是否分配了对应菜单与接口权限 |
+| 前端依赖安装失败 | Node 是否为 22 及以上；删除 `node_modules` 重装，不要删 `pnpm-lock.yaml` |
+
+更多报错见[常见问题](/guide/faq)；仍未解决时，[获取帮助](/help)一节说明了提交 issue 需要附带哪些信息。
 
 :::warning
 从哪里获得帮助：

@@ -14,12 +14,17 @@ order: 4
 description: go-admin Model 定义：GORM 结构体、TableName 方法与公共字段的使用方式。
 keywords: [go-admin model, gorm 模型定义, golang 数据库结构体]
 ---
+# Model 定义
 
-models 主要是和 db 做交互使用的。
+Model 是 GORM 的数据库结构体，描述表结构与字段映射，是数据库交互的载体。
 
+:::info
+**每个模块都需要这一层**，无论使用 [Actions 模式](/intro/advanced/advanced) 还是[常规模式](/intro/advanced/bus)。
+
+:::
 ## package 和 import
 
-首先，需要是`package`名称和 `import` package 引用关系
+按标准库、第三方、项目内三段分组：
 
 ```go
 package models

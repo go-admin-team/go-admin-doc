@@ -9,11 +9,11 @@ keywords: [go 环境安装, golang 安装教程, go 版本要求, goproxy 国内
 ## 环境安装
 
 :::info
-本节内容为 Golang 开发环境及 IDE 配置教程，适用于 Golang 新选手
+本节说明 Go 开发环境的安装，面向初次配置 Go 的读者。IDE 的配置见 [IDE 配置](/guide/ide-env)
 
 :::
 
-[🚪 老司机绕行](/guide/ksks)
+已经配置好 Go 环境的读者可以直接前往[快速开始](/guide/ksks)。
 
 ### 1. 下载
 
@@ -23,7 +23,7 @@ keywords: [go 环境安装, golang 安装教程, go 版本要求, goproxy 国内
 
 ### 2. 安装
 
-`Golang` 官网直接给出了安装指引，可以访问 [https://golang.org/doc/install](https://golang.org/doc/install) 按照指引下一步就好了；
+Go 官网提供了各平台的安装指引，访问 [https://golang.org/doc/install](https://golang.org/doc/install) 按指引完成安装即可。
 
 :::info
 如果不清楚下载哪一个，可以根据下图 1.Go Download 处有提示适合的安装包

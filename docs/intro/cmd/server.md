@@ -12,15 +12,12 @@ description: go-admin server 指令：启动 API 服务，含 -c 指定配置文
 keywords: [go-admin server 启动, go-admin 启动参数, golang 服务启动命令]
 ---
 
-## 视频教程
-
-[【go-admin-pro】如何优雅添加 api（&适用于 go-admin）](https://www.bilibili.com/video/BV1pN4y157wp?spm_id_from=333.999.0.0)
 
 ## 服务启动
 
 `go-admin` 针对 api 项目的启动提供`server`指令，在程序启动时使用；
 
-首先需要将在项目根目录下执行`go build` 将程序编译：
+首先在项目根目录下执行 `go build` 编译程序：
 
 ```sh
 go build
@@ -30,7 +27,7 @@ go build
 
 ## 配置文件
 
-但有一个问题是项目的配置文件如何加载？
+配置文件通过 `-c` 参数指定：
 
 `go-admin server`默认是加载 config/settings.yml 文件；
 
@@ -73,3 +70,9 @@ $ go-admin server -a
 ```sh
 $ go run main.go server
 ```
+
+## 参考
+
+视频教程（录制于订阅版，操作步骤同样适用于开源版）：
+
+[【go-admin-pro】如何优雅添加 api（&适用于 go-admin）](https://www.bilibili.com/video/BV1pN4y157wp?spm_id_from=333.999.0.0)

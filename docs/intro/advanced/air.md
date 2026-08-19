@@ -9,7 +9,7 @@ group:
   title: 进阶能力
   order: 7
 title: Air 热加载
-order: 3
+order: 6
 toc: content
 description: 在 go-admin 中使用 Air 实现代码热加载：安装、配置与常用参数说明，修改代码后自动重启服务。
 keywords: [go air 热加载, golang 热重启, air 配置, go 开发效率]

@@ -12,11 +12,6 @@ description: go-admin migrate 指令详解：初始化数据库表结构与预�
 keywords: [go-admin migrate, golang 数据库迁移, go 数据库版本管理, gorm migration]
 ---
 
-## 视频教程
-
-[【go-admin-pro】如何优雅的数据迁移？migrate 指令](https://www.bilibili.com/video/BV13Y4y1A7n2?spm_id_from=333.999.0.0)
-
-[【go-admin-pro】数据迁移 migrate 指令常见的问题说明](https://www.bilibili.com/video/BV1wS4y1x7g2?spm_id_from=333.999.0.0)
 
 ## 应用场景：
 
@@ -46,7 +41,7 @@ keywords: [go-admin migrate, golang 数据库迁移, go 数据库版本管理, g
 
 在开发过程中经常会遇到数据库字段的变更和基础数据的变更，`go-admin` 提供了对应的迁移工具；
 
-首先需要将在项目根目录下执行`go build` 将程序编译：
+首先在项目根目录下执行 `go build` 编译程序：
 
 ```sh
 go build
@@ -250,7 +245,7 @@ func (TbDemoTest1654233005297) TableName() string {
 ### 3.2 方式二：编译并运行迁移
 
 ```shell
- # 不推荐，每次修改迁移文件后，都需要 go build 重新编译，容易忘记编译，掉进坑里，嘿嘿。。。
+ # 不推荐：每次修改迁移文件后都要重新编译，容易忘记，导致执行的仍是旧版本
  $ go build
  $ ./go-admin migrate -c config/settings.yml      # mac /linux执行命令
  $ ./go-admin.exe migrate -c config/settings.yml  # windows执行命令
@@ -562,3 +557,11 @@ $ go run -tags=sqlite3,json1 main.go migrate -c config/settings.yml
 
 6. 到此结束。
    感谢大家对 go-admin 的支持，希望大家多多点 star，多多推荐本项目。
+
+## 参考
+
+视频教程（录制于订阅版，操作步骤同样适用于开源版）：
+
+[【go-admin-pro】如何优雅的数据迁移？migrate 指令](https://www.bilibili.com/video/BV13Y4y1A7n2?spm_id_from=333.999.0.0)
+
+[【go-admin-pro】数据迁移 migrate 指令常见的问题说明](https://www.bilibili.com/video/BV1wS4y1x7g2?spm_id_from=333.999.0.0)

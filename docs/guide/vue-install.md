@@ -7,11 +7,11 @@ keywords: [node 安装教程, pnpm 安装, vue3 开发环境, node 版本要求]
 ---
 
 :::warning
-本节内容为 Node.js 开发环境及 IDE 配置教程，仅针对前端新选手，老司机请绕行。
+本节说明 go-admin-ui 所需的 Node.js 与 pnpm 安装，面向初次配置前端环境的读者。
 
 :::
 
-[老司机绕行](/guide/ksks)
+已经配置好 Node 环境的读者可以直接前往[快速开始](/guide/ksks)。
 
 ## node.js & npm 安装
 

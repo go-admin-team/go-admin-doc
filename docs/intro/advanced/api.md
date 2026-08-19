@@ -14,14 +14,31 @@ toc: content
 description: go-admin API 层开发：结构体嵌入 api.Api、参数绑定与错误检查，以及分页列表、详情、增删改各接口的写法。
 keywords: [go-admin api 层, gin handler 写法, golang 接口开发, gin 参数绑定]
 ---
+# API 层
 
-# api
+go-admin 的后端分为四层，请求自上而下流转：
 
-`go-admin` 的 api 全部在 api 文件夹中，系统默认的每一个 api 至少有 7 个函数；分别对应了：分页列表、详情、新增、修改、删除、导入（计划）、导出（计划）；
+```
+Router      →  Api            →  Service        →  Model
+路由注册        参数绑定           业务逻辑           GORM 结构体
+中间件链        调用 Service       操作数据库         TableName()
+```
 
+对应目录为 `app/{模块}/router|apis|service|models`，DTO 位于 `service/dto`。
+
+分层的约束有两条，越过任何一条都会让职责变得混乱：**Api 不直接操作数据库，Service 不接触 `gin.Context`**。
+
+API 层是 Gin 的 Handler，负责接收 HTTP 请求：绑定并校验参数、调用 Service、返回响应。
+
+:::info
+**单表增删改查不需要这一层。** `common/actions` 提供的通用 Action 已经覆盖，一个模块只需 model、dto、router 三个文件，见[标准模块开发](/intro/advanced/standard-module)。
+
+本文适用于业务超出单表增删改查的场景——跨表事务、调用外部服务、复杂校验。
+
+:::
 ## package 和 import
 
-首先，需要是`package`名称和 `import` package 引用关系
+按标准库、第三方、项目内三段分组：
 
 ```go
 package apis

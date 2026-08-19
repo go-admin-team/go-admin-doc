@@ -8,49 +8,90 @@ keywords: [go modules 是什么, GO111MODULE 设置, goproxy 配置, go 依赖�
 
 # Go Modules
 
-从 1.11 开始，Go 已经包含了对版本模块的支持，正如这里提出的那样。最初的原型 vgo 于 2018 年 2 月公布。 2018 年 7 月，版本化模块登陆 Go 主存储库。
+Go Modules 是 Go 官方的依赖管理方案，自 Go 1.16 起是默认且唯一推荐的方式。go-admin 使用它管理依赖，日常开发中需要了解的内容如下。
 
-从 Go 1.14 开始，模块支持被认为可以用于生产，并鼓励所有用户从其他依赖管理系统迁移到模块。
+## go.mod 与 go.sum
 
-Go 1.16 针对 go Modules 变更
+`go.mod` 描述项目的依赖，包含三部分信息：
 
-1. 模块模式 ( GO111MODULE=on) 是所有情况下的默认值
-1. 命令不再修改 go.mod/go.sum 默认情况下 ( -mod=readonly)
-1. go install pkg@version 是全局安装包/可执行文件的推荐方法
-1. retract 可在 go.mod
+1. **模块名**——项目内的包通过它相互引用，例如 go-admin 的模块名就是 `go-admin`;
+2. **Go 版本**——声明项目要求的最低 Go 版本，go-admin 当前要求 1.26;
+3. **依赖列表**——直接依赖与间接依赖（标注 `// indirect`）。
 
-## 关于 go.mod
+`go.sum` 记录每个依赖的校验和，用于确认下载到的代码与首次引入时一致。
 
-`go.mod`是 Go 项目的依赖描述文件，有三个信息：
+:::warning
+`go.sum` **必须提交到版本库**。它是防止依赖被篡改的依据，删掉它并不会"清理项目",只会让校验失效。
 
-1. 当前项目名(module)是什么。每个项目都应该设置一个名称，当前项目中的包(package)可以使用该名称进行相互调用。
-2. 项目 go 语言版本号
-3. 当前项目依赖的第三方包名称。项目运行时会自动分析项目中的代码依赖，生成 go.sum 依赖分析结果，随后 go 编译器会去下载这些第三方包，然后再编译运行。
+:::
 
-## 初始化 go.mod
-
-> 首先需要配置一下[环境变量](/guide/env)
-
-执行一下命令，初始化 go.mod 文件
+## 常用命令
 
 ```sh
-$ go mod init HelloWorld
-go: creating new go.mod: module HelloWorld
-go: to add module requirements and sums:
-        go mod tidy
+# 初始化模块（新项目才需要，go-admin 已自带 go.mod）
+$ go mod init 模块名
+
+# 整理依赖：补全缺失的、移除不再使用的
+$ go mod tidy
+
+# 把依赖下载到本地模块缓存
+$ go mod download
+
+# 查看某个包被谁引入（排查依赖冲突时很有用）
+$ go mod why -m 包名
+
+# 列出所有依赖及其版本
+$ go list -m all
 ```
 
-<img src="https://doc-image.zhangwj.com/img/gomod-step1.png" width="400px" />
+其中 `go mod tidy` 使用最频繁：**增删 import 之后执行一次**,它会同步更新 `go.mod` 与 `go.sum`。
 
-go.mod 文件，内容如下：
+## 依赖拉取失败
 
-<img src="https://doc-image.zhangwj.com/img/gomod-step2.png" width="400px" />
+国内直接拉取模块经常超时，配置代理即可：
 
-其中，`HelloWorld`为当前项目的名称，可以随意设置。
+```sh
+$ go env -w GOPROXY=https://goproxy.cn,direct
+```
 
-就这样简单便完成了项目的 module 初始化。
+详见[环境变量](/guide/env)。
+
+如果依赖来自私有仓库，需要同时声明 `GOPRIVATE`,让匹配的模块跳过代理与校验：
+
+```sh
+$ go env -w GOPRIVATE=git.yourcompany.com
+```
+
+## 使用本地依赖调试
+
+需要调试 go-admin-core 这类被依赖的库时，可以用 `replace` 指向本地目录，避免每次改动都要发版：
+
+```
+replace (
+    github.com/go-admin-team/go-admin-core => ../go-admin-core
+)
+```
+
+:::warning
+`replace` 只用于本地调试，**提交前务必移除**。带着它提交会导致其他人和 CI 拉取代码后无法编译，因为那个本地路径在他们的机器上并不存在。
+
+:::
+
+## 版本升级
+
+```sh
+# 升级单个依赖到最新版本
+$ go get -u 包名
+
+# 升级到指定版本
+$ go get 包名@v1.2.3
+```
+
+升级框架依赖前建议先确认改动范围。go-admin 与 go-admin-core 的版本存在对应关系，单独升级 core 可能引入不兼容的接口，参考仓库 `go.mod` 中锁定的版本。
 
 :::warning
 从哪里获得帮助：
+
 如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+
 :::
