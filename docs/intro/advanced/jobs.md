@@ -9,7 +9,7 @@ group:
   title: 进阶能力
   order: 7
 title: 定时任务
-order: 5
+order: 9
 toc: content
 description: go-admin 定时任务：任务的注册、cron 表达式配置与执行方式，支持接口调用与函数调用两种类型。
 keywords: [go-admin 定时任务, golang cron 定时任务, go 计划任务]

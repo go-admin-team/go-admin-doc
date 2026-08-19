@@ -9,7 +9,7 @@ group:
   title: 进阶能力
   order: 7
 title: 日志
-order: 2
+order: 3
 toc: content
 description: go-admin 日志使用：全局日志与请求上下文日志的区别、在 Api 与 Service 层中的写法、日志级别与输出位置的配置，以及记录日志时的注意事项。
 keywords: [go-admin 日志, golang 日志记录, gin 请求日志, 日志级别配置]
@@ -21,7 +21,7 @@ go-admin 的日志由 go-admin-core 提供，分为两种用法：**全局日志
 
 ## 请求上下文日志（推荐）
 
-在 Api 与 Service 层中，优先使用结构体自带的 logger。它由请求上下文构造，输出时会带上该请求的追踪信息，排查问题时可以把一次请求的所有日志串起来。
+在 Api 与 Service 层中，优先使用结构体自带的 logger。它由请求上下文构造，输出时会带上该请求的追踪信息（见[请求追踪](/intro/advanced/tracing)），排查问题时可以把一次请求的所有日志串起来。
 
 Api 层通过 `e.Logger` 使用：
 

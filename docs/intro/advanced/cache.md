@@ -9,7 +9,7 @@ group:
   title: 进阶能力
   order: 7
 title: 缓存
-order: 3
+order: 5
 toc: content
 description: go-admin 缓存使用：在 Service 层通过 e.Cache 读写缓存，AdapterCache 提供的 Get/Set/Del/Increase 等方法，以及当前版本只支持内存缓存所带来的限制。
 keywords: [go-admin 缓存, golang 缓存使用, AdapterCache, 内存缓存]

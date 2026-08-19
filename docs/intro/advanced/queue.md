@@ -9,7 +9,7 @@ group:
   title: 进阶能力
   order: 7
 title: 队列
-order: 4
+order: 6
 toc: content
 description: go-admin 队列使用：注册消费函数、投递消息、消费者的写法，框架自身用队列异步落库操作日志的实际例子，以及当前只有内存队列带来的限制。
 keywords: [go-admin 队列, golang 消息队列, 异步任务处理, AdapterQueue]
