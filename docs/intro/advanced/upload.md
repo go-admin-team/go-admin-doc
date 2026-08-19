@@ -9,7 +9,7 @@ group:
   title: 进阶能力
   order: 7
 title: 文件上传
-order: 5
+order: 7
 toc: content
 description: go-admin 文件上传接口：单图、多图与 base64 三种模式的调用方式与返回结构，存储位置与访问路径，以及云存储当前的可用状态。
 keywords: [go-admin 文件上传, gin 上传接口, golang 图片上传, base64 上传]

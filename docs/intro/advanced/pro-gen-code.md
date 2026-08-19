@@ -9,7 +9,7 @@ group:
   title: 进阶能力
   order: 7
 title: 代码生成工具
-order: 8
+order: 12
 toc: content
 description: go-admin-pro 提供的代码生成工具使用说明，适用于 Ant Design Pro 前端方案。
 keywords: [go-admin-pro 代码生成, antd pro 代码生成]
