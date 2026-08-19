@@ -12,9 +12,6 @@ description: go-admin app 指令：在 app 目录下创建新的业务模块并�
 keywords: [go-admin app 指令, go-admin 创建模块, golang 业务模块划分]
 ---
 
-## 视频教程
-
-[【go-admin-pro】订阅版 app 指令（&适用于 go-admin）](https://www.bilibili.com/video/BV1Wa411o7Zr?spm_id_from=333.999.0.0)
 
 ## 创建 app
 
@@ -32,3 +29,9 @@ $ ./go-admin app -n appname
 ```
 
 这样我们就在`go-admin`项目`app`目录下创建了一个新的文件夹，这个时候就可以往这个目录中生成业务代码了；同时还会自定将模块注册到 go-admin 启动项中。
+
+## 参考
+
+视频教程（录制于订阅版，操作步骤同样适用于开源版）：
+
+[【go-admin-pro】订阅版 app 指令（&适用于 go-admin）](https://www.bilibili.com/video/BV1Wa411o7Zr?spm_id_from=333.999.0.0)

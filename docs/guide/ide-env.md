@@ -6,68 +6,99 @@ description: go-admin 开发的 IDE 配置建议：GoLand 与 VSCode 的选择�
 keywords: [goland 配置, vscode go 开发, go 开发工具, go ide 推荐]
 ---
 
-目前`Go`的`IDE`有比较流行有`VSCode`和 JetBrains 公司的`Goland`。由于 JetBrains 也是 go-admin 脚手架的赞助商，因此我们优先推荐使用`Goland`来作为开发 IDE，下载及注册请参考网上教程（[百度](https://www.baidu.com) 或 [Google](https://www.google.com)）。
+# IDE 配置
 
-[JetBrains 的官网](https://www.jetbrains.com)
+Go 开发常用的 IDE 是 JetBrains 的 GoLand 与微软的 VSCode。GoLand 开箱即用、对调试与重构的支持更完整；VSCode 免费，装上官方 Go 扩展后同样够用。两者都可以，本文分别说明如何配置 go-admin 项目。
 
-## goland
+## 打开项目
 
-### 启动 IDE
+go-admin 是标准的 Go Modules 项目，**用 IDE 直接打开仓库根目录即可**，不需要放进 `GOPATH`。
 
-首先，打开`goland`。
-<img src="https://doc-image.zhangwj.com/img/goland-step1.png" width="400px" />
+打开后先确认依赖已就绪：
 
-### 创建项目
+```sh
+$ go mod tidy
+```
 
-创建一个`helloworld`项目。
-<img src="https://doc-image.zhangwj.com/img/goland-step3.png" width="400px" />
+## GoLand
 
-指定项目创建的位置。
-<img src="https://doc-image.zhangwj.com/img/goland-step2.png" width="400px" />
+### 配置运行
 
-创建`main.go`文件。鼠标`右键`选中`新建`，然后`Go 文件`。
-<img src="https://doc-image.zhangwj.com/img/goland-step4.png" width="400px" />
+`Run` → `Edit Configurations` → 新增一个 `Go Build`,按下表填写：
 
-选择`空文件`。
-<img src="https://doc-image.zhangwj.com/img/goland-step5.png" width="400px" />
+| 字段 | 值 |
+| --- | --- |
+| Run kind | `Package` 或 `Directory` |
+| Package path / Directory | 仓库根目录 |
+| Program arguments | `server -c config/settings.yml` |
+| Working directory | **仓库根目录** |
 
-修改`package`名称为`main`。
-<img src="https://doc-image.zhangwj.com/img/goland-step6.png" width="400px" />
+`Working directory` 必须指向仓库根目录。`-c config/settings.yml` 是相对路径，工作目录不对会提示找不到配置文件。
 
-写一段简单的代码，输出一个`Hello World！`
-<img src="https://doc-image.zhangwj.com/img/goland-step7.png" width="400px" />
+数据迁移同理，把 Program arguments 换成 `migrate -c config/settings.yml` 即可，这样能在迁移代码里打断点调试。
 
-点击`运行`
-<img src="https://doc-image.zhangwj.com/img/goland-step8.png" width="400px" />
+### 使用 SQLite 时
 
-选择`go build main.go`
-<img src="https://doc-image.zhangwj.com/img/goland-step9.png" width="400px" />
+若配置的是 `driver: sqlite3`,必须加构建标签，否则启动即 panic：
 
-goland 会在底部运行窗口中，将运行结果打印。
-<img src="https://doc-image.zhangwj.com/img/goland-step10.png" width="400px" />
+在 `Go tool arguments` 中填入 `-tags sqlite3`。
 
-恭喜你，第一个`Go`语言的程序就成功 run 起来了！
+原因见[常见问题](/guide/faq)——不加标签时编进的是不含 sqlite3 驱动的版本，报错信息不会提到构建标签，容易误判成环境问题。
 
-## VS Code
+## VSCode
 
-### 运行 VS Code
+### 必备扩展
 
-先创建一个工作目录，然后打开目录；
-<img src="https://doc-image.zhangwj.com/img/vscode-step1.png" width="400px" />
+安装官方 [Go 扩展](https://marketplace.visualstudio.com/items?itemName=golang.Go)。首次打开 `.go` 文件时，右下角会提示安装 `gopls`、`dlv` 等工具，全部装上即可。
 
-新建`main.go`文件。
-<img src="https://doc-image.zhangwj.com/img/vscode-step2.png" width="400px" />
+### 配置调试
 
-把 hello wordl 代码写入文件中。
-<img src="https://doc-image.zhangwj.com/img/vscode-step3.png" width="400px" />
+在项目根目录创建 `.vscode/launch.json`:
 
-选择`运行`，`终端`激活 vscode 的终端窗口。
-<img src="https://doc-image.zhangwj.com/img/vscode-step4.png" width="400px" />
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "go-admin server",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}",
+      "args": ["server", "-c", "config/settings.yml"]
+    },
+    {
+      "name": "go-admin migrate",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}",
+      "args": ["migrate", "-c", "config/settings.yml"]
+    }
+  ]
+}
+```
 
-在终端里边键入`go build main.go`，执行成功会编译一个可运行二进制包，直接使用`./main`运行即可；如果是 windows 略有差异，windows 下编译的包需要使用`main.exe`执行。
-<img src="https://doc-image.zhangwj.com/img/vscode-step5.png" width="400px" />
+使用 SQLite 时，在对应配置中追加构建标签：
 
-成功！
+```json
+      "buildFlags": "-tags=sqlite3"
+```
+
+## 前端项目
+
+go-admin-ui 用 VSCode 打开，建议安装 `Vue - Official` 扩展（原 Volar）。注意如果之前装过 Vetur，需要禁用它——两者同时启用会互相干扰，出现大量误报的语法错误。
+
+## 常见问题
+
+| 现象 | 原因 |
+| --- | --- |
+| 提示找不到配置文件 | 运行配置的工作目录不是仓库根目录 |
+| 启动时 sqlite 相关 panic | 缺少 `-tags sqlite3` 构建标签 |
+| 代码大量标红但能正常编译 | 依赖未下载完，执行 `go mod tidy` 后重启 IDE |
+| 断点不生效 | 编译优化所致，确认以 Debug 而非 Run 方式启动 |
 
 :::warning
 从哪里获得帮助：

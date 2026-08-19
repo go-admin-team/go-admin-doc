@@ -10,7 +10,7 @@ keywords: [go-admin 报错, go-admin 常见问题, CGO 编译失败, golang 后�
 
 :::error
 windows 下 CGO 的问题
-请注意 您如果是 windows 环境您或许可能会遇到 `CGO` 的问题
+在 Windows 环境下编译时，可能遇到 `CGO` 相关的报错：
 
 ```bash
 E:\go-admin>go build
@@ -204,6 +204,29 @@ windows 环境变量配置时，`bin`目录的路径中间不要出现空格；
 例如：`C:/go go/bin` 这样的路径是不能被正常使用的；
 
 例如：`C:/go_go/bin` ✔️；
+
+## 配置了 redis 却一直在用内存
+
+当前版本的缓存与队列**只有内存实现**。`config/settings.yml` 中虽然保留了被注释的 `redis` 配置样例，但该版本 core 的 `Cache` 结构体只有 `memory` 一个字段，`Setup()` 无条件返回内存缓存——即使取消注释并填写正确，程序依然使用内存，且不会有任何报错，redis 密码写错也照样启动。
+
+影响是**多实例部署时缓存不共享**，验证码、token 等依赖缓存的功能会在实例之间不一致。详见[配置参考](/configure/settings)与 [issue #846](https://github.com/go-admin-team/go-admin/issues/846)。
+
+## token 一直不过期 / 登录不需要验证码
+
+检查配置文件中的 `application.mode`。
+
+设置为 `dev` 时，登录会**跳过验证码校验**，且 JWT 有效期被强制设为 876010 小时（约 100 年），`jwt.timeout` 的设置不生效。这是为方便本地开发，**生产环境必须改为 `prod`**。
+
+各取值的完整影响见[配置参考](/configure/settings)。
+
+## 修改了配置文件但没有生效
+
+按顺序确认：
+
+1. 启动时 `-c` 指定的是否为正在修改的那个文件——不带 `-c` 时默认读取 `config/settings.yml`;
+2. 该配置项是否真的被程序读取。`locker` 配置块在当前版本没有对应的结构体字段，写了不会被解析；
+3. 是否重启了服务。配置在启动时载入，修改后需要重启。
+
 
 :::warning
 从哪里获得帮助：
