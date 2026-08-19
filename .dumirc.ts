@@ -22,17 +22,23 @@ export default defineConfig({
     hostname: 'https://www.go-admin.pro',
   },
 
-  // Locales for the first translation round. The first entry is the default and
-  // owns the root path, so existing zh-CN URLs are unchanged; the others are
-  // served under their base. A page without a `.{id}.md` sibling does not get a
-  // route in that locale, so keep `scripts/fix-html-lang.mjs` LOCALE_BASES in
-  // sync when adding one here.
-  locales: [
-    { id: 'zh-CN', name: '简体中文' },
-    { id: 'en-US', name: 'English', base: '/en-US' },
-    { id: 'ja-JP', name: '日本語', base: '/ja-JP' },
-    { id: 'zh-TW', name: '繁體中文', base: '/zh-TW' },
-  ],
+  // 多语言尚未启用。
+  //
+  // dumi 不做语言回退：缺少 `.{id}.md` 的页面在该语种下不会生成路由，而不是回退到
+  // 中文。目前只有首页有英文版，一旦启用，语言切换器会把访客带到一个仅有一页的站点。
+  //
+  // 待 guide 一组翻译完成后取消下面的注释，并同步 scripts/postbuild-seo.mjs 中的
+  // LOCALE_BASES。zh-CN 需保持在首位，它占据根路径，这样既有的中文 URL 不会变化。
+  //
+  // 未启用期间，译稿存放在仓库根目录的 i18n-drafts/：放在 docs/ 下会被当作普通
+  // 页面，产生 /index/en--us 这类路由并混入顶部导航。
+  //
+  // locales: [
+  //   { id: 'zh-CN', name: '简体中文' },
+  //   { id: 'en-US', name: 'English', base: '/en-US' },
+  //   { id: 'ja-JP', name: '日本語', base: '/ja-JP' },
+  //   { id: 'zh-TW', name: '繁體中文', base: '/zh-TW' },
+  // ],
 
 
   // Same duplication problem as `title`: a site-wide description here shadows
