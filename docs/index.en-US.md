@@ -5,7 +5,7 @@ hero:
   description: An admin scaffold that gets the groundwork out of the way, so you can start on your business logic
   actions:
     - text: Get Started
-      link: https://github.com/go-admin-team/go-admin#readme
+      link: /en-US/guide/ksks
     - text: GitHub
       link: https://github.com/go-admin-team/go-admin
 features:
