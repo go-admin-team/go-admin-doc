@@ -15,67 +15,47 @@ description: go-admin-ui 前端项目的目录结构说明：src 下各目录的
 keywords: [go-admin-ui 目录结构, vue3 项目结构, vue 工程组织]
 ---
 
-让我们看一下 go-admin-ui 的目录结构：
+看一下 go-admin-ui 的目录结构：
 
 ```bash
 .
-├── README.md
-├── dist
-├── index.html
-├── jsconfig.json
-├── mock
+├── index.html            # 入口 HTML
+├── vite.config.mjs       # Vite 配置
 ├── package.json
-├── prettier.config.js
-├── public
-│   ├── favicon.ico
-│   └── login_left_bg.jpg
+├── pnpm-lock.yaml        # 用 pnpm 管理依赖，见下方说明
+├── jsconfig.json
+├── public                # 静态文件，原样拷贝到构建产物
 ├── src
-│   ├── App.vue
-│   ├── api
-│   ├── components
-│   ├── icons
-│   ├── layout
-│   ├── main.js
-│   ├── router
-│   ├── store
-│   ├── style
-│   ├── utils
-│   └── views
-├── vite.config.js
+│   ├── main.js           # 应用入口
+│   ├── App.vue           # 根组件
+│   ├── api               # 按模块组织的接口调用
+│   ├── components        # 公共组件
+│   ├── directive         # 自定义指令，如权限指令 v-permisaction
+│   ├── icons              # 图标
+│   ├── layout             # 整体布局
+│   ├── mixins             # 列表页等场景复用的逻辑（如 crud mixin）
+│   ├── router              # 路由配置
+│   ├── store                # 状态管理（Vuex）
+│   ├── styles                # 全局样式
+│   ├── utils                  # 工具函数，包含请求封装
+│   ├── vendor                  # 第三方脚本的本地拷贝
+│   ├── views                    # 页面
+│   ├── permission.js             # 路由守卫，处理登录态与动态路由
+│   └── settings.js                # 全局配置项
+├── .env.development
 ├── .env.production
-└── .env.development
-
+└── .env.staging               # 预发布环境配置
 ```
 
-这些目录和文件的用处是：
+几个和后端习惯不同、容易搞混的地方：
 
-- 最外层 go-admin-ui 是项目根路径
-- dist 打包后的文件
-- index.html 入口文件
-- jsconfig.json js 配置文件
-- mock 模拟数据
-- package.json 项目依赖
-- prettier.config.js 代码格式化配置
-- public 静态文件
-  - favicon.ico 网站图标
-  - login_left_bg.jpg 登录页背景图
-- src 源码
-  - App.vue 入口组件
-  - api 接口
-  - components 公共组件
-  - icons 图标
-  - layout 布局
-  - main.js 入口文件
-  - router 路由
-  - store vuex
-  - style 样式
-  - utils 工具
-  - views 页面
-- config： 配置相关的文件以及类
-- docs： 接口文档
-- static： 上传静态文件
-- temp： 临时日志文件
-- template： 模板文件
-- vite.config.js vite 配置文件
-- .env.production 生产环境配置文件
-- .env.development 开发环境配置文件
+- **没有 `dist` 目录**——它是构建产物，不在版本库里，执行 `pnpm build:prod` 后才会生成；
+- 依赖用 **pnpm** 管理（见 `pnpm-lock.yaml`），不是 npm 或 yarn，见 [Node 环境](/guide/vue-install)；
+- `mixins/` 目前仍在使用（例如列表页的 crud 逻辑），并非历史遗留，新增列表页时可以复用。
+
+:::warning
+从哪里获得帮助：
+
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+
+:::

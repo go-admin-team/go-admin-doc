@@ -15,66 +15,40 @@ description: go-admin-ui 前端配置说明：.env 环境变量文件与接口�
 keywords: [go-admin-ui 配置, vue 环境变量, VUE_APP_BASE_API 配置]
 ---
 
-
 ## 配置文件说明
 
-development 模式下，配置文件为 `.env.development`，production 模式下，配置文件为 `.env.production`。两个配置文件的配置项都是一样的，只是配置的值不一样。
-
-### 配置项说明
+三个环境各自对应一个文件：`.env.development`（本地开发）、`.env.production`（生产构建）、`.env.staging`（预发布）。核心是同两个变量：
 
 ```bash
 # just a flag
 ENV = 'development'
 
 # base api
-VUE_APP_BASE_API = 'http://localhost:8000'
+VUE_APP_BASE_API = 'http://localhost:8001'
 ```
 
-ENV 是环境变量，如果你的环境是开发环境，那么这个值就是 development，如果是生产环境，那么这个值就是 production。
+- `ENV` 只是标记当前环境，一般不需要改；
+- `VUE_APP_BASE_API` 是后端服务地址，前端所有请求都会拼在它后面。
 
-VUE_APP_BASE_API 是后端服务的地址，如果你的后端服务不是运行在本机，那么需要修改这个配置项。
+:::warning
+**新克隆的仓库，前端默认端口和后端对不上。** `.env.development` 默认指向 `localhost:8001`,而后端 `config/settings.yml` 的默认端口是 `8000`。按各自默认值直接跑起来，前端会连不上后端，登录报网络错误、验证码打不开都是这个原因。
 
-### 开发环境配置文件修改
+两者改一致即可：要么把 `.env.development` 改成 `http://localhost:8000`,要么把后端 `application.port` 改成 `8001`。
 
-如果你的后端服务是运行在本机，那么需要修改配置文件，修改配置文件的方法如下：
+:::
 
-```bash
-# just a flag
-ENV = 'development'
+## 部署时怎么填
 
-# base api
-VUE_APP_BASE_API = 'http://localhost:8000' # 修改这个配置项
-```
+- **前后端同域部署**（推荐，见[部署环境](/guide/xmbs)）——留空，请求走当前域名，由 Nginx 转发到后端。仓库自带的 `.env.production` 就是这么配的（`VUE_APP_BASE_API = ''`）；
+- **前后端不同域**——填后端的完整地址，例如 `https://api.example.com`。
 
-如果你的后端服务是运行在其它机器上，那么需要修改配置文件，修改配置文件的方法如下：
+## 常见问题
 
-```bash
-# just a flag
-ENV = 'development'
+前端验证码打不开或接口报错，先确认当前环境对应的文件里 `VUE_APP_BASE_API` 指向的地址：后端是否真的在那个地址上监听，以及该地址在浏览器里能否直接访问到。
 
-# base api
-VUE_APP_BASE_API = 'http://运行机器的IP:8000' # 修改这个配置项，将运行机器的IP替换成你的机器的IP
-```
-需要注意运行的机器对应的端口是否开放。
+:::warning
+从哪里获得帮助：
 
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-### 生产环境配置文件修改
-
-在程序发布时，需要修改配置文件，修改配置文件的方法如下：
-
-```bash
-# just a flag
-ENV = 'production'
-
-# base api
-VUE_APP_BASE_API = 'http://运行机器的IP:8000' # 修改这个配置项，将运行机器的IP替换成你的机器的IP或者域名
-```
-
-生产环境配置文件需要将地址改为域名或者服务器ip，如果是域名，需要将域名解析到服务器ip上。
-
-需要注意运行的机器对应的端口是否开放。
-
-### 常见问题
-
-如果前端验证码打不开或者接口报错，那么需要查看环境对应的配置文件，如果是开发环境，那么需要修改 `.env.development` 文件中的 VUE_APP_BASE_API，如果是生产环境，那么需要修改 `.env.production` 文件中的 VUE_APP_BASE_API。
-
+:::

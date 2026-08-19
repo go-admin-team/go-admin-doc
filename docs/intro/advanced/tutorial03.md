@@ -15,42 +15,36 @@ description: go-admin 后端服务启动步骤与启动成功的验证方法。
 keywords: [go-admin 启动, gin 服务启动, golang 后端运行]
 ---
 
-## api的启动
+## 启动服务
 
-让我们来确认一下你的 go-admin 项目是真的配置成功了。请运行下面的命令：
+确认项目配置成功，运行：
 
 ```bash
-go run main.go server -c=config/settings.yml
+go run main.go server -c config/settings.yml
 ```
 
-输出内容为下图，恭喜你！你已经成功了！
+看到服务启动的日志输出即为成功。
 
-<img src="https://doc-image.zhangwj.com/img/serversuccessv1.1.0.png" alt="服务器启动成功" width="400px" />
+## 验证
 
-现在，服务器正在运行，浏览器访问 <http://127.0.0.1:8000/>。你将会看到 `go-admin` 文档，服务器已经运行了。
+浏览器访问 <http://127.0.0.1:8000/info>,返回 `{"message":"ok"}` 说明服务已经在正常处理请求——这是最直接的健康检查，不依赖数据库是否配置正确。
 
-:::warning
-更换端口
-默认情况下，服务器设置为监听本机内部 IP 的 8000 端口。
-如果你想更换服务器的监听端口，请使用命令行参数。举个例子，下面的命令会使服务器监听 8080 端口：
+访问根路径 <http://127.0.0.1:8000/>（仅非 `prod` 模式可用）会看到一个内嵌本文档站的欢迎页；访问 `/swagger/admin/index.html` 可以看到接口文档。这两个路由在 `application.mode: prod` 时不会注册，属于开发环境的便利功能。
 
-:::
+## 修改监听地址与端口
 
-我们需要打开配置文件 `config/settings.yml`
+打开 `config/settings.yml`,对应的字段是 `application.host` 与 `application.port`：
 
-```bash
-application:
+```yml
+settings:
+  application:
+    # 监听地址，默认 0.0.0.0（监听所有网卡，局域网内其他设备可访问）
+    host: 0.0.0.0
+    # 监听端口
     port: 8000
 ```
 
-如果你想要修改服务器监听的 IP，在端口之前输入新的。比如，为了监听所有服务器的公开 IP（这你运行 Vagrant 或想要向网络上的其它电脑展示你的成果时很有用），使用：
-
-```bash
-application:
-    port: 8080
-```
-
-修改之后需要重启服务。
+只监听本机可以把 `host` 改为 `127.0.0.1`；需要用别的端口对外提供服务时改 `port`。修改后需要重启服务才会生效。
 
 :::warning
 从哪里获得帮助：
