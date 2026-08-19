@@ -17,6 +17,12 @@ keywords: [go-admin-pro 代码生成, antd pro 代码生成]
 
 ### 代码工具使用
 
+:::info
+本页的 `Agent` 指 go-admin-pro 代码生成平台的本地客户端程序，负责把在线平台生成的代码写入本地项目，
+与大模型无关。用大模型生成业务代码请见 [用 AI 生成代码](/intro/advanced/ai-gen-code)。
+
+:::
+
 #### Agent启动
 
 1. 建议启动脚本跟项目在同一个目录,脚本文件需要联系博主获取；
