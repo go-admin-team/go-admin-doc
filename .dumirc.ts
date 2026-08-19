@@ -22,23 +22,21 @@ export default defineConfig({
     hostname: 'https://www.go-admin.pro',
   },
 
-  // 多语言尚未启用。
+  // 首页 + guide 组（11 篇）已译成英文，先只开 zh-CN / en-US。
+  // ja-JP、zh-TW 还没有任何译稿，开启后语言切换器会把访客带到空站点，
+  // 等实际翻译后再取消下面两行的注释，并同步 scripts/postbuild-seo.mjs 的 LOCALE_BASES。
   //
-  // dumi 不做语言回退：缺少 `.{id}.md` 的页面在该语种下不会生成路由，而不是回退到
-  // 中文。目前只有首页有英文版，一旦启用，语言切换器会把访客带到一个仅有一页的站点。
+  // dumi 不做语言回退：缺少 `.{id}.md` 的页面在该语种下不会生成路由，而不是回退到中文。
+  // guide 之外的页面（configure、intro 等）目前还没有英文版，英文站访客点到这些链接
+  // 时会落回中文页——这是预期行为，不是 bug。
   //
-  // 待 guide 一组翻译完成后取消下面的注释，并同步 scripts/postbuild-seo.mjs 中的
-  // LOCALE_BASES。zh-CN 需保持在首位，它占据根路径，这样既有的中文 URL 不会变化。
-  //
-  // 未启用期间，译稿存放在仓库根目录的 i18n-drafts/：放在 docs/ 下会被当作普通
-  // 页面，产生 /index/en--us 这类路由并混入顶部导航。
-  //
-  // locales: [
-  //   { id: 'zh-CN', name: '简体中文' },
-  //   { id: 'en-US', name: 'English', base: '/en-US' },
-  //   { id: 'ja-JP', name: '日本語', base: '/ja-JP' },
-  //   { id: 'zh-TW', name: '繁體中文', base: '/zh-TW' },
-  // ],
+  // zh-CN 需保持在首位，它占据根路径，这样既有的中文 URL 不会变化。
+  locales: [
+    { id: 'zh-CN', name: '简体中文' },
+    { id: 'en-US', name: 'English', base: '/en-US' },
+    // { id: 'ja-JP', name: '日本語', base: '/ja-JP' },
+    // { id: 'zh-TW', name: '繁體中文', base: '/zh-TW' },
+  ],
 
 
   // Same duplication problem as `title`: a site-wide description here shadows
