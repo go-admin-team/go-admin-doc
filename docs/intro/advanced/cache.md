@@ -11,7 +11,7 @@ group:
 title: 缓存
 order: 5
 toc: content
-description: go-admin 缓存使用：在 Service 层通过 e.Cache 读写缓存，AdapterCache 提供的 Get/Set/Del/Increase 等方法，以及当前版本只支持内存缓存所带来的限制。
+description: go-admin 缓存使用：在 Service 层通过 e.Cache 读写缓存，AdapterCache 提供的 Get/Set/Del/Increase 等方法，以及如何配置 Redis 支持多实例共享缓存。
 keywords: [go-admin 缓存, golang 缓存使用, AdapterCache, 内存缓存]
 ---
 
@@ -19,14 +19,27 @@ keywords: [go-admin 缓存, golang 缓存使用, AdapterCache, 内存缓存]
 
 go-admin 的缓存通过统一的 `AdapterCache` 接口提供，业务代码面向接口调用，不直接依赖具体实现。
 
-:::error
-**当前版本只有内存实现。**
+默认使用内存缓存，单实例部署不需要额外配置。多实例部署时需要共享缓存（验证码、token 等依赖它的功能才能在实例间保持一致），这时在配置文件中加一段 `redis` 即可：
 
-配置文件中虽然保留了被注释的 `redis` 样例，但该版本 core 的 `Cache` 结构体只有 `memory` 一个字段，`Setup()` 无条件返回内存缓存——即使填写正确也不会生效，且没有任何报错。
+```yml
+settings:
+  cache:
+    redis:
+      addr: 127.0.0.1:6379
+      password: your-password
+      db: 2
+    # memory 字段可以省略；一旦填了 redis，顺序是 redis 优先，memory 不再生效
+    memory: ''
+```
 
-这意味着**多实例部署时缓存不共享**：每个实例各自持有一份数据，验证码、token 等依赖缓存的功能会在实例之间不一致。单实例部署不受影响。
+:::warning
+**`redis` 配置错误时，服务无法启动，而不是静默降级为内存缓存。** 连接在启动阶段就会被验证（默认 5 秒超时），地址错、密码错、连不通都会导致启动失败并报错退出——这是有意的设计：与其让一个"名义上共享、实际各用各的"缓存悄悄跑起来，不如启动时就暴露问题。
 
-详见[配置参考](/configure/settings)与 [issue #846](https://github.com/go-admin-team/go-admin/issues/846)。
+这与旧版本相反：早期版本里 `redis` 配置完全不会生效，程序会静默使用内存缓存且不报错（[issue #846](https://github.com/go-admin-team/go-admin/issues/846) 记录了这个问题）。如果你看到的文档、教程、或旧版代码库仍是这个描述，那是过时信息——以当前版本的实际行为为准。
+
+:::
+
+完整字段说明见[配置参考](/configure/settings)。
 
 :::
 

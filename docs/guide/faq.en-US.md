@@ -202,11 +202,17 @@ For example, a path like `C:/go go/bin` won't work.
 
 For example, `C:/go_go/bin` ✔️ works fine.
 
-## Configured Redis, but It's Still Using Memory
+## Configured Redis, But the Service Won't Start
 
-The current version's cache and queue **only have an in-memory implementation**. `config/settings.yml` keeps a commented-out `redis` example, but this version of core's `Cache` struct has only a `memory` field — `Setup()` unconditionally returns the memory cache. Even with the Redis block uncommented and filled in correctly, the program still uses memory, with no error at all — a wrong Redis password won't stop it from starting either.
+The current version's cache and queue both support Redis — see [Cache](/intro/advanced/cache) and [Queue](/intro/advanced/queue) for how to configure it (Chinese only for now).
 
-The consequence is that **the cache isn't shared across instances** in a multi-instance deployment — features that depend on it, like captchas and tokens, end up inconsistent between instances. See [Config Reference](/configure/settings) and [issue #846](https://github.com/go-admin-team/go-admin/issues/846) for details.
+If the service fails to start after configuring it, it's almost always a connection parameter — a misconfigured `redis` section now fails the service outright at startup, rather than silently falling back to the in-memory implementation the way older versions did (that was the behaviour tracked in [issue #846](https://github.com/go-admin-team/go-admin/issues/846), since fixed). Check, in order:
+
+1. Whether `addr` is reachable — can you `redis-cli -h <addr> ping` from that machine?
+2. Whether `password` is correct;
+3. Whether the `db` index is within the Redis instance's configured `databases` count.
+
+The startup log prints the specific connection error, which is enough to pinpoint it without guessing.
 
 ## Token Never Expires / Login Doesn't Ask for a Captcha
 
