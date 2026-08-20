@@ -205,11 +205,17 @@ windows 环境变量配置时，`bin`目录的路径中间不要出现空格；
 
 例如：`C:/go_go/bin` ✔️；
 
-## 配置了 redis 却一直在用内存
+## 配置了 redis，服务却启动不了
 
-当前版本的缓存与队列**只有内存实现**。`config/settings.yml` 中虽然保留了被注释的 `redis` 配置样例，但该版本 core 的 `Cache` 结构体只有 `memory` 一个字段，`Setup()` 无条件返回内存缓存——即使取消注释并填写正确，程序依然使用内存，且不会有任何报错，redis 密码写错也照样启动。
+当前版本的缓存与队列都支持 redis，配置方式见[缓存](/intro/advanced/cache)与[队列](/intro/advanced/queue)。
 
-影响是**多实例部署时缓存不共享**，验证码、token 等依赖缓存的功能会在实例之间不一致。详见[配置参考](/configure/settings)与 [issue #846](https://github.com/go-admin-team/go-admin/issues/846)。
+配好之后如果服务反而启动不了，几乎总是连接参数的问题——`redis` 配置错误时服务会直接启动失败，而不是像早期版本那样静默改用内存实现（那是 [issue #846](https://github.com/go-admin-team/go-admin/issues/846) 记录的旧问题，已经修复）。按顺序检查：
+
+1. `addr` 是否可达——本机能否 `redis-cli -h <addr> ping`;
+2. `password` 是否正确；
+3. `db` 序号是否超出 redis 实例的 `databases` 配置。
+
+启动日志会打印具体的连接错误，据此定位即可，不需要靠猜。
 
 ## token 一直不过期 / 登录不需要验证码
 

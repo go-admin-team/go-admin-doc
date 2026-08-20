@@ -34,7 +34,7 @@ settings:
 - `password` —— 数据库密码
 - `dbname` —— 数据库名称，需要提前建好这个库
 
-其余配置项（`application`、`jwt`、`logger`、`gen` 等）保持默认即可跑通，完整字段说明见[配置参考](/configure/settings)——**当前版本没有 `application.logpath` 这个字段**,日志路径是 `logger.path`。
+其余配置项（`application`、`jwt`、`logger`、`gen` 等）保持默认即可跑通，完整字段说明见[配置参考](/configure/settings)——**当前版本没有 `application.logpath` 这个字段**，日志路径是 `logger.path`。
 
 :::warning
 生产环境上线前，`jwt.secret` 必须替换为随机字符串（默认值是 `go-admin`），`application.mode` 必须设为 `prod`。详见[配置参考](/configure/settings)。

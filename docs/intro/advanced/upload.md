@@ -80,7 +80,7 @@ Content-Type: multipart/form-data
 1. **客户端从未初始化。** `file_store.OXS` 提供了正确的初始化入口，但仓库中没有任何地方调用它。`ossUpload` 直接构造 `ALiYunOSS{}` 就调用 `UpLoad`,此时 `Client` 字段为 `nil`,而 `UpLoad` 内部会对它做类型断言——**传入 `source` 参数会导致 panic**。
 2. **七牛分支实际调用的是阿里云。** `qiniuUpload` 内部构造的同样是 `ALiYunOSS`,与 `ossUpload` 完全一致。
 
-因此上传请求**不要携带 `source` 参数**,只使用本地存储。
+因此上传请求**不要携带 `source` 参数**，只使用本地存储。
 
 需要对接对象存储时，目前只能自行实现：参考 `file_store.OXS.Setup()` 完成客户端初始化，并把配置读取接入 [extend 扩展配置](/configure/settings)。
 

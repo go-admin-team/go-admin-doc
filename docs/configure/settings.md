@@ -157,32 +157,39 @@ source: sqlserver://用户名:密码@地址?database=数据库名
 
 ## cache
 
-| 配置项   | 说明                       |
-| -------- | -------------------------- |
-| `memory` | 内存缓存，键存在即可生效    |
+选择顺序是 **redis 优先，没配 redis 才用 memory**：
+
+| 配置项            | 类型   | 说明                                  |
+| ----------------- | ------ | ------------------------------------- |
+| `memory`          | any    | 内存缓存，单实例部署留空即可          |
+| `redis.addr`      | string | Redis 地址，如 `127.0.0.1:6379`       |
+| `redis.password`  | string | Redis 密码                            |
+| `redis.db`        | int    | Redis 逻辑库编号                      |
+| `redis.pool_size` | int    | 连接池大小，不填用驱动默认值           |
 
 :::warning
-当前版本的缓存**只支持内存实现**。
+**`redis` 配置错误会导致服务启动失败**，不是静默降级为内存缓存。连接在启动阶段会被验证（默认 5 秒超时），地址或密码错都会报错退出。
 
-`config/settings.yml` 中虽然保留了被注释的 `redis` 配置样例，但该版本 core 的
-`Cache` 结构体只有 `memory` 一个字段，其 `Setup()` 无条件返回内存缓存。
-也就是说：即使把 `redis` 一段取消注释并填写正确，程序依然使用内存缓存，
-且不会有任何报错提示。
-
-这带来的实际影响是：**多实例部署时缓存不共享**，验证码、token 等依赖缓存的功能
-会在实例之间不一致。若必须多实例部署，请先确认所使用的 core 版本是否已支持 redis。
+多实例部署且需要共享缓存（验证码、token 等依赖它）时，必须配置 `redis`——单实例部署留空 `memory` 即可正常工作。
 
 :::
 
 ## queue
 
-| 配置项              | 类型 | 说明               |
-| ------------------- | ---- | ------------------ |
-| `memory.poolSize`   | uint | 内存队列的协程池大小 |
+同样是 **redis 优先，没配 redis 才用 memory**：
 
-与 `cache` 同理，当前版本队列同样只有内存实现。另外需要注意：
-队列是否启用取决于 `memory` 是否配置，若 `queue` 下只写了 `redis` 而没有 `memory`，
-队列将直接不启动。
+| 配置项                        | 类型   | 说明                                  |
+| ------------------------------ | ------ | ------------------------------------- |
+| `memory.poolSize`              | uint   | 内存队列的协程池大小                  |
+| `redis.addr`                   | string | Redis 地址                            |
+| `redis.password`               | string | Redis 密码                            |
+| `redis.group`                  | string | 消费组，同一应用的多实例必须用同一个值 |
+| `redis.key_prefix`             | string | stream key 前缀，多应用共用一个 redis 时用于隔离 |
+| `redis.max_attempts`           | int    | 消息投递失败的最大重试次数            |
+
+`redis` 段基于 Redis Stream，消息持久化、跨实例可见。与 cache 相同，配置错误会导致启动失败而不是静默降级。
+
+完整用法与代码示例见[缓存](/intro/advanced/cache)与[队列](/intro/advanced/queue)。
 
 ## extend
 

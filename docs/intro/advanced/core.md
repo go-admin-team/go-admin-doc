@@ -11,250 +11,126 @@ group:
 title: Runtime 核心 API
 order: 1
 toc: content
-description: go-admin Runtime 提供的核心 API：系统配置读写、缓存适配器与队列适配器的获取方式。
+description: go-admin Runtime 提供的核心 API：系统配置读写、多租户下数据库与队列的获取方式、缓存与队列适配器的绑定方法。
 keywords: [go-admin runtime, go-admin 系统配置 api, golang 运行时容器]
 ---
 
 ## Runtime
 
+`sdk.Runtime` 是一个进程内的全局容器，持有数据库连接、缓存/队列适配器、Casbin enforcer、定时任务等运行时对象，供业务代码随取随用。多租户场景下，大部分方法都有 `xxxByTenant(tenant string)` 的变体，租户标识通常传 `c.Request.Host`。
+
 ### 1. 系统配置
 
-系统数据库配置项获取
+用于在运行时读写任意键值，不需要提前声明结构体字段——适合存运营可调整的开关、临时配置，而不是每次改都要发版的场景。
 
-##### SetConfig
-
-设置对应 key 的 config
+##### SetConfigValue / GetConfigValue
 
 ```go
-// key 为配置项名称是一个字符串
-// value 为配置项值是一个接口
-sdk.Runtime.SetConfig(key, value)
+// 设置默认租户下的配置
+sdk.Runtime.SetConfigValue("sys_wechat_webhook", "https://...")
+
+// 读取，返回 interface{}，需要按实际类型断言
+url, _ := sdk.Runtime.GetConfigValue("sys_wechat_webhook").(string)
 ```
 
-##### GetConfig
+多租户场景使用 `SetConfigValueByTenant(tenant, key, value)` / `GetConfigValueByTenant(tenant, key)`。
 
-获取对应 key 的 config
+### 2. 队列
+
+##### GetQueuePrefix（推荐）
+
+获取当前配置选中的队列——配置文件里配了 `redis` 就是 Redis 实现，没配就是内存实现。**业务代码应该始终用这个方法**，见[队列](/intro/advanced/queue)。
 
 ```go
-sdk.Runtime.GetConfig("sys_wechat_webhook")
-
-// 可以根据数据类型使用断言
-sdk.Runtime.GetConfig("sys_wechat_webhook").(string)
-// 返回的是一个interface{}类型，需要根据实际情况进行断言
-
+// prefix 通常传 c.Request.Host，多租户下用于区分消息归属；单租户传空字符串
+queue := sdk.Runtime.GetQueuePrefix("")
+queue.Register("log", models.SaveLoginLog)
+go queue.Run()
 ```
 
-### 2. 内存队列
+:::warning
+`Register` 之后必须调用 `Run()`，否则消息只会被 `Append` 进去，永远不会被消费。
 
-内存队列是一个先进先出的队列，可以用来存储一些需要异步处理的数据，目前系统的 log 使用的是内存队列，业务中如需使用队列建议使用专业的消息队列，如：rabbitmq、kafka 等
+:::
 
-##### GetMemoryQueue
+##### GetMemoryQueue（已弃用）
 
-获取内存队列
-
-```go
-
-// prefix 为队列名称
-// GetMemoryQueue(prefix string) storage.AdapterQueue
-
-// 获取内存队列
-var Queue = sdk.Runtime.GetMemoryQueue("")
-
-
-```
-
-##### SetQueueAdapter
-
-设置队列适配器
-
-```go
-
-// 获取内存队列
-var Queue = sdk.Runtime.GetMemoryQueue("")
-// 设置队列适配器
-sdk.Runtime.SetQueueAdapter(Queue)
-
-```
-
-##### GetQueueAdapter()
-
-获取内存适配器
-
-##### GetQueueAdapter().Register()
-
-注册监听事件
-
-```go
-// 获取内存队列
-var Queue = sdk.Runtime.GetMemoryQueue("")
-// 设置队列适配器
-sdk.Runtime.SetQueueAdapter(Queue)
-// 注册监听事件
-sdk.Runtime.GetQueueAdapter().Register(“log”, models.SaveLoginLog)
-
-```
-
-事件被触发后会执行注册的回调函数
-
-以下提供一段伪代码为大家参考。
-
-```go
-// SaveLoginLog 从队列中获取登录日志
-func SaveLoginLog(message storage.Messager) (err error) {
-	//准备db
-	db := sdk.Runtime.GetDbByKey(message.GetPrefix())
-
-  ...
-
-  // 解析数据
-	rb, err = json.Marshal(message.GetValues())
-
-  ...
-
-  // 保存数据
-	err = db.Create(&l).Error
-	if err != nil {
-		return err
-	}
-	return nil
-}
-```
+**始终返回进程内内存队列，无视配置文件里选的是什么。** 早期版本这是获取队列的唯一方式，现在请改用 `GetQueuePrefix`——继续使用 `GetMemoryQueue` 意味着即使配置文件里配了 Redis，这处代码依然只在本进程内工作，多实例部署时互相看不到对方的消息。
 
 ### 3. 数据库
 
 ##### GetDb
 
-获取所有 map 里的 db 数据
+获取**默认租户**的数据库连接：
 
 ```go
 sdk.Runtime.GetDb()
-
-// return map[string]*gorm.DB
-
+// 返回 *gorm.DB
 ```
 
-##### GetDbByKey
+##### GetDbByTenant
 
-获取所有 map 里的 db 数据
+获取指定租户的数据库连接，多租户场景下按 `c.Request.Host` 区分：
 
 ```go
-
-sdk.Runtime.GetDbByKey("*")
-
-// return *gorm.DB
-
+sdk.Runtime.GetDbByTenant(c.Request.Host)
+// 返回 *gorm.DB
 ```
 
-##### SetDb
+未启用[多租户](/configure/tenant)时，数据库统一注册在通配符键 `"*"` 下，此时无论传入什么租户标识都会返回同一个连接——这也是为什么单租户项目里到处传 `c.Request.Host` 也能正常工作。真正按域名区分数据库，只在启用多租户、且该域名确实注册过时才会发生；查无此租户又没有 `"*"` 兜底时返回 `nil`。
 
-设置对应 key 的 db
+##### GetAllDb
+
+获取全部租户的数据库连接，用于需要遍历所有库的场景（例如定时任务对每个租户各跑一遍）：
 
 ```go
-
-sdk.Runtime.SetDb(key, db )
-
-// 无返回值
-
+sdk.Runtime.GetAllDb()
+// 返回 map[string]*gorm.DB
 ```
+
+##### SetDb / SetDbByTenant
+
+```go
+sdk.Runtime.SetDb(db)                    // 设置默认租户
+sdk.Runtime.SetDbByTenant(tenant, db)    // 设置指定租户
+```
+
+:::warning
+`GetDb()` 和 `GetAllDb()` 容易搞混——前者返回单个 `*gorm.DB`，后者返回 `map[string]*gorm.DB`。这两个方法在早期版本中是反过来命名的（当时的 `GetDb()` 就是现在的 `GetAllDb()`），照抄旧代码或旧文章容易在这里出编译错误。
+
+:::
 
 ### 4. 用户信息
 
-##### GetUserId
-
-获取用户 id，需要使用 gin 的上下文中
+以下方法均需要 `gin.Context`，来自包 `github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth/user`：
 
 ```go
-
-// c 为gin.Context
-
-user.GetUserId(c)
-
+user.GetUserId(c)     // 用户 ID
+user.GetUserName(c)   // 用户名
+user.GetRoleId(c)     // 角色 ID
+user.GetRoleKey(c)    // 角色标识
+user.GetRoleName(c)   // 角色名称
+user.GetDeptId(c)     // 部门 ID
+user.GetDeptName(c)   // 部门名称
 ```
 
-##### GetUserName
-
-获取用户名称，需要使用 gin 的上下文中
+这些值来自 JWT payload，认证流程见[认证与鉴权](/intro/advanced/auth)。典型用法是在写入操作中记录操作人：
 
 ```go
-
-// c 为gin.Context
-user.GetUserName(c)
-
-```
-
-以下提供一段伪代码为大家参考。
-
-```go
-
-// 本段代码来自go-admin-pro 项目 SysApi 模块的修改接口；
-
 func (e SysApi) Update(c *gin.Context) {
-	req := dto.SysApiUpdateReq{}
-  // 初始化
-  ...
+    req := dto.SysApiUpdateReq{}
+    // ...绑定参数...
 
-  // 获取用户id
-	req.SetUpdateBy(user.GetUserId(c))
+    req.SetUpdateBy(user.GetUserId(c))
 
-  ...
-  // 存储业务
-	e.OK(req.GetId())
+    // ...执行更新...
+    e.OK(req.GetId())
 }
 ```
 
-##### GetRoleId
+:::warning
+从哪里获得帮助：
 
-获取角色 id，需要使用 gin 的上下文中
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
 
-```go
-
-// c 为gin.Context
-user.GetRoleId(c)
-
-```
-
-##### GetRoleKey
-
-获取角色 key，需要使用 gin 的上下文中
-
-```go
-
-// c 为gin.Context
-user.GetRoleKey(c)
-
-```
-
-##### GetRoleName
-
-获取角色名称，需要使用 gin 的上下文中
-
-```go
-
-// c 为gin.Context
-user.GetRoleName(c)
-
-```
-
-##### GetDeptId
-
-获取部门 id，需要使用 gin 的上下文中
-
-```go
-
-// c 为gin.Context
-user.GetDeptId(c)
-
-```
-
-##### GetDeptName
-
-获取部门名称，需要使用 gin 的上下文中
-
-```go
-
-// c 为gin.Context
-user.GetDeptName(c)
-
-```
-
-以上伪代码均来源于 go-admin 项目，如有疑问可以在交流群中留言或者提交 issuesß。
+:::

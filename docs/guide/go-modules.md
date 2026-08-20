@@ -44,7 +44,7 @@ $ go mod why -m 包名
 $ go list -m all
 ```
 
-其中 `go mod tidy` 使用最频繁：**增删 import 之后执行一次**,它会同步更新 `go.mod` 与 `go.sum`。
+其中 `go mod tidy` 使用最频繁：**增删 import 之后执行一次**，它会同步更新 `go.mod` 与 `go.sum`。
 
 ## 依赖拉取失败
 
