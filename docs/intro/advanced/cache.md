@@ -41,8 +41,6 @@ settings:
 
 完整字段说明见[配置参考](/configure/settings)。
 
-:::
-
 ## 在 Service 层使用
 
 `Service` 结构体自带 `Cache` 字段，直接使用：
