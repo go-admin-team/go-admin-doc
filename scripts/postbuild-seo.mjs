@@ -20,7 +20,7 @@ const HOSTNAME = 'https://www.go-admin.pro';
 const DEFAULT_LOCALE = 'zh-CN';
 // Non-default locale bases from .dumirc.ts; keep in sync when adding a locale.
 // Kept in sync with the `locales` list in .dumirc.ts.
-const LOCALE_BASES = ['en-US'];
+const LOCALE_BASES = ['en-US', 'ja-JP'];
 
 async function* walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {

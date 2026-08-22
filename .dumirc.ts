@@ -22,19 +22,17 @@ export default defineConfig({
     hostname: 'https://www.go-admin.pro',
   },
 
-  // 首页 + guide 组（11 篇）已译成英文，先只开 zh-CN / en-US。
-  // ja-JP、zh-TW 还没有任何译稿，开启后语言切换器会把访客带到空站点，
-  // 等实际翻译后再取消下面两行的注释，并同步 scripts/postbuild-seo.mjs 的 LOCALE_BASES。
+  // en-US：全站（除 vip.md 外）已完整翻译。
+  // ja-JP：首页 + guide 组（11 篇）已译，其余页面尚未翻译，会落回中文——这是预期行为。
+  // zh-TW 还没有任何译稿，开启后语言切换器会把访客带到空站点，先留着注释。
   //
   // dumi 不做语言回退：缺少 `.{id}.md` 的页面在该语种下不会生成路由，而不是回退到中文。
-  // guide 之外的页面（configure、intro 等）目前还没有英文版，英文站访客点到这些链接
-  // 时会落回中文页——这是预期行为，不是 bug。
   //
   // zh-CN 需保持在首位，它占据根路径，这样既有的中文 URL 不会变化。
   locales: [
     { id: 'zh-CN', name: '简体中文' },
     { id: 'en-US', name: 'English', base: '/en-US' },
-    // { id: 'ja-JP', name: '日本語', base: '/ja-JP' },
+    { id: 'ja-JP', name: '日本語', base: '/ja-JP' },
     // { id: 'zh-TW', name: '繁體中文', base: '/zh-TW' },
   ],
 
