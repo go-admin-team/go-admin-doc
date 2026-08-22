@@ -36,19 +36,13 @@ go build
 例如：
 
 ```sh
-$ go-admin server -c config/swtting.xxxx.yml # 注意config/swtting.xxxx.yml可以根据本地的环境进行修改，修成自己的文件路径
+$ go-admin server -c config/settings.dev.yml # 路径可以按本地环境自行命名，例如 settings.dev.yml、settings.prod.yml
 ```
 
-还需提醒一点，也是大家在这里常见的问题，因为我们上述的指令都是直接使用的`go-admin`，这里大家需要注意，因为在打包的时候如果使用的是`go build`，打包出来就是 go-admin 的一个二进制可执行文件，大家根据自己的系统和打包出来具体的文件名称进行调整上述指令；
-
-例如：
-
-本地打出来的是`sss-admin.exe`
-
-执行命令就需要这样需要改，具体以本地环境为准
+上述指令里的 `go-admin` 是 `go build` 默认产出的二进制文件名，执行时需要换成你本地实际编译出来的文件名——Windows 下通常带 `.exe` 后缀：
 
 ```sh
-$ sss-admin.exe server
+$ go-admin.exe server
 ```
 
 ## 自动 api
