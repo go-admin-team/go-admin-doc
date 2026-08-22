@@ -25,7 +25,7 @@ Air 是一个开发环境下的 Go Web 应用程序自动重新加载工具。�
 使用以下命令来安装 Air：
 
 ```
-go get -u github.com/cosmtrek/air
+go install github.com/air-verse/air@latest
 ```
 
 ### 可能遇到的问题
@@ -91,3 +91,11 @@ air -c .air.toml
 ✔ http server started on 127.0.0.1:8080
 
 现在，当你对应用程序的代码进行更改并保存时，Air 会自动重新构建和重新加载应用程序，你可以在浏览器中刷新页面以查看更改。
+
+
+:::warning
+从哪里获得帮助：
+
+如果你在阅读本教程的过程中有任何疑问，可以前往[提交建议](https://github.com/go-admin-team/go-admin/issues/new)。
+
+:::
