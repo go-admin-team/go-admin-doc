@@ -47,6 +47,36 @@ export default defineConfig({
 
   hash: true,
 
+  // dumi's default sidebar and TOC CSS (theme-default/slots/Sidebar and Toc)
+  // truncate group titles and links with `white-space: nowrap` + ellipsis,
+  // sized for short Chinese labels. English (and Japanese) titles are longer
+  // and were getting cut off mid-word, e.g. "STANDARD PRACT…" in the sidebar
+  // and "Error: requires at least …" in the TOC. Let them wrap instead.
+  // `styles` entries are injected before the theme's own stylesheet, so equal-
+  // specificity rules there still lose on source order — `!important` is
+  // needed to actually win the cascade.
+  //
+  // No `>` child combinators here: dumi's SSR HTML-escapes this raw CSS
+  // string into the <style> tag (`>` becomes `&gt;`), which the browser's CSS
+  // parser can't decode — an invalid selector in a comma-separated list
+  // invalidates the whole rule, silently dropping the fix in production
+  // builds even though it works in dev (where styles are injected as
+  // unescaped JS instead). Descendant (space) selectors sidestep this.
+  styles: [
+    `
+    .dumi-default-sidebar dl dt,
+    .dumi-default-sidebar dl dd a,
+    .dumi-default-toc li a {
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: unset !important;
+    }
+    .dumi-default-toc li a {
+      line-height: 1.4 !important;
+    }
+    `,
+  ],
+
   themeConfig: {
     name: 'go-admin',
     rtl: true,
