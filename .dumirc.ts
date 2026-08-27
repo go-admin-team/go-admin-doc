@@ -75,6 +75,22 @@ export default defineConfig({
       line-height: 1.4 !important;
     }
     `,
+    `
+    /* dumi's default theme never sets white-space: nowrap on the top-level
+       nav items themselves (only on dropdown entries) — it relies on there
+       being enough room in the flex row. Six two-character Chinese labels
+       plus GitHub/Changelog no longer fit that assumption: the flex items
+       shrink below their text's natural width and, with no CJK line-break
+       protection, each label wraps mid-word ("指" / "南" on separate lines).
+       Force nowrap and reclaim some of the fixed 48px inter-item gap so the
+       row still fits without overflowing sideways. */
+    .dumi-default-navbar li a {
+      white-space: nowrap !important;
+    }
+    .dumi-default-navbar li:not(:last-child) {
+      margin-inline-end: 28px !important;
+    }
+    `,
   ],
 
   themeConfig: {
