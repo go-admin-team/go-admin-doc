@@ -102,17 +102,26 @@ sdk.Runtime.SetDbByTenant(tenant, db)    // sets a given tenant
 
 ### 4. User Info
 
-The following all require a `gin.Context`, from the package `github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth/user`:
+The following all require a `gin.Context`, from the package `github.com/go-admin-team/go-admin-core/v2/jwtauth/user`:
 
 ```go
 user.GetUserId(c)     // user ID
 user.GetUserName(c)   // username
 user.GetRoleId(c)     // role ID
-user.GetRoleKey(c)    // role key
 user.GetRoleName(c)   // role name
 user.GetDeptId(c)     // department ID
 user.GetDeptName(c)   // department name
 ```
+
+:::warning
+go-admin-core is currently on v2 (module path `github.com/go-admin-team/go-admin-core/v2`). In
+v1 the `jwtauth`, `jwtauth/user`, `casbin`, and `response` packages lived under `sdk/pkg/`; in v2
+they moved to the module root (e.g. `sdk/pkg/jwtauth/user` is now `v2/jwtauth/user`). Copying an
+import path from an older article or from old code fails to compile outright — "package not
+found" — rather than failing at runtime, which makes it easy to mistake for an environment
+problem at first glance.
+
+:::
 
 These values come from the JWT payload; see [Authentication & Authorization](/en-US/intro/advanced/auth) for the login flow. A typical use is recording who made a write:
 

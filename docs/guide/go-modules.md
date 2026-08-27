@@ -68,7 +68,7 @@ $ go env -w GOPRIVATE=git.yourcompany.com
 
 ```
 replace (
-    github.com/go-admin-team/go-admin-core => ../go-admin-core
+    github.com/go-admin-team/go-admin-core/v2 => ../go-admin-core
 )
 ```
 
