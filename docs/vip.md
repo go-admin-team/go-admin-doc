@@ -21,7 +21,7 @@ go-admin-pro V1 是一款付费版开箱即用的中台解决方案。包含两�
 |          |  开源版本  |        个人版本      |       小微团队版本（2-5人）  |     企业级         |
 | -------- | :--------: | :---------------: |:----------------: | :--------------------: |
 | 费用     |  永久免费  |         999 元       |         3999 元   |        **** 元         |
-|前端技术栈|Vue2+Js+element ui|React+Ts+Ant Design Pro|React+Ts+Ant Design Pro|React+Ts+Ant Design Pro|
+|前端技术栈|Vue3+Ts+Element Plus|React+Ts+Ant Design Pro|React+Ts+Ant Design Pro|React+Ts+Ant Design Pro|
 | 源代码   |    开源    |          -          |       -          |          -        |
 | 服务     |     无     |           有        |   有           |           有           |
 | 项目数量 |  无限制个  | 无限制个（不限制项目） | 无限制个（不限制项目） |无限制个（不限制项目） |
