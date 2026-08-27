@@ -58,7 +58,7 @@ func (e *SysPost) Insert(c *dto.SysPostControl) error {
 不在请求流程内的位置——启动逻辑、定时任务、队列消费函数——没有请求上下文，使用全局日志：
 
 ```go
-import log "github.com/go-admin-team/go-admin-core/logger"
+import log "github.com/go-admin-team/go-admin-core/v2/logger"
 
 log.Info("service started")
 log.Infof("processed %d records", count)

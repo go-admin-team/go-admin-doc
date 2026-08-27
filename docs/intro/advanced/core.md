@@ -102,17 +102,24 @@ sdk.Runtime.SetDbByTenant(tenant, db)    // 设置指定租户
 
 ### 4. 用户信息
 
-以下方法均需要 `gin.Context`，来自包 `github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth/user`：
+以下方法均需要 `gin.Context`，来自包 `github.com/go-admin-team/go-admin-core/v2/jwtauth/user`：
 
 ```go
 user.GetUserId(c)     // 用户 ID
 user.GetUserName(c)   // 用户名
 user.GetRoleId(c)     // 角色 ID
-user.GetRoleKey(c)    // 角色标识
 user.GetRoleName(c)   // 角色名称
 user.GetDeptId(c)     // 部门 ID
 user.GetDeptName(c)   // 部门名称
 ```
+
+:::warning
+go-admin-core 目前是 v2（模块路径 `github.com/go-admin-team/go-admin-core/v2`）。v1 时代
+`sdk/pkg/` 下的 `jwtauth`、`jwtauth/user`、`casbin`、`response` 几个包在 v2 里都搬到了模块根目录
+（比如 `sdk/pkg/jwtauth/user` 现在是 `v2/jwtauth/user`）。照抄旧文章或旧代码里的 import 路径会
+直接编译失败，报"找不到包"而不是运行时错误，容易第一时间怀疑成环境问题。
+
+:::
 
 这些值来自 JWT payload，认证流程见[认证与鉴权](/intro/advanced/auth)。典型用法是在写入操作中记录操作人：
 

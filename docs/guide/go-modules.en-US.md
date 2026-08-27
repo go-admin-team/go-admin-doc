@@ -68,7 +68,7 @@ When you need to debug a library go-admin depends on, such as go-admin-core, `re
 
 ```
 replace (
-    github.com/go-admin-team/go-admin-core => ../go-admin-core
+    github.com/go-admin-team/go-admin-core/v2 => ../go-admin-core
 )
 ```
 

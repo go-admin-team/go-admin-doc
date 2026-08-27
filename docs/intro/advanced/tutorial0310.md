@@ -68,7 +68,7 @@ import (
     "go-admin/app/admin/apis"
 
     "github.com/gin-gonic/gin"
-    jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
+    jwt "github.com/go-admin-team/go-admin-core/v2/jwtauth"
 )
 
 func init() {

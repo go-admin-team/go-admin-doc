@@ -58,7 +58,7 @@ func (e *SysPost) Insert(c *dto.SysPostControl) error {
 Places outside the request flow — startup logic, scheduled jobs, queue consumer functions — have no request context, so they use the global logger:
 
 ```go
-import log "github.com/go-admin-team/go-admin-core/logger"
+import log "github.com/go-admin-team/go-admin-core/v2/logger"
 
 log.Info("service started")
 log.Infof("processed %d records", count)

@@ -68,7 +68,7 @@ go-admin-core のような依存先のライブラリをデバッグしたい場
 
 ```
 replace (
-    github.com/go-admin-team/go-admin-core => ../go-admin-core
+    github.com/go-admin-team/go-admin-core/v2 => ../go-admin-core
 )
 ```
 
