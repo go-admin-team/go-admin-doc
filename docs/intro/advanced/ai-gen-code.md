@@ -73,7 +73,7 @@ go-admin 与 go-admin-ui 的根目录各有一份 `AGENTS.md`,专门写给 AI �
 要求：
 1. 使用 common/actions 的通用 Action，不要手写 Api 与 Service；
 2. 只创建 model、dto、router 三个文件；
-3. Generate() 必须返回副本，不要就地返回；
+3. 泛型 Action 会为每个请求创建独立的值，新模块无需实现 Generate()；
 4. 完成后确认 cmd/api/ 中已用 _ 导入新包。
 
 表结构：
@@ -82,8 +82,8 @@ CREATE TABLE `tb_article` (
 );
 ```
 
-第 3 条单独写出来，是因为它是最容易出错也最难发现的一处：通用 Action 在并发请求之间复用实例，
-`Generate()` 就地返回会导致请求之间串数据。这个问题在单人测试时几乎不出现，上线后才暴露。
+泛型 Action 会为每个请求创建独立的值。仅维护仍使用 `IndexAction` 等已弃用 Action 的旧模块时，
+才需要让 `Generate()` 返回副本，而不是返回原实例，以免并发请求共享数据。
 
 ### 业务超出单表增删改查
 
@@ -113,7 +113,7 @@ CREATE TABLE `tb_article` (
 
 ```text
 参照 app/demo/service/dto/demo_product_test.go 的写法，
-为 xxx 模块的 dto 补测试，重点覆盖 Generate() 返回副本这一点。
+为 xxx 模块的 dto 补测试。参考 TestToModelCarriesId，验证更新 DTO 通过 ToModel() 转换为模型时保留主键 ID。
 ```
 
 ### 写数据库迁移
@@ -136,7 +136,7 @@ PR 里也不会出现，等到别人拉代码才发现表没建。
 
 | 检查项 | 出错后果 |
 | --- | --- |
-| `Generate()` 是否返回副本 | 并发请求之间串数据 |
+| 新模块是否使用泛型 Action？如果旧模块仍使用已弃用的 Action，`Generate()` 是否返回副本 | 误把新模块写成旧版模式，或旧模块在并发请求之间串数据 |
 | 是否使用 `e.Orm` 而非全局 DB | 多租户下拿到错误的数据库连接 |
 | Service 里是否出现 `gin.Context` | 越过分层边界 |
 | `TableName()` 是否显式声明 | GORM 配置了 `SingularTable`,不会自动推导 |

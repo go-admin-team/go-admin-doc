@@ -88,7 +88,7 @@ Before starting, read:
 Requirements:
 1. Use the generic Actions from common/actions — no hand-written Api or Service;
 2. Create only model, dto and router files;
-3. Generate() must return a copy, never in place;
+3. Generic Actions create fresh values for each request, so new modules do not need to implement Generate();
 4. When done, confirm the new package is imported with _ in cmd/api/.
 
 Table structure:
@@ -97,11 +97,10 @@ CREATE TABLE `tb_article` (
 );
 ```
 
-Item 3 is called out on its own because it's the easiest mistake to make and
-the hardest to notice: the generic Actions reuse the same instance across
-concurrent requests, and `Generate()` returning in place lets data leak
-between requests. It almost never shows up in solo testing — only in
-production.
+Generic Actions create fresh values for each request. When maintaining an
+existing module that still uses a deprecated Action such as `IndexAction`,
+`Generate()` must return a copy, not the original instance, so concurrent
+requests do not share data.
 
 ### Business Logic Beyond Single-Table CRUD
 
@@ -135,8 +134,8 @@ whether the rework is thorough without diffing every file yourself.
 
 ```text
 Following the pattern in app/demo/service/dto/demo_product_test.go, add tests
-for the xxx module's dto, with particular coverage of Generate() returning a
-copy.
+for the xxx module's dto. Use TestToModelCarriesId as a reference to verify
+that ToModel() preserves the update DTO's primary-key ID in the resulting model.
 ```
 
 ### Writing a Database Migration
@@ -166,7 +165,7 @@ often:
 
 | Check | Failure if missed |
 | --- | --- |
-| Does `Generate()` return a copy? | Data leaks between concurrent requests |
+| Do new modules use generic Actions? If a legacy module still uses deprecated Actions, does `Generate()` return a copy? | New modules follow the deprecated pattern, or legacy modules share data between concurrent requests |
 | Is `e.Orm` used instead of a global DB? | Wrong database connection under multi-tenancy |
 | Does `gin.Context` show up in Service? | Layering boundary violated |
 | Is `TableName()` declared explicitly? | GORM's `SingularTable` config won't infer it |
